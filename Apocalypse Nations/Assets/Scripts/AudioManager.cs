@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
+using System.Collections.Generic;
+using System.Linq;
 
 // initial Author Tyler
 public class AudioManager {
@@ -15,6 +17,10 @@ public class AudioManager {
     #endregion
 
     #region Properites
+    /// <summary>
+    /// gets the instance of the audio manager
+    /// </summary>
+    /// <returns>audio manager</returns>
     public AudioManager Instance()
     {
         if (instance != null)
@@ -24,15 +30,28 @@ public class AudioManager {
         else
             return instance;
     }
+    /// <summary>
+    /// gets the background audio source
+    /// </summary>
+    public AudioSource BackgroundAudioSource
+    { get; private set; }
+
+    /// <summary>
+    /// gets the sound effect audio source
+    /// </summary>
+    public AudioSource SFXAudioSource
+    { get; private set; }
     #endregion
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    #region Audio Clips
+
+    #endregion
+
+    void Awake()
+    {
+        #region LoadAudioClips
+
+        #endregion
+        
+    }
 }

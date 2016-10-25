@@ -14,6 +14,10 @@ public class AudioManager {
     public AudioMixer masterAudioMixer;
     public AudioMixer BackgroundAudioMixer;
     public AudioMixer SoundEffectAudioMixer;
+
+    #region Audio Clips
+
+    #endregion
     #endregion
 
     #region Properites
@@ -41,10 +45,6 @@ public class AudioManager {
     /// </summary>
     public AudioSource SFXAudioSource
     { get; private set; }
-    #endregion
-
-    #region Audio Clips
-
     #endregion
 
     void Awake()

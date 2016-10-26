@@ -2,7 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
-public class Nation
+public class Nation : MonoBehaviour
 	{
 	//list of nation variables stored in class
 	public string name;

@@ -6,7 +6,7 @@ using System.IO;
 //Author Tim Henders
 
 [System.Serializable]
-public class nationData {
+public class nationData : MonoBehaviour{
 
 	public static nationData current;
 	public Nation n1;

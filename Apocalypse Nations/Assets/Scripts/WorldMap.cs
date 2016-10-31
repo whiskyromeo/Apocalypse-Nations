@@ -132,8 +132,9 @@ public class WorldMap : MonoBehaviour {
     void Awake ()
     {
         NationBoraders = GetComponents<BoxCollider2D>();
-        Nations = GetComponents<Nation>();
+        Nations = GetComponentsInChildren<Nation>();
 
+        Debug.Log(Nations.Length);
         // initial set up for nations dictionary
         for(int i = 0; i < Nations.Length; i++)
         {

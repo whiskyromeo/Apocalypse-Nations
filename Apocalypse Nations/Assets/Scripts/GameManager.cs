@@ -7,8 +7,10 @@ public class GameManager {
     static GameManager instance;
     static GameStates gameState;
     static MenuStates menuState;
+    static GameplayStates gamePlayState;
     public enum GameStates {MainMenu, InGame, Pause };
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
+    public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
 
     #endregion
 
@@ -73,7 +75,19 @@ public class GameManager {
     void Awake () {
         gameState = GameStates.MainMenu;
         menuState = MenuStates.TitlePage;
+        gamePlayState = GameplayStates.None;
         
 	
 	}
+
+    void Update()
+    {
+        if (gameState == GameStates.InGame)
+        {
+            if(gamePlayState == GameplayStates.FirstPlayerTurn)
+            {
+
+            }
+        }
+    }
 }

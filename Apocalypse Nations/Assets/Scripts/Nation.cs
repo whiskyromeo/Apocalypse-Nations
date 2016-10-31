@@ -17,16 +17,14 @@ public class Nation : MonoBehaviour {
     // Use this for initialization
     void Start () {
         inAlliance = false;
-
     }
-    #region Private Methods
-    // Update is called once per frame
-    void OnMouseEnter () {
-        Debug.Log("Welcome to the the Country!!!");
-        // will actually pop up the country stats
-	
-	}
 
+    #region Private Methods
+    void OnMouseEnter ()
+    {
+        Debug.Log("Welcome to the the Country!!!");
+        // will actually pop up the country stats	
+	}
 
     void OnMouseExit()
     {

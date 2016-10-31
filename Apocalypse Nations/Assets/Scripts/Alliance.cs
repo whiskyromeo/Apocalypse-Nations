@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Alliance : MonoBehaviour {
 
-    public Nation[] AlliedNations;
+    public List<Nation> AlliedNations;
     public WorldMap worldMap;
     public string AllianceName;
     int population;
@@ -27,6 +28,7 @@ public class Alliance : MonoBehaviour {
             religion += worldMap.NationReligions[nationNumber];
             economy += worldMap.NationEconomies[nationNumber];
             worldMap.Nations[nationNumber].inAlliance = true;
+            AlliedNations.Add(worldMap.NationNumbers[]);
         }
     }
 

@@ -69,6 +69,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Josh Map\Argentina.cs" />
+    <Compile Include="Assets\Josh Map\BalticNations.cs" />
+    <Compile Include="Assets\Josh Map\Brazil.cs" />
+    <Compile Include="Assets\Josh Map\Canada.cs" />
+    <Compile Include="Assets\Josh Map\CentralAfrica.cs" />
+    <Compile Include="Assets\Josh Map\China.cs" />
+    <Compile Include="Assets\Josh Map\Egypt.cs" />
+    <Compile Include="Assets\Josh Map\France.cs" />
+    <Compile Include="Assets\Josh Map\Germany.cs" />
+    <Compile Include="Assets\Josh Map\India.cs" />
+    <Compile Include="Assets\Josh Map\Indonesia.cs" />
+    <Compile Include="Assets\Josh Map\Italy.cs" />
+    <Compile Include="Assets\Josh Map\Japan.cs" />
+    <Compile Include="Assets\Josh Map\LALALA.cs" />
+    <Compile Include="Assets\Josh Map\Mexico.cs" />
+    <Compile Include="Assets\Josh Map\MiddleEast.cs" />
+    <Compile Include="Assets\Josh Map\NorthKorea.cs" />
+    <Compile Include="Assets\Josh Map\Poland.cs" />
+    <Compile Include="Assets\Josh Map\Russia.cs" />
+    <Compile Include="Assets\Josh Map\SouthAfrica.cs" />
+    <Compile Include="Assets\Josh Map\SouthKorea.cs" />
+    <Compile Include="Assets\Josh Map\USA.cs" />
+    <Compile Include="Assets\Josh Map\UnitedKingdom.cs" />
     <Compile Include="Assets\Scripts\Alliance.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />

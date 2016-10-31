@@ -70,7 +70,7 @@ public class GameManager {
     }
     #endregion
 
-
+    #region Private Methods
     // Update is called once per frame
     void Awake () {
         gameState = GameStates.MainMenu;
@@ -84,10 +84,39 @@ public class GameManager {
     {
         if (gameState == GameStates.InGame)
         {
-            if(gamePlayState == GameplayStates.FirstPlayerTurn)
+            switch(gamePlayState)
             {
-
+                case GameplayStates.FirstPlayerTurn:
+                    // update HUD for this player's alliance stats
+                    // highlight players allied countries to the players color
+                    break;
+                case GameplayStates.SecondPlayerTurn:
+                    // update HUD for this player's alliance stats
+                    // highlight players allied countries to the players color
+                    break;
+                case GameplayStates.ThirdPlayerTurn:
+                    // update HUD for this player's alliance stats
+                    // highlight players allied countries to the players color
+                    break;
+                case GameplayStates.FourthPlayerTurn:
+                    // update HUD for this player's alliance stats
+                    // highlight players allied countries to the players color
+                    break;
+                case GameplayStates.None:
+                    // this will be used for the apocolypse turn or refresher
+                    
+                    // right now it will just go to the next state which is FirstPlayerTurn
+                    gamePlayState++;
+                    break;
             }
         }
     }
+    #endregion
+    #region Public Methods
+    public void PlayerEndedTurn()
+    {
+        gamePlayState++;
+    }
+    #endregion
+
 }

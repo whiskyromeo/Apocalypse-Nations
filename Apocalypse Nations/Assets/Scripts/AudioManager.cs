@@ -35,6 +35,13 @@ public class AudioManager {
             return instance;
     }
     /// <summary>
+    /// constructor
+    /// </summary>
+    private AudioManager()
+    {
+
+    }
+    /// <summary>
     /// gets the background audio source
     /// </summary>
     public AudioSource BackgroundAudioSource

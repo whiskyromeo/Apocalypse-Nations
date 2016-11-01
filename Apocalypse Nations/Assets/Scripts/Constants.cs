@@ -10,6 +10,7 @@ public static partial class Constants {
     public const string INDIA_NATION_STRING = "India";
     public const string US_NATION_STRING = "USA";
     public const string INDONESIA_NATION_STRING = "Indonesia";
+    public const string BRAZIL_NATION_STRING = "Brazil";
     public const string MIDDLE_EAST_NATION_STRING = "Mid East";
     public const string CENTRAL_AFRICA_NATION_STRING = "C Africa";
     public const string SOUTH_EAST_ASIA_NATION_STRING = "SE Asia";
@@ -22,7 +23,7 @@ public static partial class Constants {
     public const string FRANCE_NATION_STRING = "France";
     public const string UNITED_KINGDOM_NATION_STRING = "UK";
     public const string ITALY_NATION_STRING = "Italy";
-    public const string SOUTH_AFRICA_NATION_STRING = "South Africa";
+    public const string SOUTH_AFRICA_NATION_STRING = "S Africa";
     public const string BALTIC_NATIONS_NATION_STRING = "Baltic";
     public const string SOUTH_KOREA_NATION_STRING = "S Korea";
     public const string ARGENTINA_NATION_STRING = "Argentina";

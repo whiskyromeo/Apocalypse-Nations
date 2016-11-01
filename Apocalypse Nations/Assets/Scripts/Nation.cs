@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Nation : MonoBehaviour {
 
     #region fields
-    public BoxCollider2D boundingArea;
+    public PolygonCollider2D boundingArea;
     public enum NationStats { Population, Science, Military, Economy, Religion};
     public string nationName;
     int population;
@@ -16,81 +16,121 @@ public class Nation : MonoBehaviour {
     int economy;
     int religion;
     public bool inAlliance;
-	public GameObject panel;
+    public GameObject pannel;
     #endregion
 
-    #region Public Methods
+    #region Properties
     /// <summary>
-    /// Sets the population of the Nation
+    /// Gets and set the population Value
     /// </summary>
-    /// <param name="populationNumber"></param>
-    public void SetNationPopulation(int populationNumber)
-    {
-        population = populationNumber;
-    }
+    public int Population
+    {  get
+        {
+            return population;
+        }
 
+        set
+        {
+            population = value;
+        }
+    }
     /// <summary>
-    /// Sets the Military of the nation
+    /// Gets and set the Science Value
     /// </summary>
-    /// <param name="militaryNumber"></param>
-    public void SetNationMilitary(int militaryNumber)
+    public int Science
     {
-        military = militaryNumber;
-    }
+        get
+        {
+            return science;
+        }
 
+        set
+        {
+            science = value;
+        }
+    }
     /// <summary>
-    /// Sets the Science of the nation
+    /// Gets and set the Military Value
     /// </summary>
-    /// <param name="scienceNumber"></param>
-    public void SetNationScience(int scienceNumber)
+    public int Military
     {
-        science = scienceNumber;
-    }
+        get
+        {
+            return military;
+        }
 
+        set
+        {
+            military = value;
+        }
+    }
     /// <summary>
-    /// Sets the Economy of the nation
+    /// Gets and set the Economy Value
     /// </summary>
-    /// <param name="economyNumber"></param>
-    public void SetNationEconomy(int economyNumber)
+    public int Economy
     {
-        economy = economyNumber;
-    }
+        get
+        {
+            return economy;
+        }
 
+        set
+        {
+            economy = value;
+        }
+    }
     /// <summary>
-    /// Sets the Military of the nation
+    /// Gets and set the Religion Value
     /// </summary>
-    /// <param name="ReligionNumber"></param>
-    public void SetNationReligion(int ReligionNumber)
+    public int Religion
     {
-        religion = ReligionNumber;
+        get
+        {
+            return religion;
+        }
+
+        set
+        {
+            religion = value;
+        }
     }
-
-
-
     #endregion
+
+
+
     #region Private Methods
     // Use this for initialization
     void Start () {
         inAlliance = false;
-		panel.SetActive (false);
+        //panel.SetActive (false);
+        WorldMap worldMap = GetComponentInParent<WorldMap>();
+        int nationNumber = worldMap.NationNumbers[nationName];
+        Economy = worldMap.NationEconomies[nationNumber];
+        Military = worldMap.NationMilitaries[nationNumber];
+        Science = worldMap.NationSciences[nationNumber];
+        Religion = worldMap.NationReligions[nationNumber];
+        Population = worldMap.NationPopulations[nationNumber];
+
+        Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
+
 
     }
 
 
     void OnMouseEnter ()
     {
-        Debug.Log("Welcome to the the Country!!!");
-
+        Debug.Log("Welcome to " + nationName + "!!!");
+        Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
         // will actually pop up the country stats
-		panel.SetActive(true);
+        //panel.SetActive(true);
 
-	}
+    }
 
     void OnMouseExit()
     {
-        Debug.Log("Leaving the country!");
+        Debug.Log("Leaving " + nationName + "!");
         // will actually destroy the popu-up
-		panel.SetActive (false);
+		//panel.SetActive (false);
     }
     #endregion
 }

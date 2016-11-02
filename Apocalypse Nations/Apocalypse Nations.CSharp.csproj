@@ -61,21 +61,39 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Alliance.cs" />
-    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Nation.cs" />
     <Compile Include="Assets\Scripts\PanelPopUp.cs" />
+    <Compile Include="Assets\Scripts\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\WorldMap.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Argentina.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\BalticNations.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Brazil.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Canada.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\CentralAfrica.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\China.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Egypt.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\France.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Germany.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\India.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Indonesia.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Italy.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Japan.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\LALALA.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Mexico.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\MiddleEast.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\NorthKorea.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Poland.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\Russia.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\SouthAfrica.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\SouthKorea.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\USA.cs" />
+    <Compile Include="Assets\Sprites\Josh Map\UnitedKingdom.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

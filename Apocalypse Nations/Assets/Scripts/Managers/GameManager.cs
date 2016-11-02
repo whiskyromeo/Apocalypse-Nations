@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 // initial author : Tyler
-public class GameManager {
+public class GameManager : MonoBehaviour {
 
     #region Fields
     static GameManager instance;
@@ -12,7 +12,7 @@ public class GameManager {
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
 
-    public Alliance player1, player2, player3, player4, activeAlliance;
+    public GameObject player1, player2, player3, player4, activeAlliance;
 
     #endregion
 
@@ -68,13 +68,9 @@ public class GameManager {
     #region Constructor
     private GameManager()
     {
-        /*
-        player1 = new Alliance();
-        player2 = new Alliance();
-        player3 = new Alliance();
-        player4 = new Alliance();
-        activeAlliance = player1;
-        */
+        
+        
+        
     }
     #endregion
 
@@ -84,9 +80,14 @@ public class GameManager {
         gameState = GameStates.MainMenu;
         menuState = MenuStates.TitlePage;
         gamePlayState = GameplayStates.None;
+        activeAlliance = player1;
+
+    }
+
+    void Start() {
         
-	
-	}
+
+    }
 
     void Update()
     {

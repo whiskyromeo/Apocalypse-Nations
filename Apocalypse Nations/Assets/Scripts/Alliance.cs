@@ -24,7 +24,8 @@ public class Alliance : MonoBehaviour
     public Alliance()
     {
         AlliedNations = new List<Nation>();
-        addNationToAlliance(Random.Range(0, 22));
+        addNationToAlliance(4);
+        addNationToAlliance("USA");
         updateAllianceStats();
     }
 

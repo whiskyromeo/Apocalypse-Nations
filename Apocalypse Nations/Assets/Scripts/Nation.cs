@@ -8,7 +8,7 @@ public class Nation : MonoBehaviour {
 
     #region fields
     public PolygonCollider2D boundingArea;
-    public enum NationStats { Population, Science, Military, Economy, Religion};
+    //public enum NationStats { Population, Science, Military, Economy, Religion};
     public string nationName;
     int population;
     int science;

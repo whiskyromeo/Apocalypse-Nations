@@ -12,11 +12,11 @@ public class Alliance : MonoBehaviour
     public List<Nation> AlliedNations;
     public WorldMap worldMap;
     public string AllianceName;
-    int population;
-    int military;
-    int science;
-    int religion;
-    int economy;
+    public int population;
+    public int military;
+    public int science;
+    public int religion;
+    public int economy;
     int balancingScale = 3;
     #endregion
 

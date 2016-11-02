@@ -20,6 +20,14 @@ public class Alliance : MonoBehaviour
     int balancingScale = 3;
     #endregion
 
+
+    public Alliance()
+    {
+        AlliedNations = new List<Nation>();
+        addNationToAlliance(Random.Range(0, 22));
+        updateAllianceStats();
+    }
+
     #region Private Methods
     /// <summary>
     /// Adds a nation to the alliance
@@ -46,6 +54,27 @@ public class Alliance : MonoBehaviour
             Debug.Log("this country can't be added");
         }
     }
+
+    void addNationToAlliance(int nationnumber)
+    {
+        // check to see if this nation is in an alliance
+        if (!worldMap.Nations[nationnumber].inAlliance)
+        {
+            // add new nation stats to your alliance
+            population += worldMap.GetNationPopulation(nationnumber);
+            military += worldMap.GetNationMilitary(nationnumber);
+            science += worldMap.GetNationScience(nationnumber);
+            religion += worldMap.GetNationReligion(nationnumber);
+            economy += worldMap.GetNationEconomy(nationnumber);
+            worldMap.Nations[nationnumber].inAlliance = true;
+            AlliedNations.Add(worldMap.GetNation(nationnumber));
+        }
+        else
+        {
+            Debug.Log("this country can't be added");
+        }
+    }
+
 
     void AttackAlliance(int attackedNationNumber)
     {

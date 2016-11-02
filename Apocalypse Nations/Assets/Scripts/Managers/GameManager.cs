@@ -12,6 +12,8 @@ public class GameManager {
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
 
+    public Alliance player1, player2, player3, player4, activeAlliance;
+
     #endregion
 
     #region Properties
@@ -66,7 +68,13 @@ public class GameManager {
     #region Constructor
     private GameManager()
     {
-
+        /*
+        player1 = new Alliance();
+        player2 = new Alliance();
+        player3 = new Alliance();
+        player4 = new Alliance();
+        activeAlliance = player1;
+        */
     }
     #endregion
 

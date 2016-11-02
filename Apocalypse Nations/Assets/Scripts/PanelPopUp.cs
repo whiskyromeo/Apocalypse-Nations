@@ -10,7 +10,7 @@ public class PanelPopUp : MonoBehaviour
 	void Start ()
 	{
 		panel.SetActive (false);
-		text.text = "Sample Text";
+		//text.text = "Sample Text";
 	}
 
 	public void OpenPanel ()

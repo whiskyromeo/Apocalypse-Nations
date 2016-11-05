@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
     int totalTurns; // this will be used to track how many actions the players have commited
 
-    public GameObject player1, player2, player3, player4, activeAlliance;
+    public Alliance player1, player2, player3, player4, activeAlliance;
 
     #endregion
 

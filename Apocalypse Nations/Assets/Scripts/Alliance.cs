@@ -25,7 +25,6 @@ public class Alliance : MonoBehaviour
     {
         AlliedNations = new List<Nation>();
         int rand = Random.Range(0, 22);
-        Debug.Log(rand.ToString());
         addNationToAlliance(rand);
         updateAllianceStats();
     }
@@ -35,7 +34,7 @@ public class Alliance : MonoBehaviour
     /// Adds a nation to the alliance
     /// </summary>
     /// <param name="nationname">string nation name</param>
-    void addNationToAlliance(string nationname)
+   public void addNationToAlliance(string nationname)
     {
         // get the nation number of the nation you are adding
         int nationNumber = worldMap.NationNumbers[nationname];
@@ -57,7 +56,7 @@ public class Alliance : MonoBehaviour
         }
     }
 
-    void addNationToAlliance(int nationnumber)
+    public void addNationToAlliance(int nationnumber)
     {
         // check to see if this nation is in an alliance
         if (!worldMap.Nations[nationnumber].inAlliance)
@@ -78,7 +77,7 @@ public class Alliance : MonoBehaviour
     }
 
 
-    void AttackAlliance(int attackedNationNumber)
+    public void AttackAlliance(int attackedNationNumber)
     {
         Nation attackedNation = worldMap.NationClasses[attackedNationNumber];
         int AttackDC = CalculateAttackDC(attackedNationNumber);

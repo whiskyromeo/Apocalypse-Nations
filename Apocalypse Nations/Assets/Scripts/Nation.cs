@@ -17,6 +17,7 @@ public class Nation : MonoBehaviour {
     int religion;
     public bool inAlliance;
     public GameObject pannel;
+    public GameManager gameManager;
     #endregion
 
     #region Properties
@@ -131,6 +132,18 @@ public class Nation : MonoBehaviour {
         //Debug.Log("Leaving " + nationName + "!");
         // will actually destroy the popu-up
 		//panel.SetActive (false);
+    }
+
+    void OnMouseDown()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            gameManager.activeAlliance.addNationToAlliance(nationName);
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
+        }
     }
     #endregion
 }

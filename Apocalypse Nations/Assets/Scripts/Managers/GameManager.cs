@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour {
                     // this will be used for the apocolypse turn or refresher
                     totalTurns++;
                     // right now it will just go to the next state which is FirstPlayerTurn
-                    gamePlayState++;
+                    gamePlayState = GameplayStates.FirstPlayerTurn;
                     break;
                 default:
                     Debug.Log("switching nations is fucked up");

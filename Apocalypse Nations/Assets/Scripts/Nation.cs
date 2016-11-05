@@ -111,7 +111,7 @@ public class Nation : MonoBehaviour {
         Religion = worldMap.NationReligions[nationNumber];
         Population = worldMap.NationPopulations[nationNumber];
 
-        Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
+        //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
 
 
     }
@@ -119,8 +119,8 @@ public class Nation : MonoBehaviour {
 
     void OnMouseEnter ()
     {
-        Debug.Log("Welcome to " + nationName + "!!!");
-        Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
+        //Debug.Log("Welcome to " + nationName + "!!!");
+        //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
         // will actually pop up the country stats
         //panel.SetActive(true);
 
@@ -128,7 +128,7 @@ public class Nation : MonoBehaviour {
 
     void OnMouseExit()
     {
-        Debug.Log("Leaving " + nationName + "!");
+        //Debug.Log("Leaving " + nationName + "!");
         // will actually destroy the popu-up
 		//panel.SetActive (false);
     }

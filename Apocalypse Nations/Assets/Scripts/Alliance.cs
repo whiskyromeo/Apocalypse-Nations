@@ -21,11 +21,12 @@ public class Alliance : MonoBehaviour
     #endregion
 
 
-    public Alliance()
+    void Start()
     {
         AlliedNations = new List<Nation>();
-        addNationToAlliance(4);
-        addNationToAlliance("USA");
+        int rand = Random.Range(0, 22);
+        Debug.Log(rand.ToString());
+        addNationToAlliance(rand);
         updateAllianceStats();
     }
 
@@ -132,12 +133,14 @@ public class Alliance : MonoBehaviour
         religion = 0;
         foreach (Nation nation in AlliedNations)
         {
+            
             int nationNumber = worldMap.NationNumbers[nation.name];
             population += worldMap.GetNationPopulation(nationNumber);
             science += worldMap.GetNationScience(nationNumber);
             military += worldMap.GetNationMilitary(nationNumber);
             economy += worldMap.GetNationEconomy(nationNumber);
             religion += worldMap.GetNationReligion(nationNumber);
+
         }
     }
     #endregion

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public enum GameStates {MainMenu, InGame, Pause };
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
+    int totalTurns; // this will be used to track how many actions the players have commited
 
     public Alliance player1, player2, player3, player4, activeAlliance;
 
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour {
         menuState = MenuStates.TitlePage;
         gamePlayState = GameplayStates.None;
         activeAlliance = player1;
+        totalTurns = 0;
 
     }
 
@@ -101,7 +103,40 @@ public class GameManager : MonoBehaviour {
     #region Public Methods
     public void PlayerEndedTurn()
     {
+        totalTurns++;
         gamePlayState++;
+        switch (gamePlayState) {
+            case GameplayStates.FirstPlayerTurn:
+                player4 = activeAlliance;
+                activeAlliance = player1;
+                break;
+            case GameplayStates.SecondPlayerTurn:
+                player1 = activeAlliance;
+                activeAlliance = player2;
+                break;
+            case GameplayStates.ThirdPlayerTurn:
+                player2 = activeAlliance;
+                activeAlliance = player3;
+                break;
+            case GameplayStates.FourthPlayerTurn:
+                player3 = activeAlliance;
+                activeAlliance = player4;
+                break;
+            default:
+                Debug.Log("switching nations is fucked up");
+                activeAlliance = player1;
+                break;
+        }
+    }
+
+    /// <summary>
+    /// this is the method that would be called in order to trigger an apocalypse
+    /// </summary>
+    /// <param name="timeTilApoc"></param>
+    public void ApocalypseCheck(int timeTilApoc) {
+        if (totalTurns / 4 == timeTilApoc) {
+            //trigger apocalpyse
+        }
     }
     #endregion
 

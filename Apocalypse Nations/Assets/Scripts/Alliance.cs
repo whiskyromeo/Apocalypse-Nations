@@ -134,7 +134,7 @@ public class Alliance : MonoBehaviour
         foreach (Nation nation in AlliedNations)
         {
             
-            int nationNumber = worldMap.NationNumbers[nation.name];
+            int nationNumber = worldMap.NationNumbers[nation.nationName];
             population += worldMap.GetNationPopulation(nationNumber);
             science += worldMap.GetNationScience(nationNumber);
             military += worldMap.GetNationMilitary(nationNumber);

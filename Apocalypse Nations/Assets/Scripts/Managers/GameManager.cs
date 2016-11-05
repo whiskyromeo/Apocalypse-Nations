@@ -17,21 +17,7 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     #region Properties
-    /// <summary>
-    /// Gets the singleton instance of the game manager
-    /// </summary>
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameManager();
-            }
 
-            return instance;
-        }
-    }
     /// <summary>
     /// Gets the CurrentMenuState
     /// </summary>
@@ -62,15 +48,6 @@ public class GameManager : MonoBehaviour {
     public void SetGameState(GameStates newGameState)
     {
         gameState = newGameState;
-    }
-    #endregion
-
-    #region Constructor
-    private GameManager()
-    {
-        
-        
-        
     }
     #endregion
 

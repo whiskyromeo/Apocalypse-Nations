@@ -4,7 +4,6 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     #region Fields
-    static GameManager instance;
     static GameStates gameState;
     static MenuStates menuState;
     static GameplayStates gamePlayState;
@@ -55,9 +54,9 @@ public class GameManager : MonoBehaviour {
     #region Private Methods
     // Update is called once per frame
     void Awake () {
-        gameState = GameStates.MainMenu;
+        gameState = GameStates.InGame;
         menuState = MenuStates.TitlePage;
-        gamePlayState = GameplayStates.None;
+        gamePlayState = GameplayStates.FirstPlayerTurn;
         activeAlliance = player1;
         totalTurns = 0;
 
@@ -75,27 +74,31 @@ public class GameManager : MonoBehaviour {
             switch(gamePlayState)
             {
                 case GameplayStates.FirstPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player1;
                     break;
                 case GameplayStates.SecondPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player2;
                     break;
                 case GameplayStates.ThirdPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player3;
                     break;
                 case GameplayStates.FourthPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player4;
                     break;
                 case GameplayStates.None:
                     // this will be used for the apocolypse turn or refresher
-                    
+                    totalTurns++;
                     // right now it will just go to the next state which is FirstPlayerTurn
                     gamePlayState++;
                     break;
+                default:
+                    Debug.Log("switching nations is fucked up");
+                    activeAlliance = player1;
+                    break;
+            }
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                PlayerEndedTurn();
             }
         }
     }
@@ -103,30 +106,7 @@ public class GameManager : MonoBehaviour {
     #region Public Methods
     public void PlayerEndedTurn()
     {
-        totalTurns++;
         gamePlayState++;
-        switch (gamePlayState) {
-            case GameplayStates.FirstPlayerTurn:
-                player4 = activeAlliance;
-                activeAlliance = player1;
-                break;
-            case GameplayStates.SecondPlayerTurn:
-                player1 = activeAlliance;
-                activeAlliance = player2;
-                break;
-            case GameplayStates.ThirdPlayerTurn:
-                player2 = activeAlliance;
-                activeAlliance = player3;
-                break;
-            case GameplayStates.FourthPlayerTurn:
-                player3 = activeAlliance;
-                activeAlliance = player4;
-                break;
-            default:
-                Debug.Log("switching nations is fucked up");
-                activeAlliance = player1;
-                break;
-        }
     }
 
     /// <summary>

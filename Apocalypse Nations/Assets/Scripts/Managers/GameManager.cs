@@ -105,13 +105,35 @@ public class GameManager : MonoBehaviour {
     {
         totalTurns++;
         gamePlayState++;
+        switch (gamePlayState) {
+            case GameplayStates.FirstPlayerTurn:
+                player4 = activeAlliance;
+                activeAlliance = player1;
+                break;
+            case GameplayStates.SecondPlayerTurn:
+                player1 = activeAlliance;
+                activeAlliance = player2;
+                break;
+            case GameplayStates.ThirdPlayerTurn:
+                player2 = activeAlliance;
+                activeAlliance = player3;
+                break;
+            case GameplayStates.FourthPlayerTurn:
+                player3 = activeAlliance;
+                activeAlliance = player4;
+                break;
+            default:
+                Debug.Log("switching nations is fucked up");
+                activeAlliance = player1;
+                break;
+        }
     }
 
     /// <summary>
     /// this is the method that would be called in order to trigger an apocalypse
     /// </summary>
     /// <param name="timeTilApoc"></param>
-    public void ApocalpyseCheck(int timeTilApoc) {
+    public void ApocalypseCheck(int timeTilApoc) {
         if (totalTurns / 4 == timeTilApoc) {
             //trigger apocalpyse
         }

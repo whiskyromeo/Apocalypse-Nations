@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
 
-    public GameObject player1, player2, player3, player4, activeAlliance;
+    public Alliance player1, player2, player3, player4, activeAlliance;
 
     #endregion
 

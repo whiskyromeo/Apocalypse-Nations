@@ -17,7 +17,7 @@ public class Nation : MonoBehaviour {
     int religion;
     public bool inAlliance;
     public GameObject pannel;
-    public GameManager gameManager;
+    GameManager gameManager;
     #endregion
 
     #region Properties
@@ -111,6 +111,7 @@ public class Nation : MonoBehaviour {
         Science = worldMap.NationSciences[nationNumber];
         Religion = worldMap.NationReligions[nationNumber];
         Population = worldMap.NationPopulations[nationNumber];
+        gameManager = FindObjectOfType<GameManager>();
 
         //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
 
@@ -134,13 +135,14 @@ public class Nation : MonoBehaviour {
 		//panel.SetActive (false);
     }
 
-    void OnMouseDown()
+    void OnMouseUpAsButton()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            gameManager.activeAlliance.addNationToAlliance(nationName);
-        }
-        if (Input.GetMouseButtonDown(1))
+        gameManager.activeAlliance.addNationToAlliance(nationName);
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse1) && boundingArea.bounds.Contains(Input.mousePosition))
         {
             gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
         }

@@ -16,8 +16,10 @@ public class Nation : MonoBehaviour {
     int economy;
     int religion;
     public bool inAlliance;
-    public GameObject pannel;
+    public GameObject panel;
+    NationInfoPanel nationInfoPanel;
     GameManager gameManager;
+    public Canvas canvas;
     #endregion
 
     #region Properties
@@ -103,7 +105,6 @@ public class Nation : MonoBehaviour {
     // Use this for initialization
     void Start () {
         inAlliance = false;
-        //panel.SetActive (false);
         WorldMap worldMap = GetComponentInParent<WorldMap>();
         int nationNumber = worldMap.NationNumbers[nationName];
         Economy = worldMap.NationEconomies[nationNumber];
@@ -111,7 +112,18 @@ public class Nation : MonoBehaviour {
         Science = worldMap.NationSciences[nationNumber];
         Religion = worldMap.NationReligions[nationNumber];
         Population = worldMap.NationPopulations[nationNumber];
+
         gameManager = FindObjectOfType<GameManager>();
+        nationInfoPanel = panel.GetComponent<NationInfoPanel>();
+        nationInfoPanel = (NationInfoPanel)(GameObject.Instantiate(nationInfoPanel, canvas.transform, false));
+        nationInfoPanel.transform.SetParent(canvas.transform);
+        nationInfoPanel.transform.position += (transform.position * 30);
+        nationInfoPanel.militaryNumber.text = military.ToString();
+        nationInfoPanel.populationNumber.text = population.ToString();
+        nationInfoPanel.scienceNumber.text = science.ToString();
+        nationInfoPanel.econNumber.text = economy.ToString();
+        nationInfoPanel.religionNumber.text = religion.ToString();
+        nationInfoPanel.enabled = false;
 
         //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
 
@@ -121,18 +133,24 @@ public class Nation : MonoBehaviour {
 
     void OnMouseEnter ()
     {
-        //Debug.Log("Welcome to " + nationName + "!!!");
+        Debug.Log("Welcome to " + nationName + "!!!");
         //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
         // will actually pop up the country stats
-        //panel.SetActive(true);
+        
+        panel.SetActive(true);
+        nationInfoPanel.enabled = true;
+        nationInfoPanel.gameObject.SetActive(true);
+        
 
     }
 
     void OnMouseExit()
     {
-        //Debug.Log("Leaving " + nationName + "!");
+        Debug.Log("Leaving " + nationName + "!");
         // will actually destroy the popu-up
-		//panel.SetActive (false);
+        panel.SetActive(false);
+        nationInfoPanel.enabled = false;
+        nationInfoPanel.gameObject.SetActive(false);
     }
 
     void OnMouseUpAsButton()
@@ -142,9 +160,12 @@ public class Nation : MonoBehaviour {
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse1) && boundingArea.bounds.Contains((Camera.main.ScreenToWorldPoint(Input.mousePosition))))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
+            if (boundingArea.bounds.Contains((Camera.main.ScreenToWorldPoint(Input.mousePosition))))
+            {
+                gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
+            }
         }
     }
     #endregion

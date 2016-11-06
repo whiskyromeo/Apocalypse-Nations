@@ -162,7 +162,7 @@ public class Nation : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (boundingArea.bounds.Contains((Camera.main.ScreenToWorldPoint(Input.mousePosition))))
+            if (boundingArea.bounds.Contains((Vector2)((Camera.main.ScreenToWorldPoint(Input.mousePosition)))))
             {
                 gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
             }

@@ -4,34 +4,20 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     #region Fields
-    static GameManager instance;
     static GameStates gameState;
     static MenuStates menuState;
     static GameplayStates gamePlayState;
     public enum GameStates {MainMenu, InGame, Pause };
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
+    int totalTurns; // this will be used to track how many actions the players have commited
 
-    public GameObject player1, player2, player3, player4, activeAlliance;
+    public Alliance player1, player2, player3, player4, activeAlliance;
 
     #endregion
 
     #region Properties
-    /// <summary>
-    /// Gets the singleton instance of the game manager
-    /// </summary>
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameManager();
-            }
 
-            return instance;
-        }
-    }
     /// <summary>
     /// Gets the CurrentMenuState
     /// </summary>
@@ -65,22 +51,14 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
-    #region Constructor
-    private GameManager()
-    {
-        
-        
-        
-    }
-    #endregion
-
     #region Private Methods
     // Update is called once per frame
     void Awake () {
-        gameState = GameStates.MainMenu;
+        gameState = GameStates.InGame;
         menuState = MenuStates.TitlePage;
-        gamePlayState = GameplayStates.None;
+        gamePlayState = GameplayStates.FirstPlayerTurn;
         activeAlliance = player1;
+        totalTurns = 0;
 
     }
 
@@ -96,27 +74,31 @@ public class GameManager : MonoBehaviour {
             switch(gamePlayState)
             {
                 case GameplayStates.FirstPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player1;
                     break;
                 case GameplayStates.SecondPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player2;
                     break;
                 case GameplayStates.ThirdPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player3;
                     break;
                 case GameplayStates.FourthPlayerTurn:
-                    // update HUD for this player's alliance stats
-                    // highlight players allied countries to the players color
+                    activeAlliance = player4;
                     break;
                 case GameplayStates.None:
                     // this will be used for the apocolypse turn or refresher
-                    
+                    totalTurns++;
                     // right now it will just go to the next state which is FirstPlayerTurn
-                    gamePlayState++;
+                    gamePlayState = GameplayStates.FirstPlayerTurn;
                     break;
+                default:
+                    Debug.Log("switching nations is fucked up");
+                    activeAlliance = player1;
+                    break;
+            }
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                PlayerEndedTurn();
             }
         }
     }
@@ -125,6 +107,16 @@ public class GameManager : MonoBehaviour {
     public void PlayerEndedTurn()
     {
         gamePlayState++;
+    }
+
+    /// <summary>
+    /// this is the method that would be called in order to trigger an apocalypse
+    /// </summary>
+    /// <param name="timeTilApoc"></param>
+    public void ApocalypseCheck(int timeTilApoc) {
+        if (totalTurns / 4 == timeTilApoc) {
+            //trigger apocalpyse
+        }
     }
     #endregion
 

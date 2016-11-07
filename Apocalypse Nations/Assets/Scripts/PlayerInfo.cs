@@ -9,6 +9,7 @@ public class PlayerInfo : MonoBehaviour
 	public Text playerInfoText;
     public GameObject allianceObj;
     Alliance alliance;
+    GameObject gameManager;
 	// Use this for initialization
 	void Start () 
 	{
@@ -20,7 +21,7 @@ public class PlayerInfo : MonoBehaviour
 	void Update () 
 	{
         SetPanelInfo();
-        playerInfoText.text = "Population: " + alliance.population + "\nMilitary: " + alliance.military +
+        playerInfoText.text = "\n" + alliance.name + "\nPopulation: " + alliance.population + "\nMilitary: " + alliance.military +
 			"\nScience: " + alliance.science + "\nReligion: " + alliance.religion + "\nEconomy: " + alliance.economy;
 	}
 

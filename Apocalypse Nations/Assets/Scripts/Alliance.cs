@@ -152,16 +152,16 @@ public class Alliance : MonoBehaviour
     public void SetColors() {
 
         foreach (Nation nation in AlliedNations) {
-            if (gameObject.name == "player1")
+            if (gameObject.name == "Player 1")
             {
                 nation.GetComponent<SpriteRenderer>().color = Color.red;
-            }  else if (gameObject.name == "player2")
+            }  else if (gameObject.name == "Player 2")
             {
                 nation.GetComponent<SpriteRenderer>().color = Color.green;
-            } else if (gameObject.name == "player3")
+            } else if (gameObject.name == "Player 3")
             {
                 nation.GetComponent<SpriteRenderer>().color = Color.yellow;
-            } else if (gameObject.name == "player4")
+            } else if (gameObject.name == "Player 4")
                 {
                     nation.GetComponent<SpriteRenderer>().color = Color.magenta;
                 }

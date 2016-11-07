@@ -21,11 +21,11 @@ public class Alliance : MonoBehaviour
     #endregion
 
 
-    public Alliance()
+    void Start()
     {
         AlliedNations = new List<Nation>();
-        addNationToAlliance(4);
-        addNationToAlliance("USA");
+        int rand = Random.Range(0, 22);
+        addNationToAlliance(rand);
         updateAllianceStats();
     }
 
@@ -34,7 +34,7 @@ public class Alliance : MonoBehaviour
     /// Adds a nation to the alliance
     /// </summary>
     /// <param name="nationname">string nation name</param>
-    void addNationToAlliance(string nationname)
+   public void addNationToAlliance(string nationname)
     {
         // get the nation number of the nation you are adding
         int nationNumber = worldMap.NationNumbers[nationname];
@@ -56,7 +56,7 @@ public class Alliance : MonoBehaviour
         }
     }
 
-    void addNationToAlliance(int nationnumber)
+    public void addNationToAlliance(int nationnumber)
     {
         // check to see if this nation is in an alliance
         if (!worldMap.Nations[nationnumber].inAlliance)
@@ -77,7 +77,7 @@ public class Alliance : MonoBehaviour
     }
 
 
-    void AttackAlliance(int attackedNationNumber)
+    public void AttackAlliance(int attackedNationNumber)
     {
         Nation attackedNation = worldMap.NationClasses[attackedNationNumber];
         int AttackDC = CalculateAttackDC(attackedNationNumber);
@@ -132,12 +132,14 @@ public class Alliance : MonoBehaviour
         religion = 0;
         foreach (Nation nation in AlliedNations)
         {
-            int nationNumber = worldMap.NationNumbers[nation.name];
+            
+            int nationNumber = worldMap.NationNumbers[nation.nationName];
             population += worldMap.GetNationPopulation(nationNumber);
             science += worldMap.GetNationScience(nationNumber);
             military += worldMap.GetNationMilitary(nationNumber);
             economy += worldMap.GetNationEconomy(nationNumber);
             religion += worldMap.GetNationReligion(nationNumber);
+
         }
     }
     #endregion

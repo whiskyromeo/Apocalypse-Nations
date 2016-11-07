@@ -12,6 +12,7 @@ public class PlayerInfo : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+        
         SetPanelInfo();	
 	}
 	
@@ -24,7 +25,7 @@ public class PlayerInfo : MonoBehaviour
 	}
 
     void SetPanelInfo() {
-        alliance = GameObject.FindObjectOfType<GameManager>().activeAlliance.GetComponent<Alliance>();
+        alliance = GameObject.FindObjectOfType<GameManager>().activeAlliance;
 
     }
 }

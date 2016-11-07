@@ -1,0 +1,15 @@
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Common.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_obj\Debug\Apocalypse Nations.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll
+C:\Users\dress\Documents\Apocalypse-Nations\Apocalypse Nations\Temp\UnityVS_obj\Debug\Assembly-CSharp.pdb

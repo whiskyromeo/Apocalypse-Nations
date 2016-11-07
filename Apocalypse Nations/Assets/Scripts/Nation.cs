@@ -138,6 +138,8 @@ public class Nation : MonoBehaviour {
         // will actually pop up the country stats
         
         panel.SetActive(true);
+        Vector3 pos = panel.transform.position;
+        panel.transform.position.Set(pos.x, pos.y - 10,pos.z);
         nationInfoPanel.enabled = true;
         nationInfoPanel.gameObject.SetActive(true);
         

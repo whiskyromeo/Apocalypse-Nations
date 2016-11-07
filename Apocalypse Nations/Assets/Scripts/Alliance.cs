@@ -49,6 +49,7 @@ public class Alliance : MonoBehaviour
             economy += worldMap.GetNationEconomy(nationNumber);
             worldMap.Nations[nationNumber].inAlliance = true;
             AlliedNations.Add(worldMap.GetNation(nationNumber));
+            SetColors();
         }
         else
         {
@@ -143,4 +144,32 @@ public class Alliance : MonoBehaviour
         }
     }
     #endregion
+
+
+    #region Public Methods
+
+
+    public void SetColors() {
+
+        foreach (Nation nation in AlliedNations) {
+            if (gameObject.name == "player1")
+            {
+                nation.GetComponent<SpriteRenderer>().color = Color.red;
+            }  else if (gameObject.name == "player2")
+            {
+                nation.GetComponent<SpriteRenderer>().color = Color.green;
+            } else if (gameObject.name == "player3")
+            {
+                nation.GetComponent<SpriteRenderer>().color = Color.yellow;
+            } else if (gameObject.name == "player4")
+                {
+                    nation.GetComponent<SpriteRenderer>().color = Color.magenta;
+                }
+
+        }
+
+    }
+
+    #endregion
 }
+

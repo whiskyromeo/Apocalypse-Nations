@@ -25,8 +25,14 @@ public class Alliance : MonoBehaviour
     {
         AlliedNations = new List<Nation>();
         int rand = Random.Range(0, 22);
-        addNationToAlliance(rand);
+        bool test = addNationToAlliance(rand);
+        if (!test)
+        {
+            rand = Random.Range(0, 22);
+            addNationToAlliance(rand);
+        }
         updateAllianceStats();
+        SetColors();
     }
 
     #region Private Methods
@@ -34,7 +40,7 @@ public class Alliance : MonoBehaviour
     /// Adds a nation to the alliance
     /// </summary>
     /// <param name="nationname">string nation name</param>
-   public void addNationToAlliance(string nationname)
+   public bool addNationToAlliance(string nationname)
     {
         // get the nation number of the nation you are adding
         int nationNumber = worldMap.NationNumbers[nationname];
@@ -50,14 +56,16 @@ public class Alliance : MonoBehaviour
             worldMap.Nations[nationNumber].inAlliance = true;
             AlliedNations.Add(worldMap.GetNation(nationNumber));
             SetColors();
+            return true;
         }
         else
         {
             Debug.Log("this country can't be added");
+            return false;
         }
     }
 
-    public void addNationToAlliance(int nationnumber)
+    public bool addNationToAlliance(int nationnumber)
     {
         // check to see if this nation is in an alliance
         if (!worldMap.Nations[nationnumber].inAlliance)
@@ -70,10 +78,12 @@ public class Alliance : MonoBehaviour
             economy += worldMap.GetNationEconomy(nationnumber);
             worldMap.Nations[nationnumber].inAlliance = true;
             AlliedNations.Add(worldMap.GetNation(nationnumber));
+            return true;
         }
         else
         {
             Debug.Log("this country can't be added");
+            return false;
         }
     }
 

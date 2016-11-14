@@ -163,7 +163,18 @@ public class Nation : MonoBehaviour {
 
     void OnMouseUpAsButton()
     {
-        gameManager.activeAlliance.addNationToAlliance(nationName);
+        if (!inAlliance)
+        {
+            gameManager.activeAlliance.addNationToAlliance(nationName);
+        }
+        if (gameManager.activeAlliance.AlliedNations.Contains(this))
+        {
+            military = (int)(military * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            population = (int)(population * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            science = (int)(science * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            religion = (int)(religion * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            economy = (int)(economy * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+        }
     }
 
     void Update()

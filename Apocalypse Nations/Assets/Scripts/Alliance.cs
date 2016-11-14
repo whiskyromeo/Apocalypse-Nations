@@ -97,11 +97,33 @@ public class Alliance : MonoBehaviour
         {
             /// attack hits
             Debug.Log("You Win the attack");
+            attackedNation.Population = (int)(attackedNation.Population-(attackedNation.Population * .2));
+            attackedNation.Military = (int)(attackedNation.Military - (attackedNation.Military * .2));
+            attackedNation.Religion = (int)(attackedNation.Religion - (attackedNation.Religion * .2));
+            attackedNation.Science = (int)(attackedNation.Science - (attackedNation.Science * .2));
+            attackedNation.Economy = (int)(attackedNation.Economy - (attackedNation.Economy * .2));
+            population = (int)(population + (population * .2));
+            military = (int)(military + (military * .2));
+            religion = (int)(religion + (religion * .2));
+            science = (int)(science + (science* .2));
+            economy = (int)(economy + (economy * .2));
+
         }
         else
         {
             /// failed attack
             Debug.Log("the attack has failed");
+            attackedNation.Population = (int)(attackedNation.Population + (attackedNation.Population * .2));
+            attackedNation.Military = (int)(attackedNation.Military + (attackedNation.Military * .2));
+            attackedNation.Religion = (int)(attackedNation.Religion + (attackedNation.Religion * .2));
+            attackedNation.Science = (int)(attackedNation.Science + (attackedNation.Science * .2));
+            attackedNation.Economy = (int)(attackedNation.Economy + (attackedNation.Economy * .2));
+            population = (int)(population - (population * .2));
+            military = (int)(military - (military * .2));
+            religion = (int)(religion - (religion * .2));
+            science = (int)(science - (science * .2));
+            economy = (int)(economy - (economy * .2));
+
         }
 
     }

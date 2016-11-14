@@ -20,6 +20,7 @@ public class Nation : MonoBehaviour {
     NationInfoPanel nationInfoPanel;
     GameManager gameManager;
     public Canvas canvas;
+    
     #endregion
 
     #region Properties
@@ -117,7 +118,7 @@ public class Nation : MonoBehaviour {
         nationInfoPanel = panel.GetComponent<NationInfoPanel>();
         nationInfoPanel = (NationInfoPanel)(GameObject.Instantiate(nationInfoPanel, canvas.transform, false));
         nationInfoPanel.transform.SetParent(canvas.transform);
-        nationInfoPanel.transform.position += (transform.position * 30);
+        nationInfoPanel.Name.text = name.ToString();
         nationInfoPanel.militaryNumber.text = military.ToString();
         nationInfoPanel.populationNumber.text = population.ToString();
         nationInfoPanel.scienceNumber.text = science.ToString();
@@ -138,10 +139,15 @@ public class Nation : MonoBehaviour {
         // will actually pop up the country stats
         
         panel.SetActive(true);
-        Vector3 pos = panel.transform.position;
-        panel.transform.position.Set(pos.x, pos.y - 10,pos.z);
+        Vector3 panelPos = new Vector3(70,70,10);
+        Debug.Log(panelPos + "pos");
+
         nationInfoPanel.enabled = true;
         nationInfoPanel.gameObject.SetActive(true);
+        //panel.transform.position.Set(pos.x, pos.y, pos.z);
+        nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
+
+        Debug.Log(nationInfoPanel.transform.position);
         
 
     }

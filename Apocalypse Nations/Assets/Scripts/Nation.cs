@@ -169,7 +169,6 @@ public class Nation : MonoBehaviour {
 
     void OnMouseUpAsButton()
     {
-<<<<<<< HEAD
 		LeaveOpen = true;
 		//gameManager.activeAlliance.addNationToAlliance(nationName);
 		panel.SetActive(true);
@@ -179,11 +178,12 @@ public class Nation : MonoBehaviour {
 		nationInfoPanel.enabled = true;
 		nationInfoPanel.gameObject.SetActive(true);
 		nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
-=======
+
         if (!inAlliance)
         {
             gameManager.activeAlliance.addNationToAlliance(nationName);
         }
+
         if (gameManager.activeAlliance.AlliedNations.Contains(this))
         {
             military = (int)(military * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
@@ -192,7 +192,6 @@ public class Nation : MonoBehaviour {
             religion = (int)(religion * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
             economy = (int)(economy * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
         }
->>>>>>> refs/remotes/origin/master
     }
 
     void Update()
@@ -201,9 +200,14 @@ public class Nation : MonoBehaviour {
         {
             if (boundingArea.bounds.Contains((Vector2)((Camera.main.ScreenToWorldPoint(Input.mousePosition)))))
             {
-                gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
+                
             }
         }
     }
+
+	public void AttackNation ()
+	{
+		gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
+	}
     #endregion
 }

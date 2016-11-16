@@ -169,6 +169,7 @@ public class Nation : MonoBehaviour {
 
     void OnMouseUpAsButton()
     {
+<<<<<<< HEAD
 		LeaveOpen = true;
 		//gameManager.activeAlliance.addNationToAlliance(nationName);
 		panel.SetActive(true);
@@ -178,6 +179,20 @@ public class Nation : MonoBehaviour {
 		nationInfoPanel.enabled = true;
 		nationInfoPanel.gameObject.SetActive(true);
 		nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
+=======
+        if (!inAlliance)
+        {
+            gameManager.activeAlliance.addNationToAlliance(nationName);
+        }
+        if (gameManager.activeAlliance.AlliedNations.Contains(this))
+        {
+            military = (int)(military * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            population = (int)(population * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            science = (int)(science * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            religion = (int)(religion * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+            economy = (int)(economy * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+        }
+>>>>>>> refs/remotes/origin/master
     }
 
     void Update()

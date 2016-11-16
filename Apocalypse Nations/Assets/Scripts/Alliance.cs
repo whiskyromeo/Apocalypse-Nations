@@ -36,11 +36,64 @@ public class Alliance : MonoBehaviour
     }
 
     #region Private Methods
+
+
+    /// <summary>
+    /// only called by AttackAlliance() to balance the success rate of  attacking a nation
+    /// </summary>
+    /// <param name="attackedNationNumber">the nation number of the country being attacked</param>
+    /// <returns></returns>
+    int CalculateAttackDC(int attackedNationNumber)
+    {
+        // starts out with 50/50 shot of winning
+        int standardAdvantage = 4;
+        int militaryDifference = military - worldMap.GetNationMilitary(attackedNationNumber);
+        int advantage = militaryDifference / balancingScale;
+
+        // if advantage is a positive number it makes it easier to win the attack
+        // if advantage is a negative number it makes it harder to win the attack
+        int attackDC = standardAdvantage - advantage;
+
+        // clamp attackCD into usable values
+        if (attackDC > 6)
+        {
+            attackDC = 6;
+        }
+        if (attackDC < 0)
+        {
+            attackDC = 0;
+        }
+        return attackDC;
+    }
+
+    void updateAllianceStats()
+    {
+        population = 0;
+        science = 0;
+        military = 0;
+        economy = 0;
+        religion = 0;
+        foreach (Nation nation in AlliedNations)
+        {
+            
+            int nationNumber = worldMap.NationNumbers[nation.nationName];
+            population += worldMap.GetNationPopulation(nationNumber);
+            science += worldMap.GetNationScience(nationNumber);
+            military += worldMap.GetNationMilitary(nationNumber);
+            economy += worldMap.GetNationEconomy(nationNumber);
+            religion += worldMap.GetNationReligion(nationNumber);
+
+        }
+    }
+    #endregion
+
+
+    #region Public Methods
     /// <summary>
     /// Adds a nation to the alliance
     /// </summary>
     /// <param name="nationname">string nation name</param>
-   public bool addNationToAlliance(string nationname)
+    public bool addNationToAlliance(string nationname)
     {
         // get the nation number of the nation you are adding
         int nationNumber = worldMap.NationNumbers[nationname];
@@ -97,67 +150,74 @@ public class Alliance : MonoBehaviour
         {
             /// attack hits
             Debug.Log("You Win the attack");
+            attackedNation.Population = (int)(attackedNation.Population - (attackedNation.Population * .2));
+            attackedNation.Military = (int)(attackedNation.Military - (attackedNation.Military * .2));
+            attackedNation.Religion = (int)(attackedNation.Religion - (attackedNation.Religion * .2));
+            attackedNation.Science = (int)(attackedNation.Science - (attackedNation.Science * .2));
+            attackedNation.Economy = (int)(attackedNation.Economy - (attackedNation.Economy * .2));
+            GameManager game = FindObjectOfType<GameManager>();
+            if (game.player1.AlliedNations.Contains(attackedNation))
+            {
+                game.player1.updateAllianceStats();
+            }
+            else if ((game.player2.AlliedNations.Contains(attackedNation)))
+            {
+                game.player2.updateAllianceStats();
+            }
+            else if ((game.player3.AlliedNations.Contains(attackedNation)))
+            {
+                game.player3.updateAllianceStats();
+            }
+            else if ((game.player4.AlliedNations.Contains(attackedNation)))
+            {
+                game.player4.updateAllianceStats();
+            }
+
+
+            population = (int)(population + (population * .2));
+            military = (int)(military + (military * .2));
+            religion = (int)(religion + (religion * .2));
+            science = (int)(science + (science * .2));
+            economy = (int)(economy + (economy * .2));
+            updateAllianceStats();
+
         }
         else
         {
             /// failed attack
             Debug.Log("the attack has failed");
+            attackedNation.Population = (int)(attackedNation.Population + (attackedNation.Population * .2));
+            attackedNation.Military = (int)(attackedNation.Military + (attackedNation.Military * .2));
+            attackedNation.Religion = (int)(attackedNation.Religion + (attackedNation.Religion * .2));
+            attackedNation.Science = (int)(attackedNation.Science + (attackedNation.Science * .2));
+            attackedNation.Economy = (int)(attackedNation.Economy + (attackedNation.Economy * .2));
+            GameManager game = FindObjectOfType<GameManager>();
+            if (game.player1.AlliedNations.Contains(attackedNation))
+            {
+                game.player1.updateAllianceStats();
+            }
+            else if ((game.player2.AlliedNations.Contains(attackedNation)))
+            {
+                game.player2.updateAllianceStats();
+            }
+            else if ((game.player3.AlliedNations.Contains(attackedNation)))
+            {
+                game.player3.updateAllianceStats();
+            }
+            else if ((game.player4.AlliedNations.Contains(attackedNation)))
+            {
+                game.player4.updateAllianceStats();
+            }
+            population = (int)(population - (population * .2));
+            military = (int)(military - (military * .2));
+            religion = (int)(religion - (religion * .2));
+            science = (int)(science - (science * .2));
+            economy = (int)(economy - (economy * .2));
+            updateAllianceStats();
+
         }
 
     }
-
-    /// <summary>
-    /// only called by AttackAlliance() to balance the success rate of  attacking a nation
-    /// </summary>
-    /// <param name="attackedNationNumber">the nation number of the country being attacked</param>
-    /// <returns></returns>
-    int CalculateAttackDC(int attackedNationNumber)
-    {
-        // starts out with 50/50 shot of winning
-        int standardAdvantage = 4;
-        int militaryDifference = military - worldMap.GetNationMilitary(attackedNationNumber);
-        int advantage = militaryDifference / balancingScale;
-
-        // if advantage is a positive number it makes it easier to win the attack
-        // if advantage is a negative number it makes it harder to win the attack
-        int attackDC = standardAdvantage - advantage;
-
-        // clamp attackCD into usable values
-        if (attackDC > 6)
-        {
-            attackDC = 6;
-        }
-        if (attackDC < 0)
-        {
-            attackDC = 0;
-        }
-        return attackDC;
-    }
-
-    void updateAllianceStats()
-    {
-        population = 0;
-        science = 0;
-        military = 0;
-        economy = 0;
-        religion = 0;
-        foreach (Nation nation in AlliedNations)
-        {
-            
-            int nationNumber = worldMap.NationNumbers[nation.nationName];
-            population += worldMap.GetNationPopulation(nationNumber);
-            science += worldMap.GetNationScience(nationNumber);
-            military += worldMap.GetNationMilitary(nationNumber);
-            economy += worldMap.GetNationEconomy(nationNumber);
-            religion += worldMap.GetNationReligion(nationNumber);
-
-        }
-    }
-    #endregion
-
-
-    #region Public Methods
-
 
     public void SetColors() {
 

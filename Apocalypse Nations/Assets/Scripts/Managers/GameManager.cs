@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 // initial author : Tyler
 public class GameManager : MonoBehaviour {
 
@@ -13,6 +14,14 @@ public class GameManager : MonoBehaviour {
     int totalTurns; // this will be used to track how many actions the players have commited
 
     public Alliance player1, player2, player3, player4, activeAlliance;
+
+    public Text activeAllianceText;
+
+    public int activeAllianceActionCount = 0;
+    [SerializeField]
+    public int maxActionCount = 2;
+
+	public int CurrentNationNumber { get; set; }
 
     #endregion
 
@@ -59,6 +68,8 @@ public class GameManager : MonoBehaviour {
         gamePlayState = GameplayStates.FirstPlayerTurn;
         activeAlliance = player1;
         totalTurns = 0;
+        activeAllianceText.text = activeAlliance.name;
+
 
     }
 
@@ -75,15 +86,23 @@ public class GameManager : MonoBehaviour {
             {
                 case GameplayStates.FirstPlayerTurn:
                     activeAlliance = player1;
+                    activeAllianceText.text = activeAlliance.name;
+                    activeAllianceText.color = Color.red;
                     break;
                 case GameplayStates.SecondPlayerTurn:
                     activeAlliance = player2;
+                    activeAllianceText.text = activeAlliance.name;
+                    activeAllianceText.color = Color.green;
                     break;
                 case GameplayStates.ThirdPlayerTurn:
                     activeAlliance = player3;
+                    activeAllianceText.text = activeAlliance.name;
+                    activeAllianceText.color = Color.yellow;
                     break;
                 case GameplayStates.FourthPlayerTurn:
                     activeAlliance = player4;
+                    activeAllianceText.text = activeAlliance.name;
+                    activeAllianceText.color = Color.magenta;
                     break;
                 case GameplayStates.None:
                     // this will be used for the apocolypse turn or refresher
@@ -96,7 +115,7 @@ public class GameManager : MonoBehaviour {
                     activeAlliance = player1;
                     break;
             }
-            if(Input.GetKeyDown(KeyCode.E))
+            if(activeAllianceActionCount>= maxActionCount)
             {
                 PlayerEndedTurn();
             }
@@ -107,6 +126,8 @@ public class GameManager : MonoBehaviour {
     public void PlayerEndedTurn()
     {
         gamePlayState++;
+        activeAllianceText.text = activeAlliance.name;
+        activeAllianceActionCount = 0;
     }
 
     /// <summary>
@@ -118,6 +139,19 @@ public class GameManager : MonoBehaviour {
             //trigger apocalpyse
         }
     }
+
+	public void AttackNation()
+	{
+		activeAlliance.AttackAlliance (CurrentNationNumber);
+        activeAllianceActionCount++;
+	}
+
+	public void AddNation ()
+	{
+		activeAlliance.addNationToAlliance (CurrentNationNumber);
+        activeAllianceActionCount++;
+	}
+		
     #endregion
 
 }

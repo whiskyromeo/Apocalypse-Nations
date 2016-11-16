@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour {
 
     public Text activeAllianceText;
 
+    public int activeAllianceActionCount = 0;
+    [SerializeField]
+    public int maxActionCount = 2;
+
 	public int CurrentNationNumber { get; set; }
 
     #endregion
@@ -66,6 +70,7 @@ public class GameManager : MonoBehaviour {
         totalTurns = 0;
         activeAllianceText.text = activeAlliance.name;
 
+
     }
 
     void Start() {
@@ -110,7 +115,7 @@ public class GameManager : MonoBehaviour {
                     activeAlliance = player1;
                     break;
             }
-            if(Input.GetKeyDown(KeyCode.E))
+            if(activeAllianceActionCount>= maxActionCount)
             {
                 PlayerEndedTurn();
             }
@@ -122,6 +127,7 @@ public class GameManager : MonoBehaviour {
     {
         gamePlayState++;
         activeAllianceText.text = activeAlliance.name;
+        activeAllianceActionCount = 0;
     }
 
     /// <summary>
@@ -137,11 +143,13 @@ public class GameManager : MonoBehaviour {
 	public void AttackNation()
 	{
 		activeAlliance.AttackAlliance (CurrentNationNumber);
+        activeAllianceActionCount++;
 	}
 
 	public void AddNation ()
 	{
 		activeAlliance.addNationToAlliance (CurrentNationNumber);
+        activeAllianceActionCount++;
 	}
 		
     #endregion

@@ -15,6 +15,7 @@ public class Nation : MonoBehaviour {
     int military;
     int economy;
     int religion;
+	int nationNumber;
     public bool inAlliance;
     public GameObject panel;
     NationInfoPanel nationInfoPanel;
@@ -108,7 +109,7 @@ public class Nation : MonoBehaviour {
     void Start () {
         inAlliance = false;
         WorldMap worldMap = GetComponentInParent<WorldMap>();
-        int nationNumber = worldMap.NationNumbers[nationName];
+        nationNumber = worldMap.NationNumbers[nationName];
         Economy = worldMap.NationEconomies[nationNumber];
         Military = worldMap.NationMilitaries[nationNumber];
         Science = worldMap.NationSciences[nationNumber];
@@ -130,7 +131,6 @@ public class Nation : MonoBehaviour {
 		LeaveOpen = false;
 
         //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
-
 
     }
 
@@ -170,8 +170,10 @@ public class Nation : MonoBehaviour {
     void OnMouseUpAsButton()
     {
 		LeaveOpen = true;
+		gameManager.CurrentNationNumber = nationNumber;
 		//gameManager.activeAlliance.addNationToAlliance(nationName);
 		panel.SetActive(true);
+
 		Vector3 panelPos = new Vector3(70,70,10);
 		Debug.Log(panelPos + "pos");
 
@@ -181,7 +183,7 @@ public class Nation : MonoBehaviour {
 
         if (!inAlliance)
         {
-            gameManager.activeAlliance.addNationToAlliance(nationName);
+            //gameManager.activeAlliance.addNationToAlliance(nationName);
         }
 
         if (gameManager.activeAlliance.AlliedNations.Contains(this))
@@ -200,14 +202,17 @@ public class Nation : MonoBehaviour {
         {
             if (boundingArea.bounds.Contains((Vector2)((Camera.main.ScreenToWorldPoint(Input.mousePosition)))))
             {
-                
+				gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
             }
         }
-    }
 
-	public void AttackNation ()
-	{
-		gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
-	}
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			LeaveOpen = false;
+			panel.SetActive(false);
+			nationInfoPanel.enabled = false;
+			nationInfoPanel.gameObject.SetActive(false);
+		}
+    }
     #endregion
 }

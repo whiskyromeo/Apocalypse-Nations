@@ -20,6 +20,7 @@ public class Nation : MonoBehaviour {
     NationInfoPanel nationInfoPanel;
     GameManager gameManager;
     public Canvas canvas;
+	bool LeaveOpen { get; set; }
     
     #endregion
 
@@ -126,6 +127,8 @@ public class Nation : MonoBehaviour {
         nationInfoPanel.religionNumber.text = religion.ToString();
         nationInfoPanel.enabled = false;
 
+		LeaveOpen = false;
+
         //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
 
 
@@ -154,16 +157,27 @@ public class Nation : MonoBehaviour {
 
     void OnMouseExit()
     {
-        Debug.Log("Leaving " + nationName + "!");
-        // will actually destroy the popu-up
-        panel.SetActive(false);
-        nationInfoPanel.enabled = false;
-        nationInfoPanel.gameObject.SetActive(false);
+		if (!LeaveOpen)
+		{
+			Debug.Log("Leaving " + nationName + "!");
+        	// will actually destroy the popu-up
+        	panel.SetActive(false);
+        	nationInfoPanel.enabled = false;
+        	nationInfoPanel.gameObject.SetActive(false);
+		}
     }
 
     void OnMouseUpAsButton()
     {
-        gameManager.activeAlliance.addNationToAlliance(nationName);
+		LeaveOpen = true;
+		//gameManager.activeAlliance.addNationToAlliance(nationName);
+		panel.SetActive(true);
+		Vector3 panelPos = new Vector3(70,70,10);
+		Debug.Log(panelPos + "pos");
+
+		nationInfoPanel.enabled = true;
+		nationInfoPanel.gameObject.SetActive(true);
+		nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
     }
 
     void Update()

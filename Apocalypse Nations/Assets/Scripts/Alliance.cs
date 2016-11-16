@@ -109,6 +109,7 @@ public class Alliance : MonoBehaviour
             worldMap.Nations[nationNumber].inAlliance = true;
             AlliedNations.Add(worldMap.GetNation(nationNumber));
             SetColors();
+            //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
             return true;
         }
         else
@@ -132,6 +133,7 @@ public class Alliance : MonoBehaviour
             worldMap.Nations[nationnumber].inAlliance = true;
             AlliedNations.Add(worldMap.GetNation(nationnumber));
 			SetColors ();
+            //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
             return true;
         }
         else
@@ -157,6 +159,7 @@ public class Alliance : MonoBehaviour
             attackedNation.Science = (int)(attackedNation.Science - (attackedNation.Science * .2));
             attackedNation.Economy = (int)(attackedNation.Economy - (attackedNation.Economy * .2));
             GameManager game = FindObjectOfType<GameManager>();
+            //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
             if (game.player1.AlliedNations.Contains(attackedNation))
             {
                 game.player1.updateAllianceStats();
@@ -193,6 +196,7 @@ public class Alliance : MonoBehaviour
             attackedNation.Science = (int)(attackedNation.Science + (attackedNation.Science * .2));
             attackedNation.Economy = (int)(attackedNation.Economy + (attackedNation.Economy * .2));
             GameManager game = FindObjectOfType<GameManager>();
+            //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
             if (game.player1.AlliedNations.Contains(attackedNation))
             {
                 game.player1.updateAllianceStats();

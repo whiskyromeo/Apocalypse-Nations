@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour {
 
     public Text activeAllianceText;
 
+    public int curTotActions = 0;
+    [SerializeField]
+    public int maxTotActions = 2;
+
     #endregion
 
     #region Properties
@@ -108,7 +112,7 @@ public class GameManager : MonoBehaviour {
                     activeAlliance = player1;
                     break;
             }
-            if(Input.GetKeyDown(KeyCode.E))
+            if(curTotActions == maxTotActions)
             {
                 PlayerEndedTurn();
             }
@@ -120,6 +124,7 @@ public class GameManager : MonoBehaviour {
     {
         gamePlayState++;
         activeAllianceText.text = activeAlliance.name;
+        curTotActions = 0;
     }
 
     /// <summary>

@@ -109,6 +109,7 @@ public class Alliance : MonoBehaviour
             worldMap.Nations[nationNumber].inAlliance = true;
             AlliedNations.Add(worldMap.GetNation(nationNumber));
             SetColors();
+            GameObject.Find("GameManager").GetComponent<GameManager>().curTotActions++;
             return true;
         }
         else

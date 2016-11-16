@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
 
     public Text activeAllianceText;
 
+	public int CurrentNationNumber { get; set; }
+
     #endregion
 
     #region Properties
@@ -131,6 +133,17 @@ public class GameManager : MonoBehaviour {
             //trigger apocalpyse
         }
     }
+
+	public void AttackNation()
+	{
+		activeAlliance.AttackAlliance (CurrentNationNumber);
+	}
+
+	public void AddNation ()
+	{
+		activeAlliance.addNationToAlliance (CurrentNationNumber);
+	}
+		
     #endregion
 
 }

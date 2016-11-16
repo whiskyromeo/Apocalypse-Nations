@@ -131,6 +131,7 @@ public class Alliance : MonoBehaviour
             economy += worldMap.GetNationEconomy(nationnumber);
             worldMap.Nations[nationnumber].inAlliance = true;
             AlliedNations.Add(worldMap.GetNation(nationnumber));
+			SetColors ();
             return true;
         }
         else

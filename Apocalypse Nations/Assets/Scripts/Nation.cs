@@ -15,11 +15,13 @@ public class Nation : MonoBehaviour {
     int military;
     int economy;
     int religion;
+	int nationNumber;
     public bool inAlliance;
     public GameObject panel;
     NationInfoPanel nationInfoPanel;
     GameManager gameManager;
     public Canvas canvas;
+	bool LeaveOpen { get; set; }
     
     #endregion
 
@@ -107,7 +109,7 @@ public class Nation : MonoBehaviour {
     void Start () {
         inAlliance = false;
         WorldMap worldMap = GetComponentInParent<WorldMap>();
-        int nationNumber = worldMap.NationNumbers[nationName];
+        nationNumber = worldMap.NationNumbers[nationName];
         Economy = worldMap.NationEconomies[nationNumber];
         Military = worldMap.NationMilitaries[nationNumber];
         Science = worldMap.NationSciences[nationNumber];
@@ -126,8 +128,9 @@ public class Nation : MonoBehaviour {
         nationInfoPanel.religionNumber.text = religion.ToString();
         nationInfoPanel.enabled = false;
 
-        //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
+		LeaveOpen = false;
 
+        //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
 
     }
 
@@ -154,19 +157,35 @@ public class Nation : MonoBehaviour {
 
     void OnMouseExit()
     {
-        Debug.Log("Leaving " + nationName + "!");
-        // will actually destroy the popu-up
-        panel.SetActive(false);
-        nationInfoPanel.enabled = false;
-        nationInfoPanel.gameObject.SetActive(false);
+		if (!LeaveOpen)
+		{
+			Debug.Log("Leaving " + nationName + "!");
+        	// will actually destroy the popu-up
+        	panel.SetActive(false);
+        	nationInfoPanel.enabled = false;
+        	nationInfoPanel.gameObject.SetActive(false);
+		}
     }
 
     void OnMouseUpAsButton()
     {
+		LeaveOpen = true;
+		gameManager.CurrentNationNumber = nationNumber;
+		//gameManager.activeAlliance.addNationToAlliance(nationName);
+		panel.SetActive(true);
+
+		Vector3 panelPos = new Vector3(70,70,10);
+		Debug.Log(panelPos + "pos");
+
+		nationInfoPanel.enabled = true;
+		nationInfoPanel.gameObject.SetActive(true);
+		nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
+
         if (!inAlliance)
         {
-            gameManager.activeAlliance.addNationToAlliance(nationName);
+            //gameManager.activeAlliance.addNationToAlliance(nationName);
         }
+
         if (gameManager.activeAlliance.AlliedNations.Contains(this))
         {
             military = (int)(military * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
@@ -183,9 +202,17 @@ public class Nation : MonoBehaviour {
         {
             if (boundingArea.bounds.Contains((Vector2)((Camera.main.ScreenToWorldPoint(Input.mousePosition)))))
             {
-                gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
+				gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
             }
         }
+
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			LeaveOpen = false;
+			panel.SetActive(false);
+			nationInfoPanel.enabled = false;
+			nationInfoPanel.gameObject.SetActive(false);
+		}
     }
     #endregion
 }

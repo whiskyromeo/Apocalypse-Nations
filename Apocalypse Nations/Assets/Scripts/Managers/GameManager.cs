@@ -17,12 +17,15 @@ public class GameManager : MonoBehaviour {
 
     public Text activeAllianceText;
 
+    public PlayerActionsPanel[] actionPanels;
+
     public int activeAllianceActionCount = 0;
     [SerializeField]
     public int maxActionCount = 2;
 
 	public int CurrentNationNumber { get; set; }
 
+    public WorldMap worldMap;
     #endregion
 
     #region Properties
@@ -74,8 +77,8 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        
 
+        actionPanels = FindObjectsOfType<PlayerActionsPanel>();
     }
 
     void Update()
@@ -144,13 +147,26 @@ public class GameManager : MonoBehaviour {
 	{
 		activeAlliance.AttackAlliance (CurrentNationNumber);
         activeAllianceActionCount++;
-	}
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
 
 	public void AddNation ()
 	{
 		activeAlliance.addNationToAlliance (CurrentNationNumber);
         activeAllianceActionCount++;
-	}
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
+
+    public void ClosePanels()
+    {
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
 		
     #endregion
 

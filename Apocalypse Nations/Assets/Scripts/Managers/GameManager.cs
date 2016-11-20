@@ -147,13 +147,19 @@ public class GameManager : MonoBehaviour {
 	{
 		activeAlliance.AttackAlliance (CurrentNationNumber);
         activeAllianceActionCount++;
-	}
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
 
 	public void AddNation ()
 	{
 		activeAlliance.addNationToAlliance (CurrentNationNumber);
         activeAllianceActionCount++;
-	}
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
 
     public void ClosePanels()
     {

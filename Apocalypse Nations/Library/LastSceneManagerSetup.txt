@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/UITestScene.unity
+- path: Assets/Scenes/Intermission.unity
   isLoaded: 1
   isActive: 1

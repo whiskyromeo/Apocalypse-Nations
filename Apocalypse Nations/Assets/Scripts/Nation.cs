@@ -208,7 +208,7 @@ public class Nation : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.C))
 		{
-			LeaveOpen = false;
+			LeaveOpen = false; 
 			panel.SetActive(false);
 			nationInfoPanel.enabled = false;
 			nationInfoPanel.gameObject.SetActive(false);

@@ -152,7 +152,7 @@ public class Alliance : MonoBehaviour
         if (attack >= AttackDC)
         {
             /// attack hits
-            Debug.Log("You Win the attack");
+			Debug.Log("You Win the attack");
             attackedNation.Population = (int)(attackedNation.Population - (attackedNation.Population * .2));
             attackedNation.Military = (int)(attackedNation.Military - (attackedNation.Military * .2));
             attackedNation.Religion = (int)(attackedNation.Religion - (attackedNation.Religion * .2));

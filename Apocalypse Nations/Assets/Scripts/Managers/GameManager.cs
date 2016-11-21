@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public enum GameStates {MainMenu, InGame, Pause };
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
+	public enum AllianceStats {Population, Military, Science, Religion, Economy};
     int totalTurns; // this will be used to track how many actions the players have commited
 
     public Alliance player1, player2, player3, player4, activeAlliance;
@@ -157,6 +158,7 @@ public class GameManager : MonoBehaviour {
 	public void AttackNation()
 	{
 		activeAlliance.AttackAlliance (CurrentNationNumber);
+		SubtractFromAllianceStat (activeAlliance, AllianceStats.Population, 10);
         activeAllianceActionCount++;
         worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
         worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
@@ -178,6 +180,29 @@ public class GameManager : MonoBehaviour {
         worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
         worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
     }
+
+	// A method to subtract a value from a given stat in a given alliance
+	public void SubtractFromAllianceStat(Alliance alliance, AllianceStats stat, int value)
+	{
+		switch (stat) 
+		{
+		case AllianceStats.Economy:
+			alliance.economy -= value;
+			break;
+		case AllianceStats.Military:
+			alliance.military -= value;
+			break;
+		case AllianceStats.Population:
+			alliance.population -= value;
+			break;
+		case AllianceStats.Religion:
+			alliance.religion -= value;
+			break;
+		case AllianceStats.Science:
+			alliance.science -= value;
+			break;
+		}
+	}
 		
     #endregion
 

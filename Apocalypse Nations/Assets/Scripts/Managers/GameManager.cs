@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     static GameStates gameState;
     static MenuStates menuState;
     static GameplayStates gamePlayState;
+
+    public enum AllianceStats { Population, Military, Science, Religion, Economy };
     public enum GameStates {MainMenu, InGame, Pause };
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
     public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
@@ -178,7 +180,30 @@ public class GameManager : MonoBehaviour {
         worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
         worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
     }
-		
+
+    // A method to subtract a value from a given stat in a given alliance
+    public void SubtractFromAllianceStat(Alliance alliance, AllianceStats stat, int value)
+    {
+        switch (stat)
+        {
+            case AllianceStats.Economy:
+                alliance.economy -= value;
+                break;
+            case AllianceStats.Military:
+                alliance.military -= value;
+                break;
+            case AllianceStats.Population:
+                alliance.population -= value;
+                break;
+            case AllianceStats.Religion:
+                alliance.religion -= value;
+                break;
+            case AllianceStats.Science:
+                alliance.science -= value;
+                break;
+        }
+    }
+
     #endregion
 
 }

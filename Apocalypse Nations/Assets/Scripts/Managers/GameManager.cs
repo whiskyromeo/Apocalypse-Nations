@@ -127,9 +127,11 @@ public class GameManager : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.W)) {
                 //go to win scene
+                SceneManager.LoadScene("WinScene");
             }
             if (Input.GetKey(KeyCode.L)) {
                 //go to lose scene
+                SceneManager.LoadScene("LoseScene");
             }
         }
     }

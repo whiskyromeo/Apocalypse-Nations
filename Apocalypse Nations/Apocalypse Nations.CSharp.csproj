@@ -64,9 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Alliance.cs" />
+    <Compile Include="Assets\Scripts\ApocalypseConstants.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MenuButtons.cs" />
     <Compile Include="Assets\Scripts\Nation.cs" />
     <Compile Include="Assets\Scripts\NationInfoPanel.cs" />
     <Compile Include="Assets\Scripts\PanelPopUp.cs" />

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 // initial author : Tyler
 public class GameManager : MonoBehaviour {
 
@@ -17,12 +18,15 @@ public class GameManager : MonoBehaviour {
 
     public Text activeAllianceText;
 
+    public PlayerActionsPanel[] actionPanels;
+
     public int activeAllianceActionCount = 0;
     [SerializeField]
     public int maxActionCount = 2;
 
 	public int CurrentNationNumber { get; set; }
 
+    public WorldMap worldMap;
     #endregion
 
     #region Properties
@@ -74,8 +78,8 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        
 
+        actionPanels = FindObjectsOfType<PlayerActionsPanel>();
     }
 
     void Update()
@@ -119,6 +123,16 @@ public class GameManager : MonoBehaviour {
             {
                 PlayerEndedTurn();
             }
+
+
+            if (Input.GetKey(KeyCode.W)) {
+                //go to win scene
+                SceneManager.LoadScene("WinScene");
+            }
+            if (Input.GetKey(KeyCode.L)) {
+                //go to lose scene
+                SceneManager.LoadScene("LoseScene");
+            }
         }
     }
     #endregion
@@ -144,13 +158,26 @@ public class GameManager : MonoBehaviour {
 	{
 		activeAlliance.AttackAlliance (CurrentNationNumber);
         activeAllianceActionCount++;
-	}
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
 
 	public void AddNation ()
 	{
 		activeAlliance.addNationToAlliance (CurrentNationNumber);
         activeAllianceActionCount++;
-	}
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
+
+    public void ClosePanels()
+    {
+        worldMap.NationClasses[CurrentNationNumber].playerActionsPanel.gameObject.SetActive(false);
+        worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
+        worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
+    }
 		
     #endregion
 

@@ -17,11 +17,14 @@ public class Nation : MonoBehaviour {
     int religion;
 	int nationNumber;
     public bool inAlliance;
-    public GameObject panel;
-    NationInfoPanel nationInfoPanel;
+    public GameObject nationPanel;
+    public GameObject actionsPanel;
+    public NationInfoPanel nationInfoPanel;
+    public PlayerActionsPanel playerActionsPanel;
     GameManager gameManager;
     public Canvas canvas;
-	bool LeaveOpen { get; set; }
+    bool isOpen;
+	public bool LeaveOpen { get; set; }
     
     #endregion
 
@@ -117,7 +120,7 @@ public class Nation : MonoBehaviour {
         Population = worldMap.NationPopulations[nationNumber];
 
         gameManager = FindObjectOfType<GameManager>();
-        nationInfoPanel = panel.GetComponent<NationInfoPanel>();
+        nationInfoPanel = nationPanel.GetComponent<NationInfoPanel>();
         nationInfoPanel = (NationInfoPanel)(GameObject.Instantiate(nationInfoPanel, canvas.transform, false));
         nationInfoPanel.transform.SetParent(canvas.transform);
         nationInfoPanel.Name.text = name.ToString();
@@ -127,6 +130,12 @@ public class Nation : MonoBehaviour {
         nationInfoPanel.econNumber.text = economy.ToString();
         nationInfoPanel.religionNumber.text = religion.ToString();
         nationInfoPanel.enabled = false;
+        playerActionsPanel = actionsPanel.GetComponent<PlayerActionsPanel>();
+        playerActionsPanel = PlayerActionsPanel.Instantiate(playerActionsPanel);
+        playerActionsPanel.transform.SetParent(canvas.transform);
+        playerActionsPanel.gameObject.SetActive(false);
+        Vector3 actionPanelPos = new Vector3(300, 150, 10);
+        playerActionsPanel.GetComponent<RectTransform>().position = actionPanelPos;
 
 		LeaveOpen = false;
 
@@ -134,82 +143,76 @@ public class Nation : MonoBehaviour {
 
     }
 
-
+    /// <summary>
+    /// pops up the nation info panel on mouse enter
+    /// </summary>
     void OnMouseEnter ()
     {
-        Debug.Log("Welcome to " + nationName + "!!!");
-        //Debug.Log(nationName + ": Economy: " + economy + "  Military: " + military + "  Science: " + science + "  Religion: " + religion + "  Population: " + population);
-        // will actually pop up the country stats
-        
-        panel.SetActive(true);
-        Vector3 panelPos = new Vector3(70,70,10);
-        Debug.Log(panelPos + "pos");
-
-        nationInfoPanel.enabled = true;
-        nationInfoPanel.gameObject.SetActive(true);
-        //panel.transform.position.Set(pos.x, pos.y, pos.z);
-        nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
-
-        Debug.Log(nationInfoPanel.transform.position);
-        
-
+        foreach (PlayerActionsPanel info in gameManager.actionPanels)
+        {
+            if (info.gameObject.activeInHierarchy)
+            {
+                isOpen = true;
+            }
+        }
+        if (!isOpen)
+        {
+            Vector3 panelPos = new Vector3(70, 70, 10);
+            nationInfoPanel.gameObject.SetActive(true);
+            nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
+        }
     }
 
+    /// <summary>
+    /// close the nation info panel if you have not clicked on the nation
+    /// </summary>
     void OnMouseExit()
     {
 		if (!LeaveOpen)
 		{
-			Debug.Log("Leaving " + nationName + "!");
-        	// will actually destroy the popu-up
-        	panel.SetActive(false);
-        	nationInfoPanel.enabled = false;
         	nationInfoPanel.gameObject.SetActive(false);
 		}
     }
 
+    /// <summary>
+    /// leave opeen the nation info panel
+    /// pop up actions panel
+    /// </summary>
     void OnMouseUpAsButton()
     {
-		LeaveOpen = true;
-		gameManager.CurrentNationNumber = nationNumber;
-		//gameManager.activeAlliance.addNationToAlliance(nationName);
-		panel.SetActive(true);
-
-		Vector3 panelPos = new Vector3(70,70,10);
-		Debug.Log(panelPos + "pos");
-
-		nationInfoPanel.enabled = true;
-		nationInfoPanel.gameObject.SetActive(true);
-		nationInfoPanel.GetComponent<RectTransform>().position = panelPos;
-
-        if (!inAlliance)
+        foreach (PlayerActionsPanel info in gameManager.actionPanels)
         {
-            //gameManager.activeAlliance.addNationToAlliance(nationName);
+            if (info.gameObject.activeInHierarchy)
+            {
+                isOpen = true;
+            }
+        }
+        if (!isOpen)
+        {
+            LeaveOpen = true;
+            gameManager.CurrentNationNumber = nationNumber;
+            playerActionsPanel.gameObject.SetActive(true);
         }
 
-        if (gameManager.activeAlliance.AlliedNations.Contains(this))
-        {
-            military = (int)(military * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
-            population = (int)(population * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
-            science = (int)(science * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
-            religion = (int)(religion * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
-            economy = (int)(economy * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
-        }
+        /// this is for using a turn to boulster your defences of nations you already own
+        //if (gameManager.activeAlliance.AlliedNations.Contains(this))
+        //{
+        //    military = (int)(military * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+        //    population = (int)(population * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+        //    science = (int)(science * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+        //    religion = (int)(religion * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+        //    economy = (int)(economy * (gameManager.activeAlliance.AlliedNations.Count * 0.1f));
+        //}
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            if (boundingArea.bounds.Contains((Vector2)((Camera.main.ScreenToWorldPoint(Input.mousePosition)))))
-            {
-				gameManager.activeAlliance.AttackAlliance(GetComponentInParent<WorldMap>().NationNumbers[nationName]);
-            }
-        }
+
 
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			LeaveOpen = false;
-			panel.SetActive(false);
+			nationPanel.SetActive(false);
 			nationInfoPanel.enabled = false;
 			nationInfoPanel.gameObject.SetActive(false);
 		}

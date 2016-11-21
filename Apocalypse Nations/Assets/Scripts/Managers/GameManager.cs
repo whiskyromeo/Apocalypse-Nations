@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 // initial author : Tyler
 public class GameManager : MonoBehaviour {
 
@@ -121,6 +122,14 @@ public class GameManager : MonoBehaviour {
             if(activeAllianceActionCount>= maxActionCount)
             {
                 PlayerEndedTurn();
+            }
+
+
+            if (Input.GetKey(KeyCode.W)) {
+                //go to win scene
+            }
+            if (Input.GetKey(KeyCode.L)) {
+                //go to lose scene
             }
         }
     }

@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\StartButtonScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ApocalypseConstants.cs">
     <Files>
-      <File FileName="Assets\StartButtonScript.cs" Line="13" Column="21" />
+      <File FileName="Assets\Scripts\ApocalypseConstants.cs" Line="145" Column="3" />
       <File FileName="Assets\Scripts\PanelPopUp.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\WorldMap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Alliance.cs" Line="1" Column="1" />

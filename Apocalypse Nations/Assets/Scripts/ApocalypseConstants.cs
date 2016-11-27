@@ -8,7 +8,11 @@ using System.Collections;
 public static partial class ApocalypseConstants
 {
 #region Apocalypses
+
+	// Famine is the basic apocalypse. Every other one will be based on this format
 	#region Famine
+
+	// The following variables contain all the text displayed.
 	public const string FAMINE_APOCALYPSE_STRING = "Famine";
 	public const string FAMINE_INTRO_TEXT0 = "The world now faces a famine of global proportions. " +
 		"Food is growing more scarce by the day. Starvation and disease are rampant.";
@@ -43,54 +47,102 @@ public static partial class ApocalypseConstants
 	public const string FAMINE_FAILURE_TEXT = "The famine proved to be too formidable, even for some of the strongest countries on Earth. The necrosis sapped the land " +
 		"of all its resources, stripping away what was once a thriving ecosystem. As supplies depleted, so did hope. It was not long before anarchy broke out amongst " +
 		"the rapidly declining population, and your alliance dissolved amidst blood and flames. Those few who survived must seek new homes, lest the now-ravaged land take their lives as well.";
+
+	// These constants will govern how Famine affects your stats every turn.
 	public const double FAMINE_POPULATION_REDUCTION = 10.0;
 	public const double FAMINE_SCIENCE_REDUCTION = 5.0;
 	public const double FAMINE_ECONOMY_REDUCTION = 7.0;
+
+	// These constants will allow you to solve Famine
+	// This first set will allow you to cure the disease with enough investment of science and money. It is more difficult, but will lose you less people.
+	public const double FAMINE_SCIENCE_SOLVE = 30.0;
+	public const double FAMINE_ECONOMY_SOLVE = 40.0;
+
+	// This will let you set up martial safe zones. Many will die, but your people will survive.
+	public const double FAMINE_MILITARY_SOLVE = 50.0;
 	#endregion
 #endregion
 
+
 #region Events
+// These events will complicate the apocalypses. Some are generic, some are specific.
 	#region Adverse Weather
+	// Generic event
 	public const string WEATHER_EVENT_STRING = "Adverse Weather";
-	public const string WEATHER_EVENT_TEXT = "A mass of super storms is raging across the world. It is difficult for many to leave their homes in the coming days, and some basic " +
-		"infrastructure is damaged amidst the torrents of wind and rain.";
+	public const string WEATHER_EVENT_TEXT = "A mass of super storms is gathering on the oceans. They will rage across the world. " +
+	"It will be difficult for many to leave their homes in the coming days, and some basic infrastructure will be damaged amidst the torrents of wind and rain.";
+
 	public const double WEATHER_POPULATION_REDUCTION = 5.0;
 	public const double WEATHER_ECONOMY_REDUCTION = 3.0;
+
+	// You can solve this event by building shelters for the people
+	public const double WEATHER_ECONOMY_SOLVE = 20.0;
 	#endregion
 
 	#region Drought
+	// Generic event
 	public const string DROUGHT_EVENT_STRING = "Drought";
 	public const string DROUGHT_EVENT_TEXT = "As if things couldn't have gotten any worse, it seems that the world faces a global drought. Many wells are running dry, and the " +
 		"people are struggling to ration water.";
+
 	public const double DROUGHT_POPULATION_REDUCTION = 7.0;
+
+	// In order to solve this event, one must set up martial law and ration water
+	public const double DROUGHT_MILITARY_SOLVE = 15.0;
+	public const double DROUGHT_ECONOMY_SOLVE = 15.0;
 	#endregion
 
 	#region Famine Mutation
+	// Famine-specific event
 	public const string FAMINE_MUTATION_EVENT_STRING = "Mutation";
 	public const string FAMINE_MUTATION_EVENT_TEXT = "This disease, whatever it is, is evolving faster than the science community anticipated. It is becoming obvious how " +
 		"this virus has managed to thwart all the early attempts at containment.";
+
 	public const double FAMINE_MUTATION_SCIENCE_REDUCTION = 7.0;
+
+	// In order to solve this, you're going to need to very quickly combat the mutation before it kills your science score
+	public const double FAMINE_MUTATION_SCIENCE_SOLVE = 20.0;
+	public const double FAMINE_MUTATION_ECONOMY_SOLVE = 15.0;
 	#endregion
 
 	#region Famine Plague
+	// Famine-specific event... from the bible
 	public const string FAMINE_PLAGUE_EVENT_STRING = "Plague of Insects";
 	public const string FAMINE_PLAGUE_EVENT_TEXT = "Just like a story straight out of an ancient religious text, swarms of insects have been seen doubleing over the countryside. " +
 		"These mutated bugs seem to be attacking people on site, though thankfully they don't live long.";
+
 	public const double FAMINE_PLAGUE_POPULATION_REDUCTION = 3.0;
 	public const double FAMINE_PLAGUE_RELIGION_REDUCTION = 3.0;
+
+	// Holy shit, religion is relevant to this one! Woo hoo!
+	public const double FAMINE_PLAGUE_RELIGION_SOLVE = 40.0;
+
+	// You can also solve it with some good ol' martial law, some scientists, and plenty of bug spray.
+	public const double FAMINE_PLAGUE_MILITARY_SOLVE = 10.0;
+	public const double FAMINE_PLAGUE_SCIENCE_SOLVE = 10.0;
+	public const double FAMINE_PLAGUE_ECONOMY_SOLVE = 10.0;
 	#endregion
 
 	#region Famine Evolution
+	// Famine-specific event
 	public const string FAMINE_EVOLUTION_EVENT_STRING = "Evolution";
 	public const string FAMINE_EVOLUTION_EVENT_TEXT = "Like so many diseases before it, the necrotic poison has evolved to become infections between humans. It can be contained, but not " +
 		"before it spreads.";
 	public const double FAMINE_EVOLUTION_POPULATION_REDUCTION = 7.0;
+
+	// If you have enough science, you can slow the spread of the disease and potentially cure it
+	public const double FAMINE_EVOLUTION_SCIENCE_SOLVE = 30.0;
+
+	// If you have enough military, you can create quarantine zones.
+	public const double FAMINE_EVOLUTION_MILITARY_SOLVE = 30.0;
 	#endregion
 
 	#region Famine Breakthrough
+	//Famine-specific... good event? Neat!
 	public const string FAMINE_BREAKTHROUGH_EVENT_STRING = "Scientific Breakthrough";
 	public const string FAMINE_BREAKTHROUGH_EVENT_TEXT = "The scientific community has managed to discover something unique about the biology of the necrotic disease. The tests are " +
 		"very promising. Perhaps the world might just make it through.";
+
 	public const double FAMINE_BREAKTHROUGH_SCIENCE_INCREASE = 10.0;
 	#endregion
 #endregion

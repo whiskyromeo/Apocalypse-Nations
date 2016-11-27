@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\PanelPopUp.cs" />
     <Compile Include="Assets\Scripts\PlayerActionsPanel.cs" />
     <Compile Include="Assets\Scripts\PlayerInfo.cs" />
+    <Compile Include="Assets\Scripts\StartButtonScript.cs" />
     <Compile Include="Assets\Scripts\WorldMap.cs" />
     <Compile Include="Assets\Sprites\Josh Map\Argentina.cs" />
     <Compile Include="Assets\Sprites\Josh Map\BalticNations.cs" />

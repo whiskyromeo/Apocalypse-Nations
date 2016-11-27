@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
 
     public PlayerActionsPanel[] actionPanels;
 
+
     public int activeAllianceActionCount = 0;
     [SerializeField]
     public int maxActionCount = 2;
@@ -29,6 +30,14 @@ public class GameManager : MonoBehaviour {
 	public int CurrentNationNumber { get; set; }
 
     public WorldMap worldMap;
+
+	// bool for the event panel
+	bool isOpen = true;
+	bool turnStarted = true;
+	public GameObject eventPanelObject;
+	public EventPanel eventPanelScript;
+	public Canvas canvas;
+
     #endregion
 
     #region Properties
@@ -82,6 +91,14 @@ public class GameManager : MonoBehaviour {
     void Start() {
 
         actionPanels = FindObjectsOfType<PlayerActionsPanel>();
+
+		// instantiate and position the event panel
+		eventPanelScript = eventPanelObject.GetComponent<EventPanel> ();
+		eventPanelScript = EventPanel.Instantiate (eventPanelScript);
+		eventPanelScript.transform.SetParent (canvas.transform);
+		eventPanelScript.gameObject.SetActive (false);
+		Vector3 eventPanelPosition = new Vector3(800, 150, 10);
+		eventPanelScript.GetComponent<RectTransform>().position = eventPanelPosition;
     }
 
     void Update()
@@ -90,25 +107,29 @@ public class GameManager : MonoBehaviour {
         {
             switch(gamePlayState)
             {
-                case GameplayStates.FirstPlayerTurn:
-                    activeAlliance = player1;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.red;
+				case GameplayStates.FirstPlayerTurn:
+					activeAlliance = player1;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.red;
+					EventPanelHandler ();
                     break;
-                case GameplayStates.SecondPlayerTurn:
-                    activeAlliance = player2;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.green;
+				case GameplayStates.SecondPlayerTurn:
+					activeAlliance = player2;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.green;
+					EventPanelHandler ();
                     break;
-                case GameplayStates.ThirdPlayerTurn:
-                    activeAlliance = player3;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.yellow;
+				case GameplayStates.ThirdPlayerTurn:
+					activeAlliance = player3;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.yellow;
+					EventPanelHandler ();
                     break;
-                case GameplayStates.FourthPlayerTurn:
-                    activeAlliance = player4;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.magenta;
+				case GameplayStates.FourthPlayerTurn:
+					activeAlliance = player4;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.magenta;
+					EventPanelHandler ();
                     break;
                 case GameplayStates.None:
                     // this will be used for the apocolypse turn or refresher
@@ -144,6 +165,7 @@ public class GameManager : MonoBehaviour {
         gamePlayState++;
         activeAllianceText.text = activeAlliance.name;
         activeAllianceActionCount = 0;
+		turnStarted = true;
     }
 
     /// <summary>
@@ -203,6 +225,20 @@ public class GameManager : MonoBehaviour {
                 break;
         }
     }
+
+	public void EventPanelHandler()
+	{
+		if (turnStarted)
+		{
+			eventPanelScript.gameObject.SetActive(true);
+		}
+	}
+
+	public void CloseEventPanel ()
+	{
+		turnStarted = false;
+		eventPanelScript.gameObject.SetActive(false);
+	}
 
     #endregion
 

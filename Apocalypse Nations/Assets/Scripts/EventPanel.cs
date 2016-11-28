@@ -3,14 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class EventPanel : MonoBehaviour 
+public class EventPanel : MonoBehaviour
 {
-	public GameManager gameManager;
+    public GameManager gameManager;
     public Text titleText, bodyText;
     public string mainText, introText;
     public Button button0, button1, button2;
     public enum AllianceStats { Population, Military, Science, Religion, Economy };
-    public enum ApoclypseTypes { Famine};
+    public enum ApoclypseTypes { Famine };
     public ApoclypseTypes apoclypseType;
     public List<Alliance> affectedAlliances = new List<Alliance>();
 
@@ -21,7 +21,7 @@ public class EventPanel : MonoBehaviour
     public void StartApocolypse()
     {
         Start();
-        int rand = Random.Range(0, 1);  
+        int rand = Random.Range(0, 1);
         switch (rand)
         {
             case 0:
@@ -57,7 +57,7 @@ public class EventPanel : MonoBehaviour
 
             if (apoclypsetype == ApoclypseTypes.Famine)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.FAMINE_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration ^2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.FAMINE_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration ^ 2));
                 SubtractFromAllianceStat(alliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration ^ 2));
                 SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_REDUCTION * (gameManager.activeAlliance.apocolypseDurration ^ 2));
                 alliance.updateAllianceStats();
@@ -75,7 +75,6 @@ public class EventPanel : MonoBehaviour
                 SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_SOLVE);
                 gameManager.activeAlliance.updateAllianceStats();
                 gameManager.activeAlliance.activeApoclypse = null;
-                gameManager.activeAllianceActionCount++;
                 CureApoclypse();
                 Close();
 
@@ -84,7 +83,9 @@ public class EventPanel : MonoBehaviour
             {
                 bodyText.text = "You do not have the Resources";
             }
+
         }
+        gameManager.activeAllianceActionCount++;
     }
     public void ApocolypseSolution2()
     {
@@ -94,7 +95,7 @@ public class EventPanel : MonoBehaviour
             {
                 SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Military, ApocalypseConstants.FAMINE_MILITARY_SOLVE);
                 gameManager.activeAlliance.updateAllianceStats();
-                gameManager.activeAllianceActionCount++;
+
                 CureApoclypse();
                 Close();
 
@@ -104,6 +105,7 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = "You do not have the Resources";
             }
         }
+        gameManager.activeAllianceActionCount++;
     }
 
     public void CureApoclypse()
@@ -155,44 +157,4 @@ public class EventPanel : MonoBehaviour
     {
         gameManager.CloseEventPanel();
     }
-
-<<<<<<< HEAD
-=======
-	// Use this for initialization
-	void Start () 
-	{
-		gameManager = FindObjectOfType<GameManager> ();
-	}
-
-	public void Close () 
-	{
-		gameManager.CloseEventPanel ();
-		gameObject.SetActive (false);
-	}
-
-	public void StartApocalypse (string randomApocalypse, Random rand)
-	{
-		rand =  Random.Range(1.0, 3.0);
-
-		if (rand >= 1.0 && rand < 2.0) 
-		{
-			randomApocalypse = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
-		}
-
-		if (rand >= 2.0 && rand < 3.0) 
-		{
-			randomApocalypse = ApocalypseConstants.WEATHER_EVENT_STRING;
-		}
-
-		if (rand == 3.0) 
-		{
-			randomApocalypse = ApocalypseConstants.DROUGHT_EVENT_STRING;
-		}
-	}
-
-	public void ApocalypseEffect (int activePlayerAllianceEffected)
-	{
-		
-	}
->>>>>>> 355ea5ad4432d525216c8be7334d71d7db7dacb2
 }

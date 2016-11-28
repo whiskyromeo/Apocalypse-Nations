@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     public WorldMap worldMap;
 
 	// bool for the event panel
-	bool turnStarted = false;
+	bool turnStarted = true;
 	public GameObject eventPanelObject;
 	public EventPanel eventPanelScript;
 	public Canvas canvas;
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour {
 		eventPanelScript = EventPanel.Instantiate (eventPanelScript);
 		eventPanelScript.transform.SetParent (canvas.transform);
 		eventPanelScript.gameObject.SetActive (false);
-		Vector3 eventPanelPosition = new Vector3(800, 150, 10);
+		Vector3 eventPanelPosition = new Vector3(800, 250, 10);
 		eventPanelScript.GetComponent<RectTransform>().position = eventPanelPosition;
         players = new Alliance[4];
         players[0] = player1;
@@ -147,23 +147,29 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.ApocolypseTurnEffect(EventPanel.ApoclypseTypes.Famine);
                     }
-                    else if (totalTurns >= 1 && totalTurns <= 3 && !activeAlliance.apocolypseActive)
+                    else if (totalTurns >= 1 && totalTurns <= 2 && !activeAlliance.apocolypseActive)
                     {
                         float rand = Random.Range(0f, 10f);
-                        if (rand >= 2)
+                        if (rand >= 7)
                         {
                             eventPanelScript.StartApocolypse();
-                            activeAlliance.apocolypseActive = true;
+                            foreach (Alliance player in players)
+                            {
+                                player.apocolypseActive = true;
+                            }
                         }
 
                     }
-                    else if (totalTurns >= 4 && totalTurns <= 8 && !activeAlliance.apocolypseActive)
+                    else if (totalTurns >= 3 && totalTurns <= 8 && !activeAlliance.apocolypseActive)
                     {
                         float rand = Random.Range(0f, 10f);
                         if (rand >= 2)
                         {
                             eventPanelScript.StartApocolypse();
-                            activeAlliance.apocolypseActive = true;
+                            foreach (Alliance player in players)
+                            {
+                                player.apocolypseActive = true;
+                            }
                         }
 
                     }
@@ -239,6 +245,10 @@ public class GameManager : MonoBehaviour {
     {
         if (turnStarted && activeAlliance.apocolypseActive)
         {
+            if (activeAlliance.apocolypseDurration >=1)
+            {
+                eventPanelScript.bodyText.text = eventPanelScript.mainText;
+            }
             eventPanelScript.gameObject.SetActive(true);
 
         }

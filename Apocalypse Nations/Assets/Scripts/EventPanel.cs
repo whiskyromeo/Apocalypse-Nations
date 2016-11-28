@@ -6,7 +6,8 @@ using System.Collections.Generic;
 public class EventPanel : MonoBehaviour 
 {
 	public GameManager gameManager;
-    public Text titleText, introText, mainText;
+    public Text titleText, bodyText;
+    public string mainText, introText;
     public Button button0, button1, button2;
     public enum AllianceStats { Population, Military, Science, Religion, Economy };
     public enum ApoclypseTypes { Famine};
@@ -19,21 +20,25 @@ public class EventPanel : MonoBehaviour
     }
     public void StartApocolypse()
     {
-
+        Start();
         int rand = Random.Range(0, 1);  
         switch (rand)
         {
             case 0:
 
                 titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
-                introText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
+                bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
+                introText = ApocalypseConstants.FAMINE_INTRO_TEXT0;
+                mainText = ApocalypseConstants.FAMINE_MAIN_TEXT0;
                 button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
                 button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 apoclypseType = ApoclypseTypes.Famine;
                 break;
             case 1:
                 titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
-                introText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
+                bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
+                introText = ApocalypseConstants.FAMINE_INTRO_TEXT1;
+                mainText = ApocalypseConstants.FAMINE_MAIN_TEXT1;
                 button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
                 button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 apoclypseType = ApoclypseTypes.Famine;
@@ -50,13 +55,14 @@ public class EventPanel : MonoBehaviour
         foreach (Alliance alliance in affectedAlliances)
         {
 
-            if (alliance != null && apoclypsetype == ApoclypseTypes.Famine)
+            if (apoclypsetype == ApoclypseTypes.Famine)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.FAMINE_POPULATION_REDUCTION);
-                SubtractFromAllianceStat(alliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_REDUCTION);
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_REDUCTION);
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.FAMINE_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration ^2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration ^ 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_REDUCTION * (gameManager.activeAlliance.apocolypseDurration ^ 2));
                 alliance.updateAllianceStats();
             }
+            alliance.apocolypseDurration++;
         }
     }
     public void ApocolypseSolution1()
@@ -67,13 +73,16 @@ public class EventPanel : MonoBehaviour
             {
                 SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_SOLVE);
                 SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_SOLVE);
+                gameManager.activeAlliance.updateAllianceStats();
                 gameManager.activeAlliance.activeApoclypse = null;
+                gameManager.activeAllianceActionCount++;
                 CureApoclypse();
+                Close();
 
             }
             else
             {
-                mainText.text = "You do not have the Resources";
+                bodyText.text = "You do not have the Resources";
             }
         }
     }
@@ -85,12 +94,14 @@ public class EventPanel : MonoBehaviour
             {
                 SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Military, ApocalypseConstants.FAMINE_MILITARY_SOLVE);
                 gameManager.activeAlliance.updateAllianceStats();
+                gameManager.activeAllianceActionCount++;
                 CureApoclypse();
+                Close();
 
             }
             else
             {
-                mainText.text = "You do not have the Resources";
+                bodyText.text = "You do not have the Resources";
             }
         }
     }
@@ -115,6 +126,7 @@ public class EventPanel : MonoBehaviour
         }
         gameManager.activeAlliance.activeApoclypse = null;
         gameManager.activeAlliance.apocolypseActive = false;
+        gameManager.activeAlliance.apocolypseDurration = 0;
     }
     // A method to subtract a value from a given stat in a given alliance
     public void SubtractFromAllianceStat(Alliance alliance, AllianceStats stat, int value)

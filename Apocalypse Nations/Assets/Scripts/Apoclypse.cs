@@ -19,13 +19,13 @@ public class Apoclypse : MonoBehaviour {
         {
             case 0:
                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
-                eventPanelScript.introText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
+                eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
                 eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
                 eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 break;
             case 1:
                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
-                eventPanelScript.introText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
+                eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
                 eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
                 eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 break;
@@ -51,7 +51,7 @@ public class Apoclypse : MonoBehaviour {
             }
             else
             {
-                eventPanelScript.mainText.text = "You do not have the Resources";
+                eventPanelScript.bodyText.text = "You do not have the Resources";
             }
         }
     }

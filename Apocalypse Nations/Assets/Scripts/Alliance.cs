@@ -20,6 +20,7 @@ public class Alliance : MonoBehaviour
     int balancingScale = 3;
     public Apoclypse activeApoclypse;
     public bool apocolypseActive = false;
+    public int apocolypseDurration = 0;
     #endregion
 
 

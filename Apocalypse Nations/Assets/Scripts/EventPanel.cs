@@ -156,4 +156,43 @@ public class EventPanel : MonoBehaviour
         gameManager.CloseEventPanel();
     }
 
+<<<<<<< HEAD
+=======
+	// Use this for initialization
+	void Start () 
+	{
+		gameManager = FindObjectOfType<GameManager> ();
+	}
+
+	public void Close () 
+	{
+		gameManager.CloseEventPanel ();
+		gameObject.SetActive (false);
+	}
+
+	public void StartApocalypse (string randomApocalypse, Random rand)
+	{
+		rand =  Random.Range(1.0, 3.0);
+
+		if (rand >= 1.0 && rand < 2.0) 
+		{
+			randomApocalypse = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
+		}
+
+		if (rand >= 2.0 && rand < 3.0) 
+		{
+			randomApocalypse = ApocalypseConstants.WEATHER_EVENT_STRING;
+		}
+
+		if (rand == 3.0) 
+		{
+			randomApocalypse = ApocalypseConstants.DROUGHT_EVENT_STRING;
+		}
+	}
+
+	public void ApocalypseEffect (int activePlayerAllianceEffected)
+	{
+		
+	}
+>>>>>>> 355ea5ad4432d525216c8be7334d71d7db7dacb2
 }

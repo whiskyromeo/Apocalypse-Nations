@@ -18,6 +18,8 @@ public class Alliance : MonoBehaviour
     public int religion;
     public int economy;
     int balancingScale = 3;
+    public Apoclypse activeApoclypse;
+    public bool apocolypseActive = false;
     #endregion
 
 
@@ -66,7 +68,7 @@ public class Alliance : MonoBehaviour
         return attackDC;
     }
 
-    void updateAllianceStats()
+    public void updateAllianceStats()
     {
         population = 0;
         science = 0;

@@ -41,6 +41,8 @@ public static partial class ApocalypseConstants
 		"\n\nIt took merely a few years for the effects to be felt worldwide from the time the contagion began. Any home gardens that were spared the necrosis could only " +
 		"provide enough to feed that immediate family. Farms were already bought and sold, and and ranches emptied of their livestock. Any plans that local governments have " +
 		"tried have already failed. Now, options run slim…";
+    public const string FAMINE_SOLVE_BUTTON_0_TEXT = "Research a cure";
+    public const string FAMINE_SOLVE_BUTTON_1_TEXT = "Enforce Matrial Law";
 	public const string FAMINE_SUCCESS_TEXT = "You’ve managed to survive the global famine. As the disease abates, you realize a new task awaits the survivors: burying " +
 		"their dead and mourning for those who did not survive. For those who lived, your fragile alliance still holds. But new dangers still await. As the days pass, " +
 		"the living must turn their backs on the past, and turn to face their uncertain futures.";
@@ -49,17 +51,17 @@ public static partial class ApocalypseConstants
 		"the rapidly declining population, and your alliance dissolved amidst blood and flames. Those few who survived must seek new homes, lest the now-ravaged land take their lives as well.";
 
 	// These constants will govern how Famine affects your stats every turn.
-	public const double FAMINE_POPULATION_REDUCTION = 10.0;
-	public const double FAMINE_SCIENCE_REDUCTION = 5.0;
-	public const double FAMINE_ECONOMY_REDUCTION = 7.0;
+	public const int FAMINE_POPULATION_REDUCTION = 10;
+	public const int FAMINE_SCIENCE_REDUCTION = 5;
+	public const int FAMINE_ECONOMY_REDUCTION = 7;
 
 	// These constants will allow you to solve Famine
 	// This first set will allow you to cure the disease with enough investment of science and money. It is more difficult, but will lose you less people.
-	public const double FAMINE_SCIENCE_SOLVE = 30.0;
-	public const double FAMINE_ECONOMY_SOLVE = 40.0;
+	public const int FAMINE_SCIENCE_SOLVE = 30;
+	public const int FAMINE_ECONOMY_SOLVE = 40;
 
 	// This will let you set up martial safe zones. Many will die, but your people will survive.
-	public const double FAMINE_MILITARY_SOLVE = 50.0;
+	public const int FAMINE_MILITARY_SOLVE = 50;
 	#endregion
 #endregion
 

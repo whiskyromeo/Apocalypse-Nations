@@ -40,6 +40,7 @@ public class Apoclypse : MonoBehaviour {
                 SubtractFromAllianceStat(alliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_REDUCTION);
                 SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_REDUCTION);
             }
+        alliance.updateAllianceStats();
     }
     public void ApocolypseSolution1(ApoclypseTypes apoclypseType, Alliance alliance)
     {

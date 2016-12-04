@@ -38,6 +38,20 @@ public class GameManager : MonoBehaviour {
 	public EventPanel eventPanelScript;
 	public Canvas canvas;
 
+	// Lose Panel
+	public GameObject losePanelObject;
+	public LosePanel losePanelScript;
+
+	// Win Panel
+	public GameObject winPanelObject;
+	public WinPanel winPanelScript;
+
+	// player win/lose bools
+	bool player1Alive = true;
+	bool player2Alive = true;
+	bool player3Alive = true;
+	bool player4Alive = true;
+
     #endregion
 
     #region Properties
@@ -77,19 +91,18 @@ public class GameManager : MonoBehaviour {
 
     #region Private Methods
     // Update is called once per frame
-    void Awake () {
+    void Awake () 
+	{
         gameState = GameStates.InGame;
         menuState = MenuStates.TitlePage;
         gamePlayState = GameplayStates.FirstPlayerTurn;
         activeAlliance = player1;
         totalTurns = 0;
         activeAllianceText.text = activeAlliance.name;
-
-
     }
 
-    void Start() {
-
+    void Start() 
+	{
         actionPanels = FindObjectsOfType<PlayerActionsPanel>();
 
 		// instantiate and position the event panel
@@ -97,8 +110,25 @@ public class GameManager : MonoBehaviour {
 		eventPanelScript = EventPanel.Instantiate (eventPanelScript);
 		eventPanelScript.transform.SetParent (canvas.transform);
 		eventPanelScript.gameObject.SetActive (false);
-		Vector3 eventPanelPosition = new Vector3(800, 250, 10);
-		eventPanelScript.GetComponent<RectTransform>().position = eventPanelPosition;
+		Vector3 eventPanelPosition = new Vector3 (800, 250, 10);
+		eventPanelScript.GetComponent<RectTransform> ().position = eventPanelPosition;
+
+		// instantiate and position the lose panel
+		losePanelScript = losePanelObject.GetComponent<LosePanel> ();
+		losePanelScript = LosePanel.Instantiate (losePanelScript);
+		losePanelScript.transform.SetParent (canvas.transform);
+		losePanelScript.gameObject.SetActive (false);
+		Vector3 losePanelPosition = new Vector3 (800, 250, 10);
+		losePanelScript.GetComponent<RectTransform> ().position = losePanelPosition;
+
+		// instantiate and position the win panel
+		winPanelScript = winPanelObject.GetComponent<WinPanel> ();
+		winPanelScript = WinPanel.Instantiate (winPanelScript);
+		winPanelScript.transform.SetParent (canvas.transform);
+		winPanelScript.gameObject.SetActive (false);
+		Vector3 winPanelPosition = new Vector3 (800, 250, 10);
+		winPanelScript.GetComponent<RectTransform> ().position = winPanelPosition;
+
         players = new Alliance[4];
         players[0] = player1;
         players[1] = player2;
@@ -112,33 +142,97 @@ public class GameManager : MonoBehaviour {
         {
             switch(gamePlayState)
             {
-				case GameplayStates.FirstPlayerTurn:
+			case GameplayStates.FirstPlayerTurn:
+				if (player1Alive) 
+				{
 					activeAlliance = player1;
 					activeAllianceText.text = activeAlliance.name;
 					activeAllianceText.color = Color.red;
 					EventPanelHandler ();
-                    turnStarted = false;
+					turnStarted = false;
+				}
+
+				// lose condition
+				if (player1.population <= 0 && player1Alive)
+				{
+					OpenLosePanel ();
+					player1Alive = false;
+				}
+
+				// win condition
+				if (player1Alive && !player2Alive && !player3Alive && !player4Alive)
+				{
+					OpenWinPanel ();
+				}
                     break;
-				case GameplayStates.SecondPlayerTurn:
+			case GameplayStates.SecondPlayerTurn:
+				if (player2Alive) 
+				{
 					activeAlliance = player2;
 					activeAllianceText.text = activeAlliance.name;
 					activeAllianceText.color = Color.green;
 					EventPanelHandler ();
-                    turnStarted = false;
+					turnStarted = false;
+				}
+
+				// lose condition
+				if (player2.population <= 0 && player2Alive)
+				{
+					OpenLosePanel ();
+					player2Alive = false;
+				}
+
+				// win condition
+				if (!player1Alive && player2Alive && !player3Alive && !player4Alive)
+				{
+					OpenWinPanel ();
+				}
                     break;
-				case GameplayStates.ThirdPlayerTurn:
+			case GameplayStates.ThirdPlayerTurn:
+				if (player3Alive) 
+				{	
 					activeAlliance = player3;
 					activeAllianceText.text = activeAlliance.name;
 					activeAllianceText.color = Color.yellow;
 					EventPanelHandler ();
-                    turnStarted = false;
+					turnStarted = false;
+				}
+
+				// lose condition
+				if (player3.population <= 0 && player3Alive)
+				{
+					OpenLosePanel ();
+					player3Alive = false;
+				}
+
+				// win condition
+				if (!player1Alive && !player2Alive && player3Alive && !player4Alive)
+				{
+					OpenWinPanel ();
+				}
                     break;
-				case GameplayStates.FourthPlayerTurn:
+			case GameplayStates.FourthPlayerTurn:
+				if (player4Alive) 
+				{	
 					activeAlliance = player4;
 					activeAllianceText.text = activeAlliance.name;
 					activeAllianceText.color = Color.magenta;
 					EventPanelHandler ();
-                    turnStarted = false;
+					turnStarted = false;
+				}
+
+				// lose condition
+				if (player4.population <= 0 && player4Alive)
+				{
+					OpenLosePanel ();
+					player4Alive = false;
+				}
+
+				// win condition
+				if (!player1Alive && !player2Alive && !player3Alive && player4Alive)
+				{
+					OpenWinPanel ();
+				}
                     break;
                 case GameplayStates.Apocolypse:
                     // this will be used for the apocolypse turn or refresher
@@ -249,15 +343,36 @@ public class GameManager : MonoBehaviour {
             {
                 eventPanelScript.bodyText.text = eventPanelScript.mainText;
             }
-            eventPanelScript.gameObject.SetActive(true);
+            eventPanelScript.gameObject.SetActive (true);
 
         }
     }
 
 	public void CloseEventPanel ()
 	{
-		eventPanelScript.gameObject.SetActive(false);
+		eventPanelScript.gameObject.SetActive (false);
 	}
+
+	public void OpenLosePanel ()
+	{
+		losePanelScript.gameObject.SetActive (false);
+	}
+
+	public void CloseLosePanel ()
+	{
+		losePanelScript.gameObject.SetActive (false);
+	}
+
+	public void OpenWinPanel ()
+	{
+		winPanelScript.gameObject.SetActive (true);
+	}
+
+	public void CloseWinPanel ()
+	{
+		winPanelScript.gameObject.SetActive (false);
+	}
+
     #endregion
     #endregion
 

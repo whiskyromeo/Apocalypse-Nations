@@ -1,10 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ApocalypseConstants.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\GameManager.cs">
     <Files>
       <File FileName="Assets\Scripts\ApocalypseConstants.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\WorldMap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Nation.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EventPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LosePanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WinPanel.cs" Line="24" Column="32" />
+      <File FileName="Assets\Scripts\Constants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Alliance.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

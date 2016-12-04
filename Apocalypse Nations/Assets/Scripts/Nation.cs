@@ -205,6 +205,7 @@ public class Nation : MonoBehaviour {
         //}
     }
 
+
     void Update()
     {
 
@@ -216,6 +217,17 @@ public class Nation : MonoBehaviour {
 			nationInfoPanel.enabled = false;
 			nationInfoPanel.gameObject.SetActive(false);
 		}
+    }
+    #endregion
+
+    #region Public Methods
+    public void updateInfoPanel()
+    {
+        nationInfoPanel.militaryNumber.text = military.ToString();
+        nationInfoPanel.populationNumber.text = population.ToString();
+        nationInfoPanel.scienceNumber.text = science.ToString();
+        nationInfoPanel.econNumber.text = economy.ToString();
+        nationInfoPanel.religionNumber.text = religion.ToString();
     }
     #endregion
 }

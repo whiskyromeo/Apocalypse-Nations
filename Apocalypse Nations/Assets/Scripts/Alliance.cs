@@ -18,6 +18,9 @@ public class Alliance : MonoBehaviour
     public int religion;
     public int economy;
     int balancingScale = 3;
+    public Apoclypse activeApoclypse;
+    public bool apocolypseActive = false;
+    public int apocolypseDurration = 0;
     #endregion
 
 
@@ -66,7 +69,7 @@ public class Alliance : MonoBehaviour
         return attackDC;
     }
 
-    void updateAllianceStats()
+    public void updateAllianceStats()
     {
         population = 0;
         science = 0;
@@ -77,11 +80,11 @@ public class Alliance : MonoBehaviour
         {
             
             int nationNumber = worldMap.NationNumbers[nation.nationName];
-            population += worldMap.GetNationPopulation(nationNumber);
-            science += worldMap.GetNationScience(nationNumber);
-            military += worldMap.GetNationMilitary(nationNumber);
-            economy += worldMap.GetNationEconomy(nationNumber);
-            religion += worldMap.GetNationReligion(nationNumber);
+            population += worldMap.GetNation(nationNumber).Population;
+            science += worldMap.GetNation(nationNumber).Science;
+            military += worldMap.GetNation(nationNumber).Military;
+            economy += worldMap.GetNation(nationNumber).Economy;
+            religion += worldMap.GetNation(nationNumber).Religion;
 
         }
     }
@@ -158,6 +161,7 @@ public class Alliance : MonoBehaviour
             attackedNation.Religion = (int)(attackedNation.Religion - (attackedNation.Religion * .2));
             attackedNation.Science = (int)(attackedNation.Science - (attackedNation.Science * .2));
             attackedNation.Economy = (int)(attackedNation.Economy - (attackedNation.Economy * .2));
+            attackedNation.updateInfoPanel();
             GameManager game = FindObjectOfType<GameManager>();
             //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
             if (game.player1.AlliedNations.Contains(attackedNation))
@@ -177,13 +181,15 @@ public class Alliance : MonoBehaviour
                 game.player4.updateAllianceStats();
             }
 
-
-            population = (int)(population + (population * .2));
-            military = (int)(military + (military * .2));
-            religion = (int)(religion + (religion * .2));
-            science = (int)(science + (science * .2));
-            economy = (int)(economy + (economy * .2));
+            
+            AlliedNations[0].Population = (int)(AlliedNations[0].Population + (AlliedNations[0].Population * .2));
+            AlliedNations[0].Military = (int)(AlliedNations[0].Military + (AlliedNations[0].Military * .2));
+            AlliedNations[0].Religion = (int)(AlliedNations[0].Religion + (AlliedNations[0].Religion * .2));
+            AlliedNations[0].Science = (int)(AlliedNations[0].Science + (AlliedNations[0].Science * .2));
+            AlliedNations[0].Economy = (int)(AlliedNations[0].Economy + (AlliedNations[0].Economy * .2));
+            AlliedNations[0].updateInfoPanel();
             updateAllianceStats();
+
 
         }
         else
@@ -195,6 +201,7 @@ public class Alliance : MonoBehaviour
             attackedNation.Religion = (int)(attackedNation.Religion + (attackedNation.Religion * .2));
             attackedNation.Science = (int)(attackedNation.Science + (attackedNation.Science * .2));
             attackedNation.Economy = (int)(attackedNation.Economy + (attackedNation.Economy * .2));
+            attackedNation.updateInfoPanel();
             GameManager game = FindObjectOfType<GameManager>();
             //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
             if (game.player1.AlliedNations.Contains(attackedNation))
@@ -213,14 +220,16 @@ public class Alliance : MonoBehaviour
             {
                 game.player4.updateAllianceStats();
             }
-            population = (int)(population - (population * .2));
-            military = (int)(military - (military * .2));
-            religion = (int)(religion - (religion * .2));
-            science = (int)(science - (science * .2));
-            economy = (int)(economy - (economy * .2));
+            AlliedNations[0].Population = (int)(AlliedNations[0].Population - (AlliedNations[0].Population * .2));
+            AlliedNations[0].Military = (int)(AlliedNations[0].Military - (AlliedNations[0].Military * .2));
+            AlliedNations[0].Religion = (int)(AlliedNations[0].Religion - (AlliedNations[0].Religion * .2));
+            AlliedNations[0].Science = (int)(AlliedNations[0].Science - (AlliedNations[0].Science * .2));
+            AlliedNations[0].Economy = (int)(AlliedNations[0].Economy - (AlliedNations[0].Economy * .2));
+            AlliedNations[0].updateInfoPanel();
             updateAllianceStats();
 
         }
+        
 
     }
 

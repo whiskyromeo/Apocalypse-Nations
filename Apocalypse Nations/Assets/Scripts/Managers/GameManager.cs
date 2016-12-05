@@ -13,14 +13,16 @@ public class GameManager : MonoBehaviour {
     public enum AllianceStats { Population, Military, Science, Religion, Economy };
     public enum GameStates {MainMenu, InGame, Pause };
     public enum MenuStates { TitlePage, MainMenu, OptionsMenu};
-    public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, None};
-    int totalTurns; // this will be used to track how many actions the players have commited
+    public enum GameplayStates {FirstPlayerTurn, SecondPlayerTurn, ThirdPlayerTurn, FourthPlayerTurn, Apocolypse};
+    public int totalTurns; // this will be used to track how many actions the players have commited
 
     public Alliance player1, player2, player3, player4, activeAlliance;
+    public Alliance[] players;
 
     public Text activeAllianceText;
 
     public PlayerActionsPanel[] actionPanels;
+
 
     public int activeAllianceActionCount = 0;
     [SerializeField]
@@ -29,6 +31,13 @@ public class GameManager : MonoBehaviour {
 	public int CurrentNationNumber { get; set; }
 
     public WorldMap worldMap;
+
+	// bool for the event panel
+	bool turnStarted = true;
+	public GameObject eventPanelObject;
+	public EventPanel eventPanelScript;
+	public Canvas canvas;
+
     #endregion
 
     #region Properties
@@ -82,6 +91,19 @@ public class GameManager : MonoBehaviour {
     void Start() {
 
         actionPanels = FindObjectsOfType<PlayerActionsPanel>();
+
+		// instantiate and position the event panel
+		eventPanelScript = eventPanelObject.GetComponent<EventPanel> ();
+		eventPanelScript = EventPanel.Instantiate (eventPanelScript);
+		eventPanelScript.transform.SetParent (canvas.transform);
+		eventPanelScript.gameObject.SetActive (false);
+		Vector3 eventPanelPosition = new Vector3(800, 250, 10);
+		eventPanelScript.GetComponent<RectTransform>().position = eventPanelPosition;
+        players = new Alliance[4];
+        players[0] = player1;
+        players[1] = player2;
+        players[2] = player3;
+        players[3] = player4;
     }
 
     void Update()
@@ -90,35 +112,72 @@ public class GameManager : MonoBehaviour {
         {
             switch(gamePlayState)
             {
-                case GameplayStates.FirstPlayerTurn:
-                    activeAlliance = player1;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.red;
+				case GameplayStates.FirstPlayerTurn:
+					activeAlliance = player1;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.red;
+					EventPanelHandler ();
+                    turnStarted = false;
                     break;
-                case GameplayStates.SecondPlayerTurn:
-                    activeAlliance = player2;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.green;
+				case GameplayStates.SecondPlayerTurn:
+					activeAlliance = player2;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.green;
+					EventPanelHandler ();
+                    turnStarted = false;
                     break;
-                case GameplayStates.ThirdPlayerTurn:
-                    activeAlliance = player3;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.yellow;
+				case GameplayStates.ThirdPlayerTurn:
+					activeAlliance = player3;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.yellow;
+					EventPanelHandler ();
+                    turnStarted = false;
                     break;
-                case GameplayStates.FourthPlayerTurn:
-                    activeAlliance = player4;
-                    activeAllianceText.text = activeAlliance.name;
-                    activeAllianceText.color = Color.magenta;
+				case GameplayStates.FourthPlayerTurn:
+					activeAlliance = player4;
+					activeAllianceText.text = activeAlliance.name;
+					activeAllianceText.color = Color.magenta;
+					EventPanelHandler ();
+                    turnStarted = false;
                     break;
-                case GameplayStates.None:
+                case GameplayStates.Apocolypse:
                     // this will be used for the apocolypse turn or refresher
                     totalTurns++;
-                    // right now it will just go to the next state which is FirstPlayerTurn
+                    if (activeAlliance.apocolypseActive)
+                    {
+                        eventPanelScript.ApocolypseTurnEffect(EventPanel.ApoclypseTypes.Famine);
+                    }
+                    else if (totalTurns >= 1 && totalTurns <= 2 && !activeAlliance.apocolypseActive)
+                    {
+                        float rand = Random.Range(0f, 10f);
+                        if (rand >= 7)
+                        {
+                            eventPanelScript.StartApocolypse();
+                            foreach (Alliance player in players)
+                            {
+                                player.apocolypseActive = true;
+                            }
+                        }
+
+                    }
+                    else if (totalTurns >= 3 && totalTurns <= 8 && !activeAlliance.apocolypseActive)
+                    {
+                        float rand = Random.Range(0f, 10f);
+                        if (rand >= 2)
+                        {
+                            eventPanelScript.StartApocolypse();
+                            foreach (Alliance player in players)
+                            {
+                                player.apocolypseActive = true;
+                            }
+                        }
+
+                    }
                     gamePlayState = GameplayStates.FirstPlayerTurn;
                     break;
                 default:
                     Debug.Log("switching nations is fucked up");
-                    activeAlliance = player1;
+                    gamePlayState = GameplayStates.FirstPlayerTurn;
                     break;
             }
             if(activeAllianceActionCount>= maxActionCount)
@@ -135,6 +194,10 @@ public class GameManager : MonoBehaviour {
                 //go to lose scene
                 SceneManager.LoadScene("LoseScene");
             }
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                PlayerEndedTurn();
+            }
         }
     }
     #endregion
@@ -144,19 +207,12 @@ public class GameManager : MonoBehaviour {
         gamePlayState++;
         activeAllianceText.text = activeAlliance.name;
         activeAllianceActionCount = 0;
+		turnStarted = true;
     }
 
-    /// <summary>
-    /// this is the method that would be called in order to trigger an apocalypse
-    /// </summary>
-    /// <param name="timeTilApoc"></param>
-    public void ApocalypseCheck(int timeTilApoc) {
-        if (totalTurns / 4 == timeTilApoc) {
-            //trigger apocalpyse
-        }
-    }
 
-	public void AttackNation()
+    #region Player Action Panel Methods
+    public void AttackNation()
 	{
 		activeAlliance.AttackAlliance (CurrentNationNumber);
         activeAllianceActionCount++;
@@ -180,30 +236,29 @@ public class GameManager : MonoBehaviour {
         worldMap.NationClasses[CurrentNationNumber].LeaveOpen = false;
         worldMap.NationClasses[CurrentNationNumber].nationInfoPanel.gameObject.SetActive(false);
     }
+    #endregion
 
-    // A method to subtract a value from a given stat in a given alliance
-    public void SubtractFromAllianceStat(Alliance alliance, AllianceStats stat, int value)
+    #region Event Panel Methods
+   
+
+    public void EventPanelHandler()
     {
-        switch (stat)
+        if (turnStarted && activeAlliance.apocolypseActive)
         {
-            case AllianceStats.Economy:
-                alliance.economy -= value;
-                break;
-            case AllianceStats.Military:
-                alliance.military -= value;
-                break;
-            case AllianceStats.Population:
-                alliance.population -= value;
-                break;
-            case AllianceStats.Religion:
-                alliance.religion -= value;
-                break;
-            case AllianceStats.Science:
-                alliance.science -= value;
-                break;
+            if (activeAlliance.apocolypseDurration >=1)
+            {
+                eventPanelScript.bodyText.text = eventPanelScript.mainText;
+            }
+            eventPanelScript.gameObject.SetActive(true);
+
         }
     }
 
+	public void CloseEventPanel ()
+	{
+		eventPanelScript.gameObject.SetActive(false);
+	}
+    #endregion
     #endregion
 
 }

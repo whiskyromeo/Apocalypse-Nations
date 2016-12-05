@@ -41,10 +41,12 @@ public class GameManager : MonoBehaviour {
 	// Lose Panel
 	public GameObject losePanelObject;
 	public LosePanel losePanelScript;
+	public Text playerLoseText;
 
 	// Win Panel
 	public GameObject winPanelObject;
 	public WinPanel winPanelScript;
+	public Text playerWinText;
 
 	// player win/lose bools
 	bool player1Alive = true;
@@ -155,13 +157,16 @@ public class GameManager : MonoBehaviour {
 				// lose condition
 				if (player1.population <= 0 && player1Alive)
 				{
+					playerLoseText.text = "Player 1 You Lose!";
 					OpenLosePanel ();
 					player1Alive = false;
+					PlayerEndedTurn ();
 				}
 
 				// win condition
 				if (player1Alive && !player2Alive && !player3Alive && !player4Alive)
 				{
+					playerWinText.text = "Player 1 You Win!";
 					OpenWinPanel ();
 				}
                     break;
@@ -178,13 +183,16 @@ public class GameManager : MonoBehaviour {
 				// lose condition
 				if (player2.population <= 0 && player2Alive)
 				{
+					playerLoseText.text = "Player 2 You Lose!";
 					OpenLosePanel ();
 					player2Alive = false;
+					PlayerEndedTurn ();
 				}
 
 				// win condition
 				if (!player1Alive && player2Alive && !player3Alive && !player4Alive)
 				{
+					playerWinText.text = "Player 2 You Win!";
 					OpenWinPanel ();
 				}
                     break;
@@ -201,13 +209,16 @@ public class GameManager : MonoBehaviour {
 				// lose condition
 				if (player3.population <= 0 && player3Alive)
 				{
+					playerLoseText.text = "Player 3 You Lose!";
 					OpenLosePanel ();
 					player3Alive = false;
+					PlayerEndedTurn ();
 				}
 
 				// win condition
 				if (!player1Alive && !player2Alive && player3Alive && !player4Alive)
 				{
+					playerWinText.text = "Player 3 You Win!";
 					OpenWinPanel ();
 				}
                     break;
@@ -224,13 +235,16 @@ public class GameManager : MonoBehaviour {
 				// lose condition
 				if (player4.population <= 0 && player4Alive)
 				{
+					playerLoseText.text = "Player 4 You Lose!";
 					OpenLosePanel ();
 					player4Alive = false;
+					PlayerEndedTurn ();
 				}
 
 				// win condition
 				if (!player1Alive && !player2Alive && !player3Alive && player4Alive)
 				{
+					playerWinText.text = "Player 4 You Win!";
 					OpenWinPanel ();
 				}
                     break;
@@ -355,7 +369,7 @@ public class GameManager : MonoBehaviour {
 
 	public void OpenLosePanel ()
 	{
-		losePanelScript.gameObject.SetActive (false);
+		losePanelScript.gameObject.SetActive (true);
 	}
 
 	public void CloseLosePanel ()

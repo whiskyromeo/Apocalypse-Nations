@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour {
             {
                 PlayerEndedTurn();
             }
-            Debug.Log(activeAllianceActionCount);
+            
         }
     }
     #endregion
@@ -330,6 +330,10 @@ public class GameManager : MonoBehaviour {
         gamePlayState++;
         activeAllianceText.text = activeAlliance.name;
         activeAllianceActionCount = 0;
+        if (eventPanelScript.gameObject.activeSelf == true)
+        {
+            eventPanelScript.Close();
+        }
 		turnStarted = true;
     }
 
@@ -370,6 +374,18 @@ public class GameManager : MonoBehaviour {
         {
             if (activeAlliance.apocolypseDurration >=1)
             {
+                switch (eventPanelScript.apoclypseType)
+                {
+                    case EventPanel.ApoclypseTypes.Angels:
+                        eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_MAIN_TEXT0;
+                        break;
+                    case EventPanel.ApoclypseTypes.Famine:
+                        eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_MAIN_TEXT0;
+                        break;
+                    case EventPanel.ApoclypseTypes.Zombies:
+                        eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_MAIN_TEXT0;
+                        break;
+                }
                 eventPanelScript.bodyText.text = eventPanelScript.mainText;
             }
             eventPanelScript.gameObject.SetActive (true);

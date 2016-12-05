@@ -87,20 +87,22 @@ public static partial class ApocalypseConstants
 		"threat. The path wasn’t easy, but the road ahead will be even less so.";
 	public const string ZOMBIES_FAILURE_TEXT = "Whatever it was that possessed the shambling corpses, you were unable to overcome their sheer numbers. Luck, time, and fate were not " +
 		"on your side. As the population was consumed by the undead, order simply melted away. An alliance cannot be forged between two dead men.";
+    public const string ZOMBIES_SOLVE_BUTTON_0_TEXT = "Research Cure";
+    public const string ZOMBIES_SOLVE_BUTTON_1_TEXT = "Extinction";
 
-	// These constants will govern how Zombies affects your stats every turn. This is a highly detrimental apocalypse.
-	public const double ZOMBIES_POPULATION_REDUCTION = 15.0;
-	public const double ZOMBIES_RELIGION_REDUCTION = 3.0;
-	public const double ZOMBIES_ECONOMY_REDUCTION = 7.0;
-	public const double ZOMBIES_MILITARY_REDUCTION = 7.0;
+    // These constants will govern how Zombies affects your stats every turn. This is a highly detrimental apocalypse.
+    public const int ZOMBIES_POPULATION_REDUCTION = 15;
+	public const int ZOMBIES_RELIGION_REDUCTION = 3;
+	public const int ZOMBIES_ECONOMY_REDUCTION = 7;
+	public const int ZOMBIES_MILITARY_REDUCTION = 7;
 
 	// These constants will allow you to solve Zombies
 	// This first set will allow you to solve zombies by trying to find a cure. May take longer, but your reputation will greatly improve.
-	public const double ZOMBIES_SCIENCE_SOLVE = 50.0;
-	public const double ZOMBIES_ECONOMY_SOLVE = 50.0;
+	public const int ZOMBIES_SCIENCE_SOLVE = 50;
+	public const int ZOMBIES_ECONOMY_SOLVE = 50;
 
 	// This will let you set up military encampments, and exterminate outsiders. Many will die, but it is decisive.
-	public const double ZOMBIES_MILITARY_SOLVE = 60.0;
+	public const int ZOMBIES_MILITARY_SOLVE = 60;
 	#endregion
 
 // Angels is the major religion-based apocalypse
@@ -134,19 +136,21 @@ public static partial class ApocalypseConstants
 		"onlookers as they watched the first sunrise in weeks. Some wept. Humanity has survived another day.";
 	public const string ANGELS_FAILURE_TEXT = "Many were prepared for all out war with the rest of the world. But they were not prepared for a war with heaven itself. " +
 		"The extermination was quick, but certainly not painless. Their haunted screams still echo through the empty streets. Divine wrath was the end of all things.";
+    public const string ANGELS_SOLVE_BUTTON_0_TEXT = "Research Violent Cure";
+    public const string ANGELS_SOLVE_BUTTON_1_TEXT = "Pray";
 
-	// These constants will govern how Angels affects your stats every turn.
-	public const double ANGELS_POPULATION_REDUCTION = 10.0;
-	public const double ANGELS_MILITARY_REDUCTION = 10.0;
-	public const double ANGELS_RELIGION_REDUCTION = 7.0;
+    // These constants will govern how Angels affects your stats every turn.
+    public const int ANGELS_POPULATION_REDUCTION = 10;
+	public const int ANGELS_MILITARY_REDUCTION = 10;
+	public const int ANGELS_RELIGION_REDUCTION = 7;
 
 	// These constants will allow you to solve Angels
 	// This set allows you to fight the angels by finding their weaknesses and expoiting them.
-	public const double ANGELS_SCIENCE_SOLVE = 40.0;
-	public const double ANGELS_MILITARY_SOLVE = 40.0;
+	public const int ANGELS_SCIENCE_SOLVE = 40;
+	public const int ANGELS_MILITARY_SOLVE = 40;
 
 	// This extremely difficult constraint will allow you to survive thanks to your pious people.
-	public const double ANGELS_RELIGION_SOLVE = 90.0;
+	public const int ANGELS_RELIGION_SOLVE = 90;
     #endregion
 
     #endregion
@@ -160,11 +164,11 @@ public static partial class ApocalypseConstants
 	public const string WEATHER_EVENT_TEXT = "A mass of super storms is gathering on the oceans. They will rage across the world. " +
 	"It will be difficult for many to leave their homes in the coming days, and some basic infrastructure will be damaged amidst the torrents of wind and rain.";
 
-	public const double WEATHER_POPULATION_REDUCTION = 5.0;
-	public const double WEATHER_ECONOMY_REDUCTION = 3.0;
-
+	public const int WEATHER_POPULATION_REDUCTION = 5;
+	public const int WEATHER_ECONOMY_REDUCTION = 3;
+    public const string WEATHER_SOLVE_TEXT = "Reinforce Houses";
 	// You can solve this event by building shelters for the people
-	public const double WEATHER_ECONOMY_SOLVE = 20.0;
+	public const int WEATHER_ECONOMY_SOLVE = 20;
 	#endregion
 
 	#region Drought
@@ -172,12 +176,13 @@ public static partial class ApocalypseConstants
 	public const string DROUGHT_EVENT_STRING = "Drought";
 	public const string DROUGHT_EVENT_TEXT = "As if things couldn't have gotten any worse, it seems that the world faces a global drought. Many wells are running dry, and the " +
 		"people are struggling to ration water.";
+    public const string DROUGHT_EVENT_SOLVE = "Ration Water";
 
-	public const double DROUGHT_POPULATION_REDUCTION = 7.0;
+	public const int DROUGHT_POPULATION_REDUCTION = 7;
 
 	// In order to solve this event, one must set up martial law and ration water
-	public const double DROUGHT_MILITARY_SOLVE = 15.0;
-	public const double DROUGHT_ECONOMY_SOLVE = 15.0;
+	public const int DROUGHT_MILITARY_SOLVE = 15;
+	public const int DROUGHT_ECONOMY_SOLVE = 15;
 	#endregion
 
 	#region Famine Mutation
@@ -186,29 +191,35 @@ public static partial class ApocalypseConstants
 	public const string FAMINE_MUTATION_EVENT_TEXT = "This disease, whatever it is, is evolving faster than the science community anticipated. It is becoming obvious how " +
 		"this virus has managed to thwart all the early attempts at containment.";
 
-	public const double FAMINE_MUTATION_SCIENCE_REDUCTION = 7.0;
+	public const int FAMINE_MUTATION_SCIENCE_REDUCTION = 7;
+
+    public const string FAMINE_MUTATION_SOLVE_TEXT1 = "Research New Cure";
 
 	// In order to solve this, you're going to need to very quickly combat the mutation before it kills your science score
-	public const double FAMINE_MUTATION_SCIENCE_SOLVE = 20.0;
-	public const double FAMINE_MUTATION_ECONOMY_SOLVE = 15.0;
+	public const int FAMINE_MUTATION_SCIENCE_SOLVE = 20;
+	public const int FAMINE_MUTATION_ECONOMY_SOLVE = 15;
 	#endregion
 
 	#region Famine Plague
 	// Famine-specific event... from the bible
 	public const string FAMINE_PLAGUE_EVENT_STRING = "Plague of Insects";
-	public const string FAMINE_PLAGUE_EVENT_TEXT = "Just like a story straight out of an ancient religious text, swarms of insects have been seen doubleing over the countryside. " +
+	public const string FAMINE_PLAGUE_EVENT_TEXT = "Just like a story straight out of an ancient religious text, swarms of insects have been seen inting over the countryside. " +
 		"These mutated bugs seem to be attacking people on site, though thankfully they don't live long.";
 
-	public const double FAMINE_PLAGUE_POPULATION_REDUCTION = 3.0;
-	public const double FAMINE_PLAGUE_RELIGION_REDUCTION = 3.0;
+    public const string FAMINE_PLAGUE_SOLVE_TEXT0 = "Pray for Redemption";
+    public const string FAMINE_PLAGUE_SOLVE_TEXT1 = "Research Poison";
+
+
+    public const int FAMINE_PLAGUE_POPULATION_REDUCTION = 3;
+	public const int FAMINE_PLAGUE_RELIGION_REDUCTION = 3;
 
 	// Holy shit, religion is relevant to this one! Woo hoo!
-	public const double FAMINE_PLAGUE_RELIGION_SOLVE = 40.0;
+	public const int FAMINE_PLAGUE_RELIGION_SOLVE = 40;
 
 	// You can also solve it with some good ol' martial law, some scientists, and plenty of bug spray.
-	public const double FAMINE_PLAGUE_MILITARY_SOLVE = 10.0;
-	public const double FAMINE_PLAGUE_SCIENCE_SOLVE = 10.0;
-	public const double FAMINE_PLAGUE_ECONOMY_SOLVE = 10.0;
+	public const int FAMINE_PLAGUE_MILITARY_SOLVE = 10;
+	public const int FAMINE_PLAGUE_SCIENCE_SOLVE = 10;
+	public const int FAMINE_PLAGUE_ECONOMY_SOLVE = 10;
 	#endregion
 
 	#region Famine Evolution
@@ -216,13 +227,16 @@ public static partial class ApocalypseConstants
 	public const string FAMINE_EVOLUTION_EVENT_STRING = "Evolution";
 	public const string FAMINE_EVOLUTION_EVENT_TEXT = "Like so many diseases before it, the necrotic poison has evolved to become infections between humans. It can be contained, but not " +
 		"before it spreads.";
-	public const double FAMINE_EVOLUTION_POPULATION_REDUCTION = 7.0;
+    public const string FAMINE_EVOLUTION_SOLVE_TEXT0 = "Research a Cure";
+    public const string FAMINE_EVOLUTION_SOLVE_TEXT1 = "Quarantine Zones";
+
+    public const int FAMINE_EVOLUTION_POPULATION_REDUCTION = 7;
 
 	// If you have enough science, you can slow the spread of the disease and potentially cure it
-	public const double FAMINE_EVOLUTION_SCIENCE_SOLVE = 30.0;
+	public const int FAMINE_EVOLUTION_SCIENCE_SOLVE = 30;
 
 	// If you have enough military, you can create quarantine zones.
-	public const double FAMINE_EVOLUTION_MILITARY_SOLVE = 30.0;
+	public const int FAMINE_EVOLUTION_MILITARY_SOLVE = 30;
 	#endregion
 
 	#region Famine Breakthrough
@@ -230,8 +244,9 @@ public static partial class ApocalypseConstants
 	public const string FAMINE_BREAKTHROUGH_EVENT_STRING = "Scientific Breakthrough";
 	public const string FAMINE_BREAKTHROUGH_EVENT_TEXT = "The scientific community has managed to discover something unique about the biology of the necrotic disease. The tests are " +
 		"very promising. Perhaps the world might just make it through.";
+    public const string FAMINE_BREAKTHROUGH_SOLVE_TEXT = "Disperse Cure";
 
-	public const double FAMINE_BREAKTHROUGH_SCIENCE_INCREASE = 10.0;
+	public const int FAMINE_BREAKTHROUGH_SCIENCE_INCREASE = 10;
 	#endregion
 
 	#region Zombies Evolution
@@ -239,10 +254,10 @@ public static partial class ApocalypseConstants
 	public const string ZOMBIES_EVOLUTION_EVENT_STRING = "Accelerated Evolution";
 	public const string ZOMBIES_EVOLUTION_EVENT_TEXT = "The virus seems to be changing faster than it can be cured. As soon as a strand is killed, another has already evolved. " +
 		"Scientists are losing hope that the world can survive.";
-	public const double ZOMBIES_EVOLUTION_SCIENCE_REDUCTION = 8.0;
-
-	// With enough brute force investment, you can get your scientists more materials with which to work, eventually overcoming this problem
-	public const double ZOMBIES_EVOLUTION_ECOMONY_SOLVE = 40.0;
+	public const int ZOMBIES_EVOLUTION_SCIENCE_REDUCTION = 8;
+    public const string ZOMBIES_EVOLUTION_SOLVE_TEXT = "Invest in Science";
+    // With enough brute force investment, you can get your scientists more materials with which to work, eventually overcoming this problem
+    public const int ZOMBIES_EVOLUTION_ECOMONY_SOLVE = 40;
 	#endregion
 
 	#region Zombies Horde
@@ -250,15 +265,16 @@ public static partial class ApocalypseConstants
 	public const string ZOMBIES_HORDE_EVENT_STRING = "Horde Behavior";
 	public const string ZOMBIES_HORDE_EVENT_TEXT = "It appears that the reanimated population has begun to horde behavior. They travel in packs or large flocks, and " +
 		"aren't so much organized as they are overwhelming. Survivors are advised to rest in high places and not draw attention to themselves.";
-	public const double ZOMBIES_HORDE_MILITARY_REDUCTION = 8.0;
-	public const double ZOMBIES_HORDE_POPULATION_REDUCTION = 7.0;
-
-	// With enough military might, you can destroy the hordes
-	public const double ZOMBIES_HORDE_MILITARY_SOLVE = 40.0;
+	public const int ZOMBIES_HORDE_MILITARY_REDUCTION = 8;
+	public const int ZOMBIES_HORDE_POPULATION_REDUCTION = 7;
+    public const string ZOMBIES_HORDE_SOLVE_TEXT0 = "Military Force";
+    public const string ZOMBIES_HORDE_SOLVE_TEXT1 = "Invest in Science";
+    // With enough military might, you can destroy the hordes
+    public const int ZOMBIES_HORDE_MILITARY_SOLVE = 40;
 
 	// If you have the right materials, you can get the virus to evolve out of horde behavior with complex planning
-	public const double ZOMBIES_HORDE_SCIENCE_SOLVE = 20.0;
-	public const double ZOMBIES_HORDE_ECONOMY_SOLVE = 20.0;
+	public const int ZOMBIES_HORDE_SCIENCE_SOLVE = 20;
+	public const int ZOMBIES_HORDE_ECONOMY_SOLVE = 20;
 	#endregion
 
 	#region Zombies Mutation
@@ -266,11 +282,12 @@ public static partial class ApocalypseConstants
 	public const string ZOMBIES_MUTATION_EVENT_STRING = "Mutating Monsters";
 	public const string ZOMBIES_MUTATION_EVENT_TEXT = "The virus seems to be manipulating the bodies of their hosts into mutated husks. Within days, they can rapidly harden " +
 	"their skin to become more resistant, and seem to be able to move faster and hit harder. Some stranger, unique mutations have also been seen.";
-	public const double ZOMBIES_MUTATION_MILITARY_REDUCTION = 10.0;
+	public const int ZOMBIES_MUTATION_MILITARY_REDUCTION = 10;
+    public const string ZOMBIES_MUTATION_SOLVE_TEXT = "Develop new Weapons";
 
-	// You can solve this problem with enough science and money to develop better weaponry
-	public const double ZOMBIES_MUTATION_SCIENCE_SOLVE = 15.0;
-	public const double ZOMBIES_MUTATION_ECONOMY_SOLVE = 15.0;
+    // You can solve this problem with enough science and money to develop better weaponry
+    public const int ZOMBIES_MUTATION_SCIENCE_SOLVE = 15;
+	public const int ZOMBIES_MUTATION_ECONOMY_SOLVE = 15;
 	#endregion
 
 	#region Angels Minions
@@ -278,11 +295,12 @@ public static partial class ApocalypseConstants
 	public const string ANGELS_MINIONS_EVENT_STRING = "Corruption of the Blessed";
 	public const string ANGELS_MINIONS_EVENT_TEXT = "The angels didn't just come with a battalion of soldiers. They took human souls as well. Those who prayed for " +
 	"mercy were given a new life as slave labor. Canon fodder for the real army.";
-	public const double ANGELS_MINIONS_POPULATION_REDUCTION = 5.0;
-	public const double ANGELS_MINIONS_RELIGION_REDUCTION = 10.0;
+    public const string ANGELS_MINIONS_SOLVE_TEXT = "Military Action";
+	public const int ANGELS_MINIONS_POPULATION_REDUCTION = 5;
+	public const int ANGELS_MINIONS_RELIGION_REDUCTION = 10;
 
 	// You can solve this with sheer military force
-	public const double ANGELS_MINIONS_MILITARY_SOLVE = 30.0;
+	public const int ANGELS_MINIONS_MILITARY_SOLVE = 30;
 	#endregion
 
 	#region Angels Hellfire
@@ -290,22 +308,24 @@ public static partial class ApocalypseConstants
 	public const string ANGELS_HELLFIRE_EVENT_STRING = "Heaven's Hellfire";
 	public const string ANGELS_HELLFIRE_EVENT_TEXT = "It appears as though the angels were holding back when they arrived. The strongest among them, the Seraphim, " +
 	"can see the sins of the wicked and use them as a catalyst to bring forth the fires of hell itself as punishment.";
-	public const double ANGELS_HELLFIRE_POPULATION_REDUCTION = 10.0;
+	public const int ANGELS_HELLFIRE_POPULATION_REDUCTION = 10;
+    public const string ANGELS_HELLFIRE_SOLVE_TEXT = "Pray for Redemption";
 
 	// You can solve this by having your people be pious enough
-	public const double ANGELS_HELLFIRE_RELIGION_SOLVE = 40.0;
+	public const int ANGELS_HELLFIRE_RELIGION_SOLVE = 40;
 	#endregion
 
 	#region Angels Plague
 	// Angels-specific event
 	public const string ANGELS_PLAGUE_EVENT_STRING = "Biblical Plagues";
 	public const string ANGELS_PLAGUE_EVENT_TEXT = "Just as when Moses confronted Pharoah, the angels are calling upon the wrath of god to unleash plagues upon humanity.";
-	public const double ANGELS_PLAGUE_POPULATION_REDUCTION = 10.0;
-	public const double ANGELS_PLAGUE_MILITARY_REDUCTION = 8.0;
+    public const string ANGELS_PLAGUE_SOLVE_TEXT = "Pray and Research";
+    public const int ANGELS_PLAGUE_POPULATION_REDUCTION = 10;
+	public const int ANGELS_PLAGUE_MILITARY_REDUCTION = 8;
 
 	// With a combination of biblical knowledge and science, it is possible to predict the next plague and find a way to ease its affects
-	public const double ANGELS_PLAGUE_SCIENCE_SOLVE = 20.0;
-	public const double ANGELS_PLAGUE_RELIGION_SOLVE = 20.0;
+	public const int ANGELS_PLAGUE_SCIENCE_SOLVE = 20;
+	public const int ANGELS_PLAGUE_RELIGION_SOLVE = 20;
 	#endregion
 
 #endregion

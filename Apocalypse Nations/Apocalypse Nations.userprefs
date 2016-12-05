@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\GameManager.cs">
+=======
+﻿<Properties StartupItem="Apocalypse Nations.CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ApocalypseConstants.cs">
+>>>>>>> origin/TylerD
     <Files>
-      <File FileName="Assets\Scripts\ApocalypseConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ApocalypseConstants.cs" Line="310" Column="1" />
       <File FileName="Assets\Scripts\WorldMap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Nation.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="1" Column="1" />

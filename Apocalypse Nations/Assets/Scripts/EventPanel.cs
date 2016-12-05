@@ -136,21 +136,23 @@ public class EventPanel : MonoBehaviour
         switch (stat)
         {
             case AllianceStats.Economy:
-                alliance.economy -= value;
+                alliance.AlliedNations[0].Economy -= value;
                 break;
             case AllianceStats.Military:
-                alliance.military -= value;
+                alliance.AlliedNations[0].Military -= value;
                 break;
             case AllianceStats.Population:
-                alliance.population -= value;
+                alliance.AlliedNations[0].Population -= value;
                 break;
             case AllianceStats.Religion:
-                alliance.religion -= value;
+                alliance.AlliedNations[0].Religion -= value;
                 break;
             case AllianceStats.Science:
-                alliance.science -= value;
+                alliance.AlliedNations[0].Science -= value;
                 break;
         }
+        alliance.AlliedNations[0].updateInfoPanel();
+        alliance.updateAllianceStats();
     }
 
     public void Close()

@@ -41,8 +41,6 @@ public static partial class ApocalypseConstants
 		"\n\nIt took merely a few years for the effects to be felt worldwide from the time the contagion began. Any home gardens that were spared the necrosis could only " +
 		"provide enough to feed that immediate family. Farms were already bought and sold, and and ranches emptied of their livestock. Any plans that local governments have " +
 		"tried have already failed. Now, options run slim…";
-    public const string FAMINE_SOLVE_BUTTON_0_TEXT = "Research a cure";
-    public const string FAMINE_SOLVE_BUTTON_1_TEXT = "Enforce Matrial Law";
 	public const string FAMINE_SUCCESS_TEXT = "You’ve managed to survive the global famine. As the disease abates, you realize a new task awaits the survivors: burying " +
 		"their dead and mourning for those who did not survive. For those who lived, your fragile alliance still holds. But new dangers still await. As the days pass, " +
 		"the living must turn their backs on the past, and turn to face their uncertain futures.";
@@ -51,18 +49,103 @@ public static partial class ApocalypseConstants
 		"the rapidly declining population, and your alliance dissolved amidst blood and flames. Those few who survived must seek new homes, lest the now-ravaged land take their lives as well.";
 
 	// These constants will govern how Famine affects your stats every turn.
-	public const int FAMINE_POPULATION_REDUCTION = 10;
-	public const int FAMINE_SCIENCE_REDUCTION = 5;
-	public const int FAMINE_ECONOMY_REDUCTION = 7;
+	public const double FAMINE_POPULATION_REDUCTION = 10.0;
+	public const double FAMINE_SCIENCE_REDUCTION = 5.0;
+	public const double FAMINE_ECONOMY_REDUCTION = 7.0;
 
 	// These constants will allow you to solve Famine
 	// This first set will allow you to cure the disease with enough investment of science and money. It is more difficult, but will lose you less people.
-	public const int FAMINE_SCIENCE_SOLVE = 30;
-	public const int FAMINE_ECONOMY_SOLVE = 40;
+	public const double FAMINE_SCIENCE_SOLVE = 30.0;
+	public const double FAMINE_ECONOMY_SOLVE = 40.0;
 
 	// This will let you set up martial safe zones. Many will die, but your people will survive.
-	public const int FAMINE_MILITARY_SOLVE = 50;
+	public const double FAMINE_MILITARY_SOLVE = 50.0;
 	#endregion
+
+// Zombies are classic, amirite?
+	#region Zombies
+
+	// The following variables contain all the text displayed.
+	public const string ZOMBIES_APOCALYPSE_STRING = "Zombies";
+	public const string ZOMBIES_INTRO_TEXT0 = "The Earth has is being ravaged by an other-worldly scourge. Death no longer grants rest to those who pass through her gates. " +
+		"Powerful epidemic or ancient curse, it doesn’t matter now. What matters is survival.";
+	public const string ZOMBIES_INTRO_TEXT1 = "What happens when death is no longer a final goodbye? The corpses of the damned now walk the Earth with no respite, " + 
+		"hungry shells of what were once people. Cure, containment, or extermination. Regardless of the means, the end must be the same. Stop the spread before it’s too late.";
+	public const string ZOMBIES_MAIN_TEXT0 = "The spread of this contagion has been a sobering affair. Tens of thousands of people were killed and reanimated within the first " +
+		"two weeks of its public appearance, and now the virus is steadily making its way to every corner of the globe. \n\n Research is being conducted, though it has so far " +
+		"remained inconclusive. Further testing needs to be done in order to classify and attempt to cure the virus, but the hope of this option remaining viable dwindles daily. "+
+		"As more people turn, the still-living population is becoming desperate for answers. And desperation, as we all know, breeds panic. \n\nOptions are limited and time is " +
+		"short. Decisive action is required. Perhaps now more than ever.";
+	public const string ZOMBIES_MAIN_TEXT1 = "“It was right out of a damn horror film. It had everything. A patient zero, a government response, a horde of “safe houses”, " +
+		"and group of idiots who thought they had prepared for it. Disease transferred by a bite, blood contact, who really cares? They’re here, and the situation is growing " +
+		"worse. It’s not about bites anymore. It’s reached the point where newborns are taking their first breath as one of the damn things. \n\nWhat were we supposed to do? " +
+		"Let the creatures just keep coming? We had to find a way to stop it. And no mercy, no leeway, and no remorse would help with that. \n\nHunting parties to corral the " +
+		"monsters, doctors to identify and act on the unborn. Gruesome but effective. Yet it’s all just a delay. We won’t be able to stop them forever.” " +
+		"\n\n -From a note, found with the corpse of a former soldier.";
+	public const string ZOMBIES_SUCCESS_TEXT = "Despite all odds, humanity manages to survive another day. Through your guiding hand, the survivors were able to hold out past the " +
+		"threat. The path wasn’t easy, but the road ahead will be even less so.";
+	public const string ZOMBIES_FAILURE_TEXT = "Whatever it was that possessed the shambling corpses, you were unable to overcome their sheer numbers. Luck, time, and fate were not " +
+		"on your side. As the population was consumed by the undead, order simply melted away. An alliance cannot be forged between two dead men.";
+
+	// These constants will govern how Zombies affects your stats every turn. This is a highly detrimental apocalypse.
+	public const double ZOMBIES_POPULATION_REDUCTION = 15.0;
+	public const double ZOMBIES_RELIGION_REDUCTION = 3.0;
+	public const double ZOMBIES_ECONOMY_REDUCTION = 7.0;
+	public const double ZOMBIES_MILITARY_REDUCTION = 7.0;
+
+	// These constants will allow you to solve Zombies
+	// This first set will allow you to solve zombies by trying to find a cure. May take longer, but your reputation will greatly improve.
+	public const double ZOMBIES_SCIENCE_SOLVE = 50.0;
+	public const double ZOMBIES_ECONOMY_SOLVE = 50.0;
+
+	// This will let you set up military encampments, and exterminate outsiders. Many will die, but it is decisive.
+	public const double ZOMBIES_MILITARY_SOLVE = 60.0;
+	#endregion
+
+// Angels is the major religion-based apocalypse
+	#region Angels
+
+	// The following variables contain all the text displayed.
+	public const string ANGELS_APOCALYPSE_STRING = "Divine Retribution";
+	public const string ANGELS_INTRO_TEXT0 = "When the gates of heaven open, it will not be to spread peace. It will be when god is so troubled by His creation " +
+		"that he sees no alternative but to baptize the world in blood and fire.";
+	public const string ANGELS_INTRO_TEXT1 = "The new threat does not come within, but from above. God’s wrathful army has come, and it is not to judge humanity. " + 
+		"It is to purge all living things, and eliminate sin from the Earth.";
+	public const string ANGELS_MAIN_TEXT0 = "“Prayers are a funny thing. People just keep making them like firing buckshot in a prairie. Eventually one would hit, right?" +
+		"\n\n“I remember the day all the organized religions’ holy ones began spouting their usual nonsense about the end times. Except this time they weren’t saying " + 
+		"repent and be saved like normal. No... they were telling everyone that we’re all fucked. \n\n“You don’t need to understand that a divine will is not impacting " +
+		"your life. But science can’t explain how the sun could burn out and still leave our planet standing, like it was nothing more than the largest light bulb you’ve " +
+		"ever seen. Reason cannot explain why our weaponry doesn’t affect these soldiers. \n\n“And the soldiers look the part. They descended upon us like a military " +
+		"that was just waiting for an excuse. Dressed in blindingly golden armor with wings spread wide as they looked down upon us. They carried flaming swords but I " +
+		"think it was more to fit the idea people had created for them. It wasn’t like they need the weapons. Immediately upon arrival, a few of the most faithful " +
+		"vanished in their light. We were told those people were spared and sent to paradise, but I’ve never heard of people screaming as they go to paradise.\n\n“The " +
+		"rest of us now live with the angels surrounding us. We are removed at their discretion and we can only keep moving. But how do fight something that all your " +
+		"life you were told is impossible to defeat? \n\n“Just remember, if you thought you believed enough, were faithful enough, pure enough, and worshipped hard enough...you were wrong.”";
+	public const string ANGELS_MAIN_TEXT1 = "Just what was the purpose of humanity? To spread peace and love? To worship a god? Or just to spread pain and malcontent? " +
+		"Whatever the case, the divine was no longer satisfied with what it had created. \n\nIf there’s one area in which preachers have always excelled, it’s instilling fear " +
+		"into the masses. All the speeches about eternal damnation, all the fear about letting demons into one’s home or letting sin take root. Eventually, it was dismissed " +
+		"as nonsense. The world was in a chaotic state. There wasn’t a lot of room for belief when nations were constantly at war, and one had to tread carefully outside " +
+		"their homes. So when the preachers, all preachers, started talking about the end of days, few listened. \n\nWhen they came, their arrival extinguished the sun. " +
+		"Earth still stands, but it stands in an eternal night. The sky was torn asunder, and the golden-clad army of heaven descended. Some of the most pious and faithful " +
+		"were consumed on the spot, screaming as their bodies were consumed in divine light. The rest were to be exterminated by hand.\n\nTraditional weaponry doesn’t seem to " +
+		"have an effect. Whatever is to be done, it must be done quickly. Without the sun, crops will wither and die. If the angels do not consume all, starvation will.";
+	public const string ANGELS_SUCCESS_TEXT = "As the angels returned to their domain, the sun reignited with their departure. The streets were filled with silent " +
+		"onlookers as they watched the first sunrise in weeks. Some wept. Humanity has survived another day.";
+	public const string ANGELS_FAILURE_TEXT = "Many were prepared for all out war with the rest of the world. But they were not prepared for a war with heaven itself. " +
+		"The extermination was quick, but certainly not painless. Their haunted screams still echo through the empty streets. Divine wrath was the end of all things.";
+
+	// These constants will govern how Angels affects your stats every turn.
+	public const double ANGELS_POPULATION_REDUCTION = 10.0;
+	public const double ANGELS_MILITARY_REDUCTION = 10.0;
+	public const double ANGELS_RELIGION_REDUCTION = 7.0;
+
+	// These constants will allow you to solve Angels
+	// This set allows you to fight the angels by finding their weaknesses and expoiting them.
+	public const double ANGELS_SCIENCE_SOLVE = 40.0;
+	public const double ANGELS_MILITARY_SOLVE = 40.0;
+
+	// This extremely difficult constraint will allow you to survive thanks to your pious people.
+	public const double ANGELS_RELIGION_SOLVE = 90.0;
 #endregion
 
 
@@ -147,5 +230,80 @@ public static partial class ApocalypseConstants
 
 	public const double FAMINE_BREAKTHROUGH_SCIENCE_INCREASE = 10.0;
 	#endregion
+
+	#region Zombies Evolution
+	// Zombies-specific event
+	public const string ZOMBIES_EVOLUTION_EVENT_STRING = "Accelerated Evolution";
+	public const string ZOMBIES_EVOLUTION_EVENT_TEXT = "The virus seems to be changing faster than it can be cured. As soon as a strand is killed, another has already evolved. " +
+		"Scientists are losing hope that the world can survive.";
+	public const double ZOMBIES_EVOLUTION_SCIENCE_REDUCTION = 8.0;
+
+	// With enough brute force investment, you can get your scientists more materials with which to work, eventually overcoming this problem
+	public const double ZOMBIES_EVOLUTION_ECOMONY_SOLVE = 40.0;
+	#endregion
+
+	#region Zombies Horde
+	// Zombies-specific event
+	public const string ZOMBIES_HORDE_EVENT_STRING = "Horde Behavior";
+	public const string ZOMBIES_HORDE_EVENT_TEXT = "It appears that the reanimated population has begun to horde behavior. They travel in packs or large flocks, and " +
+		"aren't so much organized as they are overwhelming. Survivors are advised to rest in high places and not draw attention to themselves.";
+	public const double ZOMBIES_HORDE_MILITARY_REDUCTION = 8.0;
+	public const double ZOMBIES_HORDE_POPULATION_REDUCTION = 7.0;
+
+	// With enough military might, you can destroy the hordes
+	public const double ZOMBIES_HORDE_MILITARY_SOLVE = 40.0;
+
+	// If you have the right materials, you can get the virus to evolve out of horde behavior with complex planning
+	public const double ZOMBIES_HORDE_SCIENCE_SOLVE = 20.0;
+	public const double ZOMBIES_HORDE_ECONOMY_SOLVE = 20.0;
+	#endregion
+
+	#region Zombies Mutation
+	// Zombies-specific event
+	public const string ZOMBIES_MUTATION_EVENT_STRING = "Mutating Monsters";
+	public const string ZOMBIES_MUTATION_EVENT_TEXT = "The virus seems to be manipulating the bodies of their hosts into mutated husks. Within days, they can rapidly harden " +
+	"their skin to become more resistant, and seem to be able to move faster and hit harder. Some stranger, unique mutations have also been seen.";
+	public const double ZOMBIES_MUTATION_MILITARY_REDUCTION = 10.0;
+
+	// You can solve this problem with enough science and money to develop better weaponry
+	public const double ZOMBIES_MUTATION_SCIENCE_SOLVE = 15.0;
+	public const double ZOMBIES_MUTATION_ECONOMY_SOLVE = 15.0;
+	#endregion
+
+	#region Angels Minions
+	// Angels-specific event
+	public const string ANGELS_MINIONS_EVENT_STRING = "Corruption of the Blessed";
+	public const string ANGELS_MINIONS_EVENT_TEXT = "The angels didn't just come with a battalion of soldiers. They took human souls as well. Those who prayed for " +
+	"mercy were given a new life as slave labor. Canon fodder for the real army.";
+	public const double ANGELS_MINIONS_POPULATION_REDUCTION = 5.0;
+	public const double ANGELS_MINIONS_RELIGION_REDUCTION = 10.0;
+
+	// You can solve this with sheer military force
+	public const double ANGELS_MINIONS_MILITARY_SOLVE = 30.0;
+	#endregion
+
+	#region Angels Hellfire
+	// Angels-specific event
+	public const string ANGELS_HELLFIRE_EVENT_STRING = "Heaven's Hellfire";
+	public const string ANGELS_HELLFIRE_EVENT_TEXT = "It appears as though the angels were holding back when they arrived. The strongest among them, the Seraphim, " +
+	"can see the sins of the wicked and use them as a catalyst to bring forth the fires of hell itself as punishment.";
+	public const double ANGELS_HELLFIRE_POPULATION_REDUCTION = 10.0;
+
+	// You can solve this by having your people be pious enough
+	public const double ANGELS_HELLFIRE_RELIGION_SOLVE = 40.0;
+	#endregion
+
+	#region Angels Plague
+	// Angels-specific event
+	public const string ANGELS_PLAGUE_EVENT_STRING = "Biblical Plagues";
+	public const string ANGELS_PLAGUE_EVENT_TEXT = "Just as when Moses confronted Pharoah, the angels are calling upon the wrath of god to unleash plagues upon humanity.";
+	public const double ANGELS_PLAGUE_POPULATION_REDUCTION = 10.0;
+	public const double ANGELS_PLAGUE_MILITARY_REDUCTION = 8.0;
+
+	// With a combination of biblical knowledge and science, it is possible to predict the next plague and find a way to ease its affects
+	public const double ANGELS_PLAGUE_SCIENCE_SOLVE = 20.0;
+	public const double ANGELS_PLAGUE_RELIGION_SOLVE = 20.0;
+	#endregion
+
 #endregion
 }

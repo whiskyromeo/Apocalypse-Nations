@@ -146,14 +146,16 @@ public static partial class ApocalypseConstants
 
 	// This extremely difficult constraint will allow you to survive thanks to your pious people.
 	public const double ANGELS_RELIGION_SOLVE = 90.0;
-#endregion
+    #endregion
+
+    #endregion
 
 
-#region Events
-// These events will complicate the apocalypses. Some are generic, some are specific.
-	#region Adverse Weather
-	// Generic event
-	public const string WEATHER_EVENT_STRING = "Adverse Weather";
+    #region Events
+    // These events will complicate the apocalypses. Some are generic, some are specific.
+    #region Adverse Weather
+    // Generic event
+    public const string WEATHER_EVENT_STRING = "Adverse Weather";
 	public const string WEATHER_EVENT_TEXT = "A mass of super storms is gathering on the oceans. They will rage across the world. " +
 	"It will be difficult for many to leave their homes in the coming days, and some basic infrastructure will be damaged amidst the torrents of wind and rain.";
 

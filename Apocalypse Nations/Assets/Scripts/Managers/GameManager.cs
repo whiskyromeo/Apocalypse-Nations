@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour {
 
 
     public int activeAllianceActionCount = 0;
-    [SerializeField]
-    public int maxActionCount = 2;
+
+    public int maxActionCount = 1;
 
 	public int CurrentNationNumber { get; set; }
 
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.ApocolypseTurnEffect(EventPanel.ApoclypseTypes.Famine);
                     }
-                    else if (totalTurns >= 1 && totalTurns <= 2 && !activeAlliance.apocolypseActive)
+                    else if (totalTurns <= 1 && eventPanelScript.apocAffectedAlliances.Count == 0)
                     {
                         float rand = Random.Range(0f, 10f);
                         if (rand >= 7)
@@ -160,10 +160,23 @@ public class GameManager : MonoBehaviour {
                         }
 
                     }
-                    else if (totalTurns >= 3 && totalTurns <= 8 && !activeAlliance.apocolypseActive)
+                    else if (totalTurns >= 2 && totalTurns < 3 && eventPanelScript.apocAffectedAlliances.Count == 0)
                     {
                         float rand = Random.Range(0f, 10f);
-                        if (rand >= 2)
+                        if (rand >= 4)
+                        {
+                            eventPanelScript.StartApocolypse();
+                            foreach (Alliance player in players)
+                            {
+                                player.apocolypseActive = true;
+                            }
+                        }
+
+                    }
+                    else if (totalTurns >= 5 && eventPanelScript.apocAffectedAlliances.Count == 0)
+                    {
+                        float rand = Random.Range(0f, 10f);
+                        if (rand >= 5)
                         {
                             eventPanelScript.StartApocolypse();
                             foreach (Alliance player in players)
@@ -180,12 +193,13 @@ public class GameManager : MonoBehaviour {
                     gamePlayState = GameplayStates.FirstPlayerTurn;
                     break;
             }
-            if(activeAllianceActionCount>= maxActionCount)
+
+            eventPanelScript.Update();
+            if(activeAllianceActionCount >= maxActionCount)
             {
                 PlayerEndedTurn();
             }
-
-
+            
             if (Input.GetKey(KeyCode.W)) {
                 //go to win scene
                 SceneManager.LoadScene("WinScene");
@@ -198,6 +212,7 @@ public class GameManager : MonoBehaviour {
             {
                 PlayerEndedTurn();
             }
+            Debug.Log(activeAllianceActionCount);
         }
     }
     #endregion
@@ -248,6 +263,10 @@ public class GameManager : MonoBehaviour {
             if (activeAlliance.apocolypseDurration >=1)
             {
                 eventPanelScript.bodyText.text = eventPanelScript.mainText;
+            }
+            if (activeAlliance.apocolypseDurration == 1)
+            {
+                eventPanelScript.bodyText.text = eventPanelScript.introText;
             }
             eventPanelScript.gameObject.SetActive(true);
 

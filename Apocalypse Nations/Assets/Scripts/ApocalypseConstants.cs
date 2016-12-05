@@ -47,19 +47,20 @@ public static partial class ApocalypseConstants
 	public const string FAMINE_FAILURE_TEXT = "The famine proved to be too formidable, even for some of the strongest countries on Earth. The necrosis sapped the land " +
 		"of all its resources, stripping away what was once a thriving ecosystem. As supplies depleted, so did hope. It was not long before anarchy broke out amongst " +
 		"the rapidly declining population, and your alliance dissolved amidst blood and flames. Those few who survived must seek new homes, lest the now-ravaged land take their lives as well.";
-
+    public const string FAMINE_SOLVE_BUTTON_0_TEXT = "Research Cure";
+    public const string FAMINE_SOLVE_BUTTON_1_TEXT = "Martial Law";
 	// These constants will govern how Famine affects your stats every turn.
-	public const double FAMINE_POPULATION_REDUCTION = 10.0;
-	public const double FAMINE_SCIENCE_REDUCTION = 5.0;
-	public const double FAMINE_ECONOMY_REDUCTION = 7.0;
+	public const int FAMINE_POPULATION_REDUCTION = 10;
+	public const int FAMINE_SCIENCE_REDUCTION = 5;
+	public const int FAMINE_ECONOMY_REDUCTION = 7;
 
 	// These constants will allow you to solve Famine
 	// This first set will allow you to cure the disease with enough investment of science and money. It is more difficult, but will lose you less people.
-	public const double FAMINE_SCIENCE_SOLVE = 30.0;
-	public const double FAMINE_ECONOMY_SOLVE = 40.0;
+	public const int FAMINE_SCIENCE_SOLVE = 30;
+	public const int FAMINE_ECONOMY_SOLVE = 40;
 
 	// This will let you set up martial safe zones. Many will die, but your people will survive.
-	public const double FAMINE_MILITARY_SOLVE = 50.0;
+	public const int FAMINE_MILITARY_SOLVE = 50;
 	#endregion
 
 // Zombies are classic, amirite?

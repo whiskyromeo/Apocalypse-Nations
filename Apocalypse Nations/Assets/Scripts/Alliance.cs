@@ -27,13 +27,7 @@ public class Alliance : MonoBehaviour
     void Start()
     {
         AlliedNations = new List<Nation>();
-        int rand = Random.Range(0, 22);
-        bool test = addNationToAlliance(rand);
-        if (!test)
-        {
-            rand = Random.Range(0, 22);
-            addNationToAlliance(rand);
-        }
+        AddStartingNation();
         updateAllianceStats();
         SetColors();
     }
@@ -41,6 +35,15 @@ public class Alliance : MonoBehaviour
     #region Private Methods
 
 
+    void AddStartingNation()
+    {
+        int rand = Random.Range(0, 22);
+        bool test = addNationToAlliance(rand);
+        if (!test)
+        {
+            AddStartingNation();
+        }
+    }
     /// <summary>
     /// only called by AttackAlliance() to balance the success rate of  attacking a nation
     /// </summary>

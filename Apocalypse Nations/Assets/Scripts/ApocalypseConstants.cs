@@ -246,7 +246,7 @@ public static partial class ApocalypseConstants
 		"very promising. Perhaps the world might just make it through.";
     public const string FAMINE_BREAKTHROUGH_SOLVE_TEXT = "Disperse Cure";
 
-	public const int FAMINE_BREAKTHROUGH_SCIENCE_INCREASE = 10;
+	public const int FAMINE_BREAKTHROUGH_SCIENCE_INCREASE = -30;
 	#endregion
 
 	#region Zombies Evolution

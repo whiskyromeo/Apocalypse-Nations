@@ -445,14 +445,14 @@ public class GameManager : MonoBehaviour {
                 PlayerEndedTurn();
             }
             
-            if (Input.GetKey(KeyCode.W)) {
-                //go to win scene
-                SceneManager.LoadScene("WinScene");
-            }
-            if (Input.GetKey(KeyCode.L)) {
-                //go to lose scene
-                SceneManager.LoadScene("LoseScene");
-            }
+            //if (Input.GetKey(KeyCode.W)) {
+            //    //go to win scene
+            //    SceneManager.LoadScene("WinScene");
+            //}
+            //if (Input.GetKey(KeyCode.L)) {
+            //    //go to lose scene
+            //    SceneManager.LoadScene("LoseScene");
+            //}
             if (Input.GetKeyUp(KeyCode.E))
             {
                 PlayerEndedTurn();

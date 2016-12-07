@@ -20,7 +20,12 @@ public class Alliance : MonoBehaviour
     int balancingScale = 3;
     public Apoclypse activeApoclypse;
     public bool apocolypseActive = false;
+    public bool eventActive = false;
+    public EventPanel.ApoclypseTypes currentApoclypseType;
+    public EventPanel.EventTypes currentEventType;
     public int apocolypseDurration = 0;
+    public int eventDurration = 0;
+    public bool shownDead;
     #endregion
 
 
@@ -30,6 +35,7 @@ public class Alliance : MonoBehaviour
         AddStartingNation();
         updateAllianceStats();
         SetColors();
+        shownDead = false;
     }
 
     #region Private Methods
@@ -252,9 +258,18 @@ public class Alliance : MonoBehaviour
                 {
                     nation.GetComponent<SpriteRenderer>().color = Color.magenta;
                 }
+            else
+            {
+                nation.GetComponent<SpriteRenderer>().color = Color.white;
+            }
 
         }
 
+    }
+
+    public void SetNationColor(Nation nation, Color color)
+    {
+        nation.GetComponent<SpriteRenderer>().color = color;
     }
 
     #endregion

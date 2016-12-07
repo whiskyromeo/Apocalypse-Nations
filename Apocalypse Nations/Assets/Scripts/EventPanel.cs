@@ -734,6 +734,7 @@ public class EventPanel : MonoBehaviour
             eventAffectedAlliances.Remove(gameManager.player4);
             gameManager.activeAlliance.currentEventType = EventTypes.None;
         }
+        eventAffectedAlliances.TrimExcess();
         gameManager.activeAlliance.eventActive = false;
         gameManager.activeAlliance.eventDurration = 0;
 

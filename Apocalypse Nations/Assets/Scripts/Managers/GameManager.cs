@@ -179,13 +179,16 @@ public class GameManager : MonoBehaviour {
                         player1Alive = false;
                         player1.shownDead = true;
                         players.Remove(player1);
+                        players.TrimExcess();
                         if (eventPanelScript.apocAffectedAlliances.Contains(player1))
                         {
                             eventPanelScript.apocAffectedAlliances.Remove(player1);
+                            eventPanelScript.apocAffectedAlliances.TrimExcess();
                         }
                         if (eventPanelScript.eventAffectedAlliances.Contains(player1))
                         {
                             eventPanelScript.eventAffectedAlliances.Remove(player1);
+                            eventPanelScript.eventAffectedAlliances.TrimExcess();
                         }
                         PlayerEndedTurn();
 
@@ -227,13 +230,16 @@ public class GameManager : MonoBehaviour {
                         player2Alive = false;
                         player2.shownDead = true;
                         players.Remove(player2);
+                        players.TrimExcess();
                         if (eventPanelScript.apocAffectedAlliances.Contains(player2))
                         {
                             eventPanelScript.apocAffectedAlliances.Remove(player2);
+                            eventPanelScript.apocAffectedAlliances.TrimExcess();
                         }
                         if (eventPanelScript.eventAffectedAlliances.Contains(player2))
                         {
                             eventPanelScript.eventAffectedAlliances.Remove(player2);
+                            eventPanelScript.eventAffectedAlliances.TrimExcess();
                         }
                         PlayerEndedTurn();
                     }
@@ -277,13 +283,16 @@ public class GameManager : MonoBehaviour {
                         player3Alive = false;
                         player3.shownDead = true;
                         players.Remove(player3);
+                        players.TrimExcess();
                         if (eventPanelScript.apocAffectedAlliances.Contains(player3))
                         {
                             eventPanelScript.apocAffectedAlliances.Remove(player3);
+                            eventPanelScript.apocAffectedAlliances.TrimExcess();
                         }
                         if (eventPanelScript.eventAffectedAlliances.Contains(player3))
                         {
                             eventPanelScript.eventAffectedAlliances.Remove(player3);
+                            eventPanelScript.eventAffectedAlliances.TrimExcess();
                         }
                         PlayerEndedTurn();
 
@@ -326,13 +335,16 @@ public class GameManager : MonoBehaviour {
                         player4Alive = false;
                         player4.shownDead = true;
                         players.Remove(player4);
+                        players.TrimExcess();
                         if (eventPanelScript.apocAffectedAlliances.Contains(player4))
                         {
                             eventPanelScript.apocAffectedAlliances.Remove(player4);
+                            eventPanelScript.apocAffectedAlliances.TrimExcess();
                         }
                         if (eventPanelScript.eventAffectedAlliances.Contains(player4))
                         {
                             eventPanelScript.eventAffectedAlliances.Remove(player4);
+                            eventPanelScript.eventAffectedAlliances.TrimExcess();
                         }
                         PlayerEndedTurn();
 

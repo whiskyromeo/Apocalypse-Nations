@@ -133,24 +133,24 @@ public class EventPanel : MonoBehaviour
 
             if (apoclypsetype == ApoclypseTypes.Famine)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.FAMINE_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Economy, (int)(ApocalypseConstants.FAMINE_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_SCIENCE_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2)));
                 alliance.updateAllianceStats();
             }
             else if (apoclypsetype == ApoclypseTypes.Angels)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.ANGELS_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, ApocalypseConstants.ANGELS_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, ApocalypseConstants.ANGELS_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ANGELS_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ANGELS_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (apoclypsetype == ApoclypseTypes.Zombies)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.ZOMBIES_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, ApocalypseConstants.ZOMBIES_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, ApocalypseConstants.ZOMBIES_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Economy, ApocalypseConstants.ZOMBIES_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ZOMBIES_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ZOMBIES_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Economy, (int)(ApocalypseConstants.ZOMBIES_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             alliance.apocolypseDurration++;
@@ -746,66 +746,66 @@ public class EventPanel : MonoBehaviour
 
             if (eventtype == EventTypes.AdverseWeather)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.WEATHER_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.WEATHER_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.Drought)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.DROUGHT_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.DROUGHT_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.AngelsHellfire)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.ANGELS_HELLFIRE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_HELLFIRE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.AngelsMinions)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.ANGELS_MINIONS_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, ApocalypseConstants.ANGELS_MINIONS_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_MINIONS_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ANGELS_MINIONS_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.AngelsPlague)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, ApocalypseConstants.ANGELS_PLAGUE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.ANGELS_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ANGELS_PLAGUE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.FamineBreakthrough)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.FAMINE_BREAKTHROUGH_SCIENCE_INCREASE * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_BREAKTHROUGH_SCIENCE_INCREASE * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.FamineEvolution)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.FAMINE_EVOLUTION_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_EVOLUTION_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.FamineMutation)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.FAMINE_MUTATION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_MUTATION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.FaminePlague)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.FAMINE_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, ApocalypseConstants.FAMINE_PLAGUE_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.FAMINE_PLAGUE_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.ZombiesEvolutioin)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, ApocalypseConstants.ZOMBIES_EVOLUTION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.ZOMBIES_EVOLUTION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.ZombiesHord)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, ApocalypseConstants.ZOMBIES_HORDE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, ApocalypseConstants.ZOMBIES_HORDE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_HORDE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
+                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ZOMBIES_HORDE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else if (eventtype == EventTypes.ZombiesMutation)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, ApocalypseConstants.ZOMBIES_MUTATION_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 2));
+                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_MUTATION_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 1.5)));
                 alliance.updateAllianceStats();
             }
             else { }

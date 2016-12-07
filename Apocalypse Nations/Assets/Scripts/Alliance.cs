@@ -35,6 +35,8 @@ public class Alliance : MonoBehaviour
         AddStartingNation();
         updateAllianceStats();
         SetColors();
+        currentApoclypseType = EventPanel.ApoclypseTypes.None;
+        currentEventType = EventPanel.EventTypes.None;
         shownDead = false;
     }
 

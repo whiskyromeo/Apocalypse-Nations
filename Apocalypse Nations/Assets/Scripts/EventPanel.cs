@@ -14,25 +14,12 @@ public class EventPanel : MonoBehaviour
     public enum EventTypes { FamineMutation, FaminePlague, FamineEvolution, FamineBreakthrough, ZombiesEvolutioin, ZombiesHord, ZombiesMutation, AngelsMinions, AngelsHellfire, AngelsPlague, AdverseWeather, Drought, None}
     public ApoclypseTypes apoclypseType;
     public EventTypes eventType;
-    public List<Alliance> apocAffectedAlliances = new List<Alliance>();
-    public List<Alliance> eventAffectedAlliances = new List<Alliance>();
 
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    public void Update()
-    {
-        if(apocAffectedAlliances.Count == 0)
-        {
-            apoclypseType = ApoclypseTypes.None;
-        }
-        if(eventAffectedAlliances.Count == 0)
-        {
-            eventType = EventTypes.None;
-        }
-    }
     #region Apocolypses
     public void StartApocolypse()
     {
@@ -121,17 +108,11 @@ public class EventPanel : MonoBehaviour
                 break;
         }
         button2.GetComponentInChildren<Text>().text = "Ignore";
-        apocAffectedAlliances.Clear();
-        apocAffectedAlliances.Add(gameManager.player1);
-        apocAffectedAlliances.Add(gameManager.player2);
-        apocAffectedAlliances.Add(gameManager.player3);
-        apocAffectedAlliances.Add(gameManager.player4);
     }
     public void ApocolypseTurnEffect(ApoclypseTypes apoclypsetype)
     {
-        foreach (Alliance alliance in apocAffectedAlliances)
+        foreach (Alliance alliance in gameManager.players)
         {
-            Debug.Log(apocAffectedAlliances.Count + "apoc");
 
             if (apoclypsetype == ApoclypseTypes.Famine)
             {
@@ -202,7 +183,6 @@ public class EventPanel : MonoBehaviour
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_SOLVE);
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
-                    gameManager.activeAlliance.activeApoclypse = null;
                     CureApoclypse();
                     Close();
 
@@ -282,7 +262,6 @@ public class EventPanel : MonoBehaviour
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Military, ApocalypseConstants.ANGELS_MILITARY_SOLVE);
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.ANGELS_SCIENCE_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
-                    gameManager.activeAlliance.activeApoclypse = null;
                     CureApoclypse();
                     Close();
 
@@ -346,7 +325,6 @@ public class EventPanel : MonoBehaviour
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Economy, ApocalypseConstants.ANGELS_MILITARY_SOLVE);
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.ANGELS_SCIENCE_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
-                    gameManager.activeAlliance.activeApoclypse = null;
                     CureApoclypse();
                     Close();
 
@@ -408,9 +386,10 @@ public class EventPanel : MonoBehaviour
         {
             if (gameManager.activeAlliance.currentEventType == EventTypes.None)
             {
-                if (gameManager.activeAlliance.military >= ApocalypseConstants.FAMINE_MILITARY_SOLVE)
+                if (gameManager.activeAlliance.military >= ApocalypseConstants.FAMINE_MILITARY_SOLVE && gameManager.activeAlliance.population >= ApocalypseConstants.FAMINE_POPULATION_SOLVE)
                 {
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Military, ApocalypseConstants.FAMINE_MILITARY_SOLVE);
+                    SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Population, ApocalypseConstants.FAMINE_POPULATION_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
 
                     CureApoclypse();
@@ -509,24 +488,6 @@ public class EventPanel : MonoBehaviour
 
     public void CureApoclypse()
     {
-        if (gameManager.activeAlliance == gameManager.player1)
-        {
-            apocAffectedAlliances.RemoveAt(0);
-        }
-        else if (gameManager.activeAlliance == gameManager.player2)
-        {
-            apocAffectedAlliances.RemoveAt(1);
-        }
-        else if (gameManager.activeAlliance == gameManager.player3)
-        {
-            apocAffectedAlliances.RemoveAt(2);
-        }
-        else if (gameManager.activeAlliance == gameManager.player4)
-        {
-            apocAffectedAlliances.RemoveAt(3);
-        }
-        gameManager.activeAlliance.activeApoclypse = null;
-        gameManager.activeAlliance.apocolypseActive = false;
         gameManager.activeAlliance.currentApoclypseType = ApoclypseTypes.None;
         gameManager.activeAlliance.apocolypseDurration = 0;
     }
@@ -551,6 +512,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.FamineMutation;
                         }
+                        eventType = EventTypes.FamineMutation;
                         break;
                     case 8:
                         titleText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_STRING;
@@ -561,6 +523,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.FaminePlague;
                         }
+                        eventType = EventTypes.FaminePlague;
                         break;
                     case 9:
                         titleText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_STRING;
@@ -571,6 +534,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.FamineEvolution;
                         }
+                        eventType = EventTypes.FamineEvolution;
                         break;
                     case 10:
                         titleText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_STRING;
@@ -581,6 +545,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.FamineBreakthrough;
                         }
+                        eventType = EventTypes.FamineBreakthrough;
                         break;
                 }
             }
@@ -597,6 +562,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.AngelsMinions;
                         }
+                        eventType = EventTypes.AngelsMinions;
                         break;
                     case 8:
                         titleText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_STRING;
@@ -607,6 +573,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.AngelsHellfire;
                         }
+                        eventType = EventTypes.AngelsHellfire;
                         break;
                     case 9:
                         titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
@@ -617,6 +584,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.AngelsPlague;
                         }
+                        eventType = EventTypes.AngelsPlague;
                         break;
                     case 10:
                         titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
@@ -627,6 +595,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.AngelsPlague;
                         }
+                        eventType = EventTypes.AngelsPlague;
                         break;
                 }
             }
@@ -643,6 +612,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.ZombiesEvolutioin;
                         }
+                        eventType = EventTypes.ZombiesEvolutioin;
                         break;
                     case 8:
                         titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
@@ -653,6 +623,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.ZombiesHord;
                         }
+                        eventType = EventTypes.ZombiesHord;
                         break;
                     case 9:
                         titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
@@ -663,6 +634,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.ZombiesHord;
                         }
+                        eventType = EventTypes.ZombiesHord;
                         break;
                     case 10:
                         titleText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_STRING;
@@ -673,6 +645,7 @@ public class EventPanel : MonoBehaviour
                         {
                             player.currentEventType = EventTypes.ZombiesMutation;
                         }
+                        eventType = EventTypes.ZombiesMutation;
                         break;
                 }
             }
@@ -692,6 +665,7 @@ public class EventPanel : MonoBehaviour
                     {
                         player.currentEventType = EventTypes.AdverseWeather;
                     }
+                    eventType = EventTypes.AdverseWeather;
                     break;
                 case 1:
                     titleText.text = ApocalypseConstants.DROUGHT_EVENT_STRING;
@@ -702,51 +676,26 @@ public class EventPanel : MonoBehaviour
                     {
                         player.currentEventType = EventTypes.Drought;
                     }
+                    eventType = EventTypes.Drought;
                     break;
                
             }
         }
         
         button2.GetComponentInChildren<Text>().text = "Ignore";
-        eventAffectedAlliances.Clear();
-        eventAffectedAlliances.Add(gameManager.player1);
-        eventAffectedAlliances.Add(gameManager.player2);
-        eventAffectedAlliances.Add(gameManager.player3);
-        eventAffectedAlliances.Add(gameManager.player4);
     }
 
     public void CureEvent()
     {
-        if (gameManager.activeAlliance == gameManager.player1)
-        {
-            eventAffectedAlliances.RemoveAt(0);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        else if (gameManager.activeAlliance == gameManager.player2)
-        {
-            eventAffectedAlliances.RemoveAt(1);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        else if (gameManager.activeAlliance == gameManager.player3)
-        {
-            eventAffectedAlliances.RemoveAt(2);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        else if (gameManager.activeAlliance == gameManager.player4)
-        {
-            eventAffectedAlliances.RemoveAt(3);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        gameManager.activeAlliance.eventActive = false;
+        gameManager.activeAlliance.currentEventType = EventTypes.None;
         gameManager.activeAlliance.eventDurration = 0;
 
     }
 
     public void EventEffect(EventTypes eventtype)
     {
-        foreach (Alliance alliance in eventAffectedAlliances)
+        foreach (Alliance alliance in gameManager.players)
         {
-            Debug.Log(eventAffectedAlliances.Count + "event");
             if (eventtype == EventTypes.AdverseWeather)
             {
                 SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.WEATHER_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
@@ -776,8 +725,7 @@ public class EventPanel : MonoBehaviour
             }
             else if (eventtype == EventTypes.FamineBreakthrough)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_BREAKTHROUGH_SCIENCE_INCREASE * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
+                
             }
             else if (eventtype == EventTypes.FamineEvolution)
             {

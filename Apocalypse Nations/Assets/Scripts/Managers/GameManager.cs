@@ -178,18 +178,6 @@ public class GameManager : MonoBehaviour {
                         OpenLosePanel();
                         player1Alive = false;
                         player1.shownDead = true;
-                        players.Remove(player1);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player1))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player1);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player1))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player1);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
                         PlayerEndedTurn();
 
                     }
@@ -229,18 +217,6 @@ public class GameManager : MonoBehaviour {
                         OpenLosePanel();
                         player2Alive = false;
                         player2.shownDead = true;
-                        players.Remove(player2);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player2))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player2);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player2))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player2);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
                         PlayerEndedTurn();
                     }
 
@@ -282,18 +258,6 @@ public class GameManager : MonoBehaviour {
                         OpenLosePanel();
                         player3Alive = false;
                         player3.shownDead = true;
-                        players.Remove(player3);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player3))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player3);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player3))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player3);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
                         PlayerEndedTurn();
 
                     }
@@ -334,18 +298,6 @@ public class GameManager : MonoBehaviour {
                         OpenLosePanel();
                         player4Alive = false;
                         player4.shownDead = true;
-                        players.Remove(player4);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player4))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player4);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player4))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player4);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
                         PlayerEndedTurn();
 
                     }
@@ -367,66 +319,42 @@ public class GameManager : MonoBehaviour {
                         if (random >= 8)
                         {
                             eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
-                            foreach (Alliance player in players)
-                            {
-                                player.eventActive = true;
-                            }
                         }
                         eventPanelScript.EventEffect(eventPanelScript.eventType);
                         eventPanelScript.ApocolypseTurnEffect(eventPanelScript.apoclypseType);
                     }
-                    else if (totalTurns <= 1 && eventPanelScript.apocAffectedAlliances.Count == 0)
+                    else if (totalTurns <= 1 && eventPanelScript.apoclypseType == EventPanel.ApoclypseTypes.None)
                     {
                         float rand = Random.Range(0f, 10f);
                         if (rand >= 7)
                         {
                             eventPanelScript.StartApocolypse();
-                            foreach (Alliance player in players)
-                            {
-                                player.apocolypseActive = true;
-                            }
                         }
                         if (rand <= 4)
                         {
                             eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
-                            foreach (Alliance player in players)
-                            {
-                                player.eventActive = true;
-                            }
                         }
 
                     }
-                    else if (totalTurns >= 2 && totalTurns < 3 && eventPanelScript.apocAffectedAlliances.Count == 0)
+                    else if (totalTurns >= 2 && totalTurns < 3 && eventPanelScript.apoclypseType == EventPanel.ApoclypseTypes.None)
                     {
                         float rand = Random.Range(0f, 10f);
                         if (rand >= 2)
                         {
                             eventPanelScript.StartApocolypse();
-                            foreach (Alliance player in players)
-                            {
-                                player.apocolypseActive = true;
-                            }
                         }
 
                     }
-                    else if (totalTurns >= 5 && eventPanelScript.apocAffectedAlliances.Count == 0)
+                    else if (totalTurns >= 5 && eventPanelScript.apoclypseType == EventPanel.ApoclypseTypes.None)
                     {
                         float rand = Random.Range(0f, 20f);
                         if (rand >= 13)
                         {
                             eventPanelScript.StartApocolypse();
-                            foreach (Alliance player in players)
-                            {
-                                player.apocolypseActive = true;
-                            }
                         }
                         else if (rand <=5)
                         {
                             eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
-                            foreach (Alliance player in players)
-                            {
-                                player.eventActive = true;
-                            }
                         }
 
                     }
@@ -439,7 +367,6 @@ public class GameManager : MonoBehaviour {
                     break;
             }
 
-            eventPanelScript.Update();
             if(activeAllianceActionCount >= maxActionCount)
             {
                 PlayerEndedTurn();
@@ -522,7 +449,7 @@ public class GameManager : MonoBehaviour {
 
     public void EventPanelHandler()
     {
-        if (turnStarted && activeAlliance.apocolypseActive)
+        if (turnStarted && activeAlliance.currentApoclypseType != EventPanel.ApoclypseTypes.None)
         {
                 switch (eventPanelScript.apoclypseType)
                 { // add famine

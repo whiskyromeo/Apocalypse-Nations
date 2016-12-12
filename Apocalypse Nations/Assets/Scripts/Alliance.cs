@@ -18,9 +18,6 @@ public class Alliance : MonoBehaviour
     public int religion;
     public int economy;
     int balancingScale = 3;
-    public Apoclypse activeApoclypse;
-    public bool apocolypseActive = false;
-    public bool eventActive = false;
     public EventPanel.ApoclypseTypes currentApoclypseType;
     public EventPanel.EventTypes currentEventType;
     public int apocolypseDurration = 0;

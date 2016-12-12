@@ -11,8 +11,8 @@ public class PlayerInfo : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		playerInfoText.text = "Pop: " + alliance.population + "\t\tRel: " + alliance.religion + "\nSci: " + alliance.science +
-			"\t\tEcn: " + alliance.economy + "\nMil: " + alliance.military;
+		playerInfoText.text = "Pop:\t" + alliance.population + "\t\tRel:\t" + alliance.religion + "\nSci:\t" + alliance.science +
+			"\t\tEcn:\t" + alliance.economy + "\nMil:\t" + alliance.military;
 
 		title.text = alliance.name + " Stats";
 	}

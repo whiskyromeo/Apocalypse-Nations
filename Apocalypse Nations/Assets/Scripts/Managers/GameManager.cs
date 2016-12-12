@@ -146,16 +146,10 @@ public class GameManager : MonoBehaviour {
             switch(gamePlayState)
             {
 			case GameplayStates.FirstPlayerTurn:
-                    if (player1Alive && turnStarted)
+                    if (!player1Alive && turnStarted)
                     {
-                        activeAlliance = player1;
-                        activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.red;
-                        EventPanelHandler();
-                        turnStarted = false;
-                    }
-                    else if (!player1Alive && turnStarted)
-                    {
+                        player1.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player1.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
 
@@ -166,31 +160,33 @@ public class GameManager : MonoBehaviour {
                         {
                             nation.inAlliance = false;
                             player1.SetNationColor(nation, Color.white);
-                            player1.AlliedNations.Remove(nation);
-                            int nationNumber = worldMap.NationNumbers[nation.name];
-                            nation.Science = worldMap.NationSciences[nationNumber];
-                            nation.Military = worldMap.NationMilitaries[nationNumber];
-                            nation.Economy = worldMap.NationEconomies[nationNumber];
-                            nation.Population = worldMap.NationPopulations[nationNumber];
-                            nation.Religion = worldMap.NationReligions[nationNumber];
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player1.AlliedNations.Clear();
                         playerLoseText.text = "Player 1 You Lose!";
                         OpenLosePanel();
                         player1Alive = false;
                         player1.shownDead = true;
-                        players.Remove(player1);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player1))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player1);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player1))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player1);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player1.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player1.currentEventType = EventPanel.EventTypes.None;
 
                     }
 
@@ -200,48 +196,58 @@ public class GameManager : MonoBehaviour {
                         playerWinText.text = "Player 1 You Win!";
                         OpenWinPanel();
                     }
-                    break;
-			case GameplayStates.SecondPlayerTurn:
-                    if (player2Alive && turnStarted)
+                    if (player1Alive && turnStarted)
                     {
-                        activeAlliance = player2;
+                        activeAlliance = player1;
                         activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.green;
+                        activeAllianceText.color = Color.red;
                         EventPanelHandler();
                         turnStarted = false;
                     }
-                    else if (!player2Alive && turnStarted)
+                    
+                    break;
+			case GameplayStates.SecondPlayerTurn:
+                    if (!player2Alive && turnStarted)
                     {
+                        player2.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player2.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
 
                     // lose condition
                     if (player2.population <= 0 && player2Alive && !player2.shownDead)
-                    {                        
+                    {
                         foreach (Nation nation in player2.AlliedNations)
                         {
                             nation.inAlliance = false;
                             player2.SetNationColor(nation, Color.white);
-                            player2.AlliedNations.Remove(nation);
-
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player2.AlliedNations.Clear();
                         playerLoseText.text = "Player 2 You Lose!";
                         OpenLosePanel();
                         player2Alive = false;
                         player2.shownDead = true;
-                        players.Remove(player2);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player2))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player2);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player2))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player2);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player2.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player2.currentEventType = EventPanel.EventTypes.None;
                     }
 
                     // win condition
@@ -251,50 +257,59 @@ public class GameManager : MonoBehaviour {
                         OpenWinPanel();
                         turnStarted = false;
                     }
-                    break;
-			case GameplayStates.ThirdPlayerTurn:
-                    if (player3Alive && turnStarted)
+                    if (player2Alive && turnStarted)
                     {
-                        activeAlliance = player3;
+                        activeAlliance = player2;
                         activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.yellow;
+                        activeAllianceText.color = Color.green;
                         EventPanelHandler();
                         turnStarted = false;
                     }
-                    else if (!player3Alive && turnStarted)
+                    
+                    break;
+			case GameplayStates.ThirdPlayerTurn:
+                    if (!player3Alive && turnStarted)
                     {
+                        player3.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player3.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
-
                     // lose condition
                     if (player3.population <= 0 && player3Alive && !player3.shownDead)
                     {
 
-                        
+
                         foreach (Nation nation in player3.AlliedNations)
                         {
                             nation.inAlliance = false;
                             player3.SetNationColor(nation, Color.white);
-                            player3.AlliedNations.Remove(nation);
-
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player3.AlliedNations.Clear();
                         playerLoseText.text = "Player 3 You Lose!";
                         OpenLosePanel();
                         player3Alive = false;
                         player3.shownDead = true;
-                        players.Remove(player3);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player3))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player3);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player3))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player3);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player3.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player3.currentEventType = EventPanel.EventTypes.None;
 
                     }
 
@@ -305,48 +320,62 @@ public class GameManager : MonoBehaviour {
                         OpenWinPanel();
                         turnStarted = false;
                     }
-                    break;
-			case GameplayStates.FourthPlayerTurn:
-                    if (player4Alive && turnStarted)
+
+                    if (player3Alive && turnStarted)
                     {
-                        activeAlliance = player4;
+                        activeAlliance = player3;
                         activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.magenta;
+                        activeAllianceText.color = Color.yellow;
                         EventPanelHandler();
                         turnStarted = false;
                     }
-                    else if (!player4Alive && turnStarted)
+
+
+
+
+                    break;
+			case GameplayStates.FourthPlayerTurn:
+                    if (!player4Alive && turnStarted)
                     {
+                        player4.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player4.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
-
                     // lose condition
                     if (player4.population <= 0 && player4Alive && !player4.shownDead)
                     {
-                        
+
                         foreach (Nation nation in player4.AlliedNations)
                         {
                             nation.inAlliance = false;
                             player4.SetNationColor(nation, Color.white);
-                            player4.AlliedNations.Remove(nation);
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player4.AlliedNations.Clear();
                         playerLoseText.text = "Player 4 You Lose!";
                         OpenLosePanel();
                         player4Alive = false;
                         player4.shownDead = true;
-                        players.Remove(player4);
-                        players.TrimExcess();
-                        if (eventPanelScript.apocAffectedAlliances.Contains(player4))
-                        {
-                            eventPanelScript.apocAffectedAlliances.Remove(player4);
-                            eventPanelScript.apocAffectedAlliances.TrimExcess();
-                        }
-                        if (eventPanelScript.eventAffectedAlliances.Contains(player4))
-                        {
-                            eventPanelScript.eventAffectedAlliances.Remove(player4);
-                            eventPanelScript.eventAffectedAlliances.TrimExcess();
-                        }
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player4.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player4.currentEventType = EventPanel.EventTypes.None;
 
                     }
 
@@ -357,76 +386,67 @@ public class GameManager : MonoBehaviour {
                         OpenWinPanel();
                         turnStarted = false;
                     }
+                    if (player4Alive && turnStarted)
+                    {
+                        activeAlliance = player4;
+                        activeAllianceText.text = activeAlliance.name;
+                        activeAllianceText.color = Color.magenta;
+                        EventPanelHandler();
+                        turnStarted = false;
+                    }
+
+
+
                     break;
                 case GameplayStates.Apocolypse:
+                    eventPanelScript.CheckForApocAndEvents(this);
                     // this will be used for the apocolypse turn or refresher
                     totalTurns++;
                     if (eventPanelScript.apoclypseType != EventPanel.ApoclypseTypes.None)
                     {
-                        int random = Random.Range(0, 10);
-                        if (random >= 8)
+                        if (eventPanelScript.eventType == EventPanel.EventTypes.None)
                         {
-                            eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
-                            foreach (Alliance player in players)
+                            int random = Random.Range(0, 10);
+                            if (random >= 8)
                             {
-                                player.eventActive = true;
+                                eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
                             }
                         }
                         eventPanelScript.EventEffect(eventPanelScript.eventType);
                         eventPanelScript.ApocolypseTurnEffect(eventPanelScript.apoclypseType);
                     }
-                    else if (totalTurns <= 1 && eventPanelScript.apocAffectedAlliances.Count == 0)
+                    else if (totalTurns <= 1 && eventPanelScript.apoclypseType == EventPanel.ApoclypseTypes.None)
                     {
                         float rand = Random.Range(0f, 10f);
                         if (rand >= 7)
                         {
                             eventPanelScript.StartApocolypse();
-                            foreach (Alliance player in players)
-                            {
-                                player.apocolypseActive = true;
-                            }
                         }
                         if (rand <= 4)
                         {
                             eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
-                            foreach (Alliance player in players)
-                            {
-                                player.eventActive = true;
-                            }
                         }
 
                     }
-                    else if (totalTurns >= 2 && totalTurns < 3 && eventPanelScript.apocAffectedAlliances.Count == 0)
+                    else if (totalTurns >= 2 && totalTurns < 3 && eventPanelScript.apoclypseType == EventPanel.ApoclypseTypes.None)
                     {
                         float rand = Random.Range(0f, 10f);
                         if (rand >= 2)
                         {
                             eventPanelScript.StartApocolypse();
-                            foreach (Alliance player in players)
-                            {
-                                player.apocolypseActive = true;
-                            }
                         }
 
                     }
-                    else if (totalTurns >= 5 && eventPanelScript.apocAffectedAlliances.Count == 0)
+                    else if (totalTurns >= 5 && eventPanelScript.apoclypseType == EventPanel.ApoclypseTypes.None)
                     {
                         float rand = Random.Range(0f, 20f);
                         if (rand >= 13)
                         {
                             eventPanelScript.StartApocolypse();
-                            foreach (Alliance player in players)
-                            {
-                                player.apocolypseActive = true;
-                            }
                         }
                         else if (rand <=5)
                         {
                             eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
-                            foreach (Alliance player in players)
-                            {
-                                player.eventActive = true;
-                            }
                         }
 
                     }
@@ -439,7 +459,6 @@ public class GameManager : MonoBehaviour {
                     break;
             }
 
-            eventPanelScript.Update();
             if(activeAllianceActionCount >= maxActionCount)
             {
                 PlayerEndedTurn();
@@ -457,13 +476,16 @@ public class GameManager : MonoBehaviour {
             {
                 PlayerEndedTurn();
             }
-            Debug.Log(players.Count + "players");
         }
     }
     #endregion
     #region Public Methods
     public void PlayerEndedTurn()
     {
+        if (eventPanelScript.gameObject.activeSelf == true)
+        {
+            eventPanelScript.Close();
+        }
         if (gamePlayState == GameplayStates.FirstPlayerTurn)
         {
             gamePlayState = GameplayStates.SecondPlayerTurn;
@@ -482,10 +504,8 @@ public class GameManager : MonoBehaviour {
         }
         activeAllianceText.text = activeAlliance.name;
         activeAllianceActionCount = 0;
-        if (eventPanelScript.gameObject.activeSelf == true)
-        {
-            eventPanelScript.Close();
-        }
+        Debug.Log(eventPanelScript.apoclypseType);
+        Debug.Log(eventPanelScript.eventType);
 		turnStarted = true;
     }
 
@@ -522,7 +542,7 @@ public class GameManager : MonoBehaviour {
 
     public void EventPanelHandler()
     {
-        if (turnStarted && activeAlliance.apocolypseActive)
+        if (turnStarted && activeAlliance.currentApoclypseType != EventPanel.ApoclypseTypes.None)
         {
                 switch (eventPanelScript.apoclypseType)
                 { // add famine
@@ -536,15 +556,15 @@ public class GameManager : MonoBehaviour {
                             {
                                eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_MAIN_TEXT1;
-                               eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                               eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                             else if (rand == 1)
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_MAIN_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                         }
 
@@ -555,15 +575,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                             else
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                         }
                     }
@@ -571,21 +591,21 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT + "(-40 Rel)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.AngelsMinions)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT + "(-30 Mil)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.AngelsPlague)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT + "(-20 Rel, -20 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                         break;
@@ -599,15 +619,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_MAIN_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                             else if (rand == 1)
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_MAIN_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                             }
                         }
 
@@ -618,15 +638,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                             }
                             else
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                             }
                         }
                     }
@@ -634,29 +654,29 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT + "(+30 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.FamineEvolution)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0 + "(-30 Sci)";
-                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1 + "(-30 Mil)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0;
+                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1;
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.FamineMutation)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1 + "(-15 Econ, -20 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.FaminePlague)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0 + "(-40 Rel)";
-                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1 + "(-10 Econ, -10 Mil, -10 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0;
+                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1;
                     }
 
                     break;
@@ -670,15 +690,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                             else if (rand == 1)
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                         }
 
@@ -689,15 +709,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                             else
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                         }
                     }
@@ -705,27 +725,45 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT + "(-40 Econ)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.ZombiesHord)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0 + "(-40 Mil)";
-                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1 + "(-20 Econ, -20 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0;
+                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1;
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.ZombiesMutation)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT + "(-15 Econ, -15 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     break;
                 }
             eventPanelScript.gameObject.SetActive (true);
 
+        }
+        else if (turnStarted && activeAlliance.currentApoclypseType == EventPanel.ApoclypseTypes.None && activeAlliance.currentEventType != EventPanel.EventTypes.None)
+            {
+            if (activeAlliance.currentEventType == EventPanel.EventTypes.AdverseWeather)
+            {
+                eventPanelScript.titleText.text = ApocalypseConstants.WEATHER_EVENT_STRING;
+                eventPanelScript.bodyText.text = ApocalypseConstants.WEATHER_EVENT_TEXT;
+                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.WEATHER_SOLVE_TEXT;
+                eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
+            }
+            if (activeAlliance.currentEventType == EventPanel.EventTypes.Drought)
+            {
+                eventPanelScript.titleText.text = ApocalypseConstants.DROUGHT_EVENT_STRING;
+                eventPanelScript.bodyText.text = ApocalypseConstants.DROUGHT_EVENT_TEXT;
+                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.DROUGHT_EVENT_SOLVE;
+                eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
+            }
+            eventPanelScript.gameObject.SetActive(true);
         }
     }
 
@@ -741,6 +779,7 @@ public class GameManager : MonoBehaviour {
 
 	public void CloseLosePanel ()
 	{
+        PlayerEndedTurn();
 		losePanelScript.gameObject.SetActive (false);
 	}
 

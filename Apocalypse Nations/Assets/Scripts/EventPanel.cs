@@ -12,27 +12,20 @@ public class EventPanel : MonoBehaviour
     public enum AllianceStats { Population, Military, Science, Religion, Economy };
     public enum ApoclypseTypes { Famine, Angels, Zombies, None };
     public enum EventTypes { FamineMutation, FaminePlague, FamineEvolution, FamineBreakthrough, ZombiesEvolutioin, ZombiesHord, ZombiesMutation, AngelsMinions, AngelsHellfire, AngelsPlague, AdverseWeather, Drought, None}
-    public ApoclypseTypes apoclypseType;
-    public EventTypes eventType;
-    public List<Alliance> apocAffectedAlliances = new List<Alliance>();
-    public List<Alliance> eventAffectedAlliances = new List<Alliance>();
+    public ApoclypseTypes apoclypseType = ApoclypseTypes.None;
+    public EventTypes eventType = EventTypes.None;
 
+    void Awake()
+    {
+        apoclypseType = ApoclypseTypes.None;
+        eventType = EventTypes.None;
+    }
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-    }
 
-    public void Update()
-    {
-        if(apocAffectedAlliances.Count == 0)
-        {
-            apoclypseType = ApoclypseTypes.None;
-        }
-        if(eventAffectedAlliances.Count == 0)
-        {
-            eventType = EventTypes.None;
-        }
-    }
+}
+
     #region Apocolypses
     public void StartApocolypse()
     {
@@ -46,8 +39,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
                 introText = ApocalypseConstants.FAMINE_INTRO_TEXT0;
                 mainText = ApocalypseConstants.FAMINE_MAIN_TEXT0;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Famine;
@@ -59,8 +52,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
                 introText = ApocalypseConstants.FAMINE_INTRO_TEXT1;
                 mainText = ApocalypseConstants.FAMINE_MAIN_TEXT1;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Famine;
@@ -72,8 +65,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT1;
                 introText = ApocalypseConstants.ANGELS_INTRO_TEXT1;
                 mainText = ApocalypseConstants.ANGELS_MAIN_TEXT1;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Angels;
@@ -85,8 +78,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT0;
                 introText = ApocalypseConstants.ANGELS_INTRO_TEXT0;
                 mainText = ApocalypseConstants.ANGELS_MAIN_TEXT0;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Angels;
@@ -98,8 +91,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
                 introText = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
                 mainText = ApocalypseConstants.ZOMBIES_MAIN_TEXT0;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Zombies;
@@ -111,8 +104,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT1;
                 introText = ApocalypseConstants.ZOMBIES_INTRO_TEXT1;
                 mainText = ApocalypseConstants.ZOMBIES_MAIN_TEXT1;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Zombies;
@@ -121,41 +114,38 @@ public class EventPanel : MonoBehaviour
                 break;
         }
         button2.GetComponentInChildren<Text>().text = "Ignore";
-        apocAffectedAlliances.Clear();
-        apocAffectedAlliances.Add(gameManager.player1);
-        apocAffectedAlliances.Add(gameManager.player2);
-        apocAffectedAlliances.Add(gameManager.player3);
-        apocAffectedAlliances.Add(gameManager.player4);
     }
     public void ApocolypseTurnEffect(ApoclypseTypes apoclypsetype)
     {
-        foreach (Alliance alliance in apocAffectedAlliances)
+        foreach (Alliance alliance in gameManager.players)
         {
-            Debug.Log(apocAffectedAlliances.Count + "apoc");
+            if (alliance.currentApoclypseType != ApoclypseTypes.None)
+            {
 
-            if (apoclypsetype == ApoclypseTypes.Famine)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Economy, (int)(ApocalypseConstants.FAMINE_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_SCIENCE_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2)));
-                alliance.updateAllianceStats();
+                if (apoclypsetype == ApoclypseTypes.Famine)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Economy, (int)(ApocalypseConstants.FAMINE_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_SCIENCE_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 2)));
+                    alliance.updateAllianceStats();
+                }
+                else if (apoclypsetype == ApoclypseTypes.Angels)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ANGELS_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ANGELS_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (apoclypsetype == ApoclypseTypes.Zombies)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ZOMBIES_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ZOMBIES_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Economy, (int)(ApocalypseConstants.ZOMBIES_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                alliance.apocolypseDurration++;
             }
-            else if (apoclypsetype == ApoclypseTypes.Angels)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ANGELS_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ANGELS_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (apoclypsetype == ApoclypseTypes.Zombies)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ZOMBIES_POPULATION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_MILITARY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ZOMBIES_RELIGION_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Economy, (int)(ApocalypseConstants.ZOMBIES_ECONOMY_REDUCTION * (gameManager.activeAlliance.apocolypseDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            alliance.apocolypseDurration++;
         }
     }
     public void ApocolypseSolution1()
@@ -202,7 +192,6 @@ public class EventPanel : MonoBehaviour
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Economy, ApocalypseConstants.FAMINE_ECONOMY_SOLVE);
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.FAMINE_SCIENCE_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
-                    gameManager.activeAlliance.activeApoclypse = null;
                     CureApoclypse();
                     Close();
 
@@ -282,7 +271,6 @@ public class EventPanel : MonoBehaviour
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Military, ApocalypseConstants.ANGELS_MILITARY_SOLVE);
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.ANGELS_SCIENCE_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
-                    gameManager.activeAlliance.activeApoclypse = null;
                     CureApoclypse();
                     Close();
 
@@ -346,7 +334,6 @@ public class EventPanel : MonoBehaviour
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Economy, ApocalypseConstants.ANGELS_MILITARY_SOLVE);
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Science, ApocalypseConstants.ANGELS_SCIENCE_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
-                    gameManager.activeAlliance.activeApoclypse = null;
                     CureApoclypse();
                     Close();
 
@@ -408,9 +395,10 @@ public class EventPanel : MonoBehaviour
         {
             if (gameManager.activeAlliance.currentEventType == EventTypes.None)
             {
-                if (gameManager.activeAlliance.military >= ApocalypseConstants.FAMINE_MILITARY_SOLVE)
+                if (gameManager.activeAlliance.military >= ApocalypseConstants.FAMINE_MILITARY_SOLVE && gameManager.activeAlliance.population >= ApocalypseConstants.FAMINE_POPULATION_SOLVE)
                 {
                     SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Military, ApocalypseConstants.FAMINE_MILITARY_SOLVE);
+                    SubtractFromAllianceStat(gameManager.activeAlliance, AllianceStats.Population, ApocalypseConstants.FAMINE_POPULATION_SOLVE);
                     gameManager.activeAlliance.updateAllianceStats();
 
                     CureApoclypse();
@@ -509,24 +497,6 @@ public class EventPanel : MonoBehaviour
 
     public void CureApoclypse()
     {
-        if (gameManager.activeAlliance == gameManager.player1)
-        {
-            apocAffectedAlliances.RemoveAt(0);
-        }
-        else if (gameManager.activeAlliance == gameManager.player2)
-        {
-            apocAffectedAlliances.RemoveAt(1);
-        }
-        else if (gameManager.activeAlliance == gameManager.player3)
-        {
-            apocAffectedAlliances.RemoveAt(2);
-        }
-        else if (gameManager.activeAlliance == gameManager.player4)
-        {
-            apocAffectedAlliances.RemoveAt(3);
-        }
-        gameManager.activeAlliance.activeApoclypse = null;
-        gameManager.activeAlliance.apocolypseActive = false;
         gameManager.activeAlliance.currentApoclypseType = ApoclypseTypes.None;
         gameManager.activeAlliance.apocolypseDurration = 0;
     }
@@ -545,42 +515,58 @@ public class EventPanel : MonoBehaviour
                     case 7:
                         titleText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1 + "(-15 Econ, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.FamineMutation;
+                            if (player.currentApoclypseType == ApoclypseTypes.Famine)
+                            {
+                                player.currentEventType = EventTypes.FamineMutation;
+                            }
                         }
+                        eventType = EventTypes.FamineMutation;
                         break;
                     case 8:
                         titleText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0 + "(-40 Rel)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1 + "(-10 Econ, -10 Mil, -10 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.FaminePlague;
+                            if (player.currentApoclypseType == ApoclypseTypes.Famine)
+                            {
+                                player.currentEventType = EventTypes.FaminePlague;
+                            }
                         }
+                        eventType = EventTypes.FaminePlague;
                         break;
                     case 9:
                         titleText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0 + "(-30 Sci)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1 + "(-30 Mil)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.FamineEvolution;
+                            if (player.currentApoclypseType == ApoclypseTypes.Famine)
+                            {
+                                player.currentEventType = EventTypes.FamineEvolution;
+                            }
                         }
+                        eventType = EventTypes.FamineEvolution;
                         break;
                     case 10:
                         titleText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT + "(+30 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.FamineBreakthrough;
+                            if (player.currentApoclypseType == ApoclypseTypes.Famine)
+                            {
+                                player.currentEventType = EventTypes.FamineBreakthrough;
+                            }
                         }
+                        eventType = EventTypes.FamineBreakthrough;
                         break;
                 }
             }
@@ -591,42 +577,58 @@ public class EventPanel : MonoBehaviour
                     case 7:
                         titleText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT + "(-30 Mil)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.AngelsMinions;
+                            if (player.currentApoclypseType == ApoclypseTypes.Angels)
+                            {
+                                player.currentEventType = EventTypes.AngelsMinions;
+                            }
                         }
+                        eventType = EventTypes.AngelsMinions;
                         break;
                     case 8:
                         titleText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT + "(-40 Rel)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.AngelsHellfire;
+                            if (player.currentApoclypseType == ApoclypseTypes.Angels)
+                            {
+                                player.currentEventType = EventTypes.AngelsHellfire;
+                            }
                         }
+                        eventType = EventTypes.AngelsHellfire;
                         break;
                     case 9:
                         titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT + "(-20 Rel, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.AngelsPlague;
+                            if (player.currentApoclypseType == ApoclypseTypes.Angels)
+                            {
+                                player.currentEventType = EventTypes.AngelsPlague;
+                            }
                         }
+                        eventType = EventTypes.AngelsPlague;
                         break;
                     case 10:
                         titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT + "(-20 Rel, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.AngelsPlague;
+                            if (player.currentApoclypseType == ApoclypseTypes.Angels)
+                            {
+                                player.currentEventType = EventTypes.AngelsPlague;
+                            }
                         }
+                        eventType = EventTypes.AngelsPlague;
                         break;
                 }
             }
@@ -637,42 +639,58 @@ public class EventPanel : MonoBehaviour
                     case 7:
                         titleText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT + "(-40 Econ)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.ZombiesEvolutioin;
+                            if (player.currentApoclypseType == ApoclypseTypes.Zombies)
+                            {
+                                player.currentEventType = EventTypes.ZombiesEvolutioin;
+                            }
                         }
+                        eventType = EventTypes.ZombiesEvolutioin;
                         break;
                     case 8:
                         titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0 + "(-40 Mil)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1 + "(-20 Econ, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.ZombiesHord;
+                            if (player.currentApoclypseType == ApoclypseTypes.Zombies)
+                            {
+                                player.currentEventType = EventTypes.ZombiesHord;
+                            }
                         }
+                        eventType = EventTypes.ZombiesHord;
                         break;
                     case 9:
                         titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0 + "(-40 Mil)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1 + "(-20 Econ, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.ZombiesHord;
+                            if (player.currentApoclypseType == ApoclypseTypes.Zombies)
+                            {
+                                player.currentEventType = EventTypes.ZombiesHord;
+                            }
                         }
+                        eventType = EventTypes.ZombiesHord;
                         break;
                     case 10:
                         titleText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT + "(-15 Econ, -15 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
-                            player.currentEventType = EventTypes.ZombiesMutation;
+                            if (player.currentApoclypseType == ApoclypseTypes.Zombies)
+                            {
+                                player.currentEventType = EventTypes.ZombiesMutation;
+                            }
                         }
+                        eventType = EventTypes.ZombiesMutation;
                         break;
                 }
             }
@@ -686,134 +704,118 @@ public class EventPanel : MonoBehaviour
 
                     titleText.text = ApocalypseConstants.WEATHER_EVENT_STRING;
                     bodyText.text = ApocalypseConstants.WEATHER_EVENT_TEXT;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.WEATHER_SOLVE_TEXT + "(-20 Econ)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.WEATHER_SOLVE_TEXT;
                     button1.GetComponentInChildren<Text>().text = "";
                     foreach (Alliance player in gameManager.players)
                     {
-                        player.currentEventType = EventTypes.AdverseWeather;
+                        if (player.currentApoclypseType == ApoclypseTypes.None)
+                        {
+                            player.currentEventType = EventTypes.AdverseWeather;
+                        }
                     }
+                    eventType = EventTypes.AdverseWeather;
                     break;
                 case 1:
                     titleText.text = ApocalypseConstants.DROUGHT_EVENT_STRING;
                     bodyText.text = ApocalypseConstants.DROUGHT_EVENT_TEXT;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.DROUGHT_EVENT_SOLVE + "(-15 Econ, -15 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.DROUGHT_EVENT_SOLVE;
                     button1.GetComponentInChildren<Text>().text = "";
                     foreach (Alliance player in gameManager.players)
                     {
-                        player.currentEventType = EventTypes.Drought;
+                        if (player.currentApoclypseType == ApoclypseTypes.Zombies)
+                        {
+                            player.currentEventType = EventTypes.Drought;
+                        }
                     }
+                    eventType = EventTypes.Drought;
                     break;
                
             }
         }
         
         button2.GetComponentInChildren<Text>().text = "Ignore";
-        eventAffectedAlliances.Clear();
-        eventAffectedAlliances.Add(gameManager.player1);
-        eventAffectedAlliances.Add(gameManager.player2);
-        eventAffectedAlliances.Add(gameManager.player3);
-        eventAffectedAlliances.Add(gameManager.player4);
     }
 
     public void CureEvent()
     {
-        if (gameManager.activeAlliance == gameManager.player1)
-        {
-            eventAffectedAlliances.RemoveAt(0);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        else if (gameManager.activeAlliance == gameManager.player2)
-        {
-            eventAffectedAlliances.RemoveAt(1);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        else if (gameManager.activeAlliance == gameManager.player3)
-        {
-            eventAffectedAlliances.RemoveAt(2);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        else if (gameManager.activeAlliance == gameManager.player4)
-        {
-            eventAffectedAlliances.RemoveAt(3);
-            gameManager.activeAlliance.currentEventType = EventTypes.None;
-        }
-        gameManager.activeAlliance.eventActive = false;
+        gameManager.activeAlliance.currentEventType = EventTypes.None;
         gameManager.activeAlliance.eventDurration = 0;
 
     }
 
     public void EventEffect(EventTypes eventtype)
     {
-        foreach (Alliance alliance in eventAffectedAlliances)
+        foreach (Alliance alliance in gameManager.players)
         {
-            Debug.Log(eventAffectedAlliances.Count + "event");
-            if (eventtype == EventTypes.AdverseWeather)
+            if (alliance.currentEventType != EventTypes.None)
             {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.WEATHER_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.Drought)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.DROUGHT_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.AngelsHellfire)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_HELLFIRE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.AngelsMinions)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_MINIONS_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ANGELS_MINIONS_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.AngelsPlague)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ANGELS_PLAGUE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.FamineBreakthrough)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_BREAKTHROUGH_SCIENCE_INCREASE * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.FamineEvolution)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_EVOLUTION_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.FamineMutation)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_MUTATION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.FaminePlague)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.FAMINE_PLAGUE_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.ZombiesEvolutioin)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.ZOMBIES_EVOLUTION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.ZombiesHord)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_HORDE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ZOMBIES_HORDE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else if (eventtype == EventTypes.ZombiesMutation)
-            {
-                SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_MUTATION_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
-                alliance.updateAllianceStats();
-            }
-            else { }
+                if (eventtype == EventTypes.AdverseWeather)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.WEATHER_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.Drought)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.DROUGHT_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.AngelsHellfire)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_HELLFIRE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.AngelsMinions)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_MINIONS_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.ANGELS_MINIONS_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.AngelsPlague)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ANGELS_PLAGUE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ANGELS_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.FamineBreakthrough)
+                {
 
-            alliance.eventDurration++;
+                }
+                else if (eventtype == EventTypes.FamineEvolution)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_EVOLUTION_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.FamineMutation)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.FAMINE_MUTATION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.FaminePlague)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.FAMINE_PLAGUE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Religion, (int)(ApocalypseConstants.FAMINE_PLAGUE_RELIGION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.ZombiesEvolutioin)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Science, (int)(ApocalypseConstants.ZOMBIES_EVOLUTION_SCIENCE_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.ZombiesHord)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_HORDE_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    SubtractFromAllianceStat(alliance, AllianceStats.Population, (int)(ApocalypseConstants.ZOMBIES_HORDE_POPULATION_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else if (eventtype == EventTypes.ZombiesMutation)
+                {
+                    SubtractFromAllianceStat(alliance, AllianceStats.Military, (int)(ApocalypseConstants.ZOMBIES_MUTATION_MILITARY_REDUCTION * (gameManager.activeAlliance.eventDurration * 0.5)));
+                    alliance.updateAllianceStats();
+                }
+                else { }
+
+                alliance.eventDurration++;
+            }
         }
     }
 
@@ -822,31 +824,54 @@ public class EventPanel : MonoBehaviour
     // A method to subtract a value from a given stat in a given alliance
     public void SubtractFromAllianceStat(Alliance alliance, AllianceStats stat, int value)
     {
-        switch (stat)
+        if (alliance.AlliedNations.Count > 0)
         {
-            case AllianceStats.Economy:
-                alliance.AlliedNations[0].Economy -= value;
-                break;
-            case AllianceStats.Military:
-                alliance.AlliedNations[0].Military -= value;
-                break;
-            case AllianceStats.Population:
-                alliance.AlliedNations[0].Population -= value;
-                break;
-            case AllianceStats.Religion:
-                alliance.AlliedNations[0].Religion -= value;
-                break;
-            case AllianceStats.Science:
-                alliance.AlliedNations[0].Science -= value;
-                break;
+            int splitValue = value / alliance.AlliedNations.Count;
+            foreach (Nation nation in alliance.AlliedNations)
+            {
+                switch (stat)
+                {
+                    case AllianceStats.Economy:
+                        nation.Economy -= splitValue;
+                        break;
+                    case AllianceStats.Military:
+                        nation.Military -= splitValue;
+                        break;
+                    case AllianceStats.Population:
+                        nation.Population -= splitValue;
+                        break;
+                    case AllianceStats.Religion:
+                        nation.Religion -= splitValue;
+                        break;
+                    case AllianceStats.Science:
+                        nation.Science -= splitValue;
+                        break;
+                        
+                }
+                nation.updateInfoPanel();
+                
+            }
+            alliance.updateAllianceStats();
         }
-        alliance.AlliedNations[0].updateInfoPanel();
-        alliance.updateAllianceStats();
     }
 
     public void Close()
     {
 
         gameManager.CloseEventPanel();
+    }
+    public void CheckForApocAndEvents(GameManager gamemanager)
+    {
+        if (gamemanager.player1.currentApoclypseType == ApoclypseTypes.None && gamemanager.player2.currentApoclypseType == ApoclypseTypes.None &&
+            gamemanager.player3.currentApoclypseType == ApoclypseTypes.None && gamemanager.player4.currentApoclypseType == ApoclypseTypes.None)
+        {
+            apoclypseType = ApoclypseTypes.None;
+        }
+
+        if (gamemanager.player1.currentEventType == EventTypes.None && gamemanager.player2.currentEventType == EventTypes.None &&
+            gamemanager.player3.currentEventType == EventTypes.None && gamemanager.player4.currentEventType == EventTypes.None)
+        {
+            eventType = EventTypes.None;
+        }
     }
 }

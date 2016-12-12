@@ -48,7 +48,7 @@ public class Apoclypse : MonoBehaviour {
         {
             if (alliance.economy >= 40 && alliance.science >= 30)
             {
-                alliance.activeApoclypse = null;
+
             }
             else
             {

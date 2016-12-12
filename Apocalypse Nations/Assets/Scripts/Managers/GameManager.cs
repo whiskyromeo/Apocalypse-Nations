@@ -146,16 +146,10 @@ public class GameManager : MonoBehaviour {
             switch(gamePlayState)
             {
 			case GameplayStates.FirstPlayerTurn:
-                    if (player1Alive && turnStarted)
+                    if (!player1Alive && turnStarted)
                     {
-                        activeAlliance = player1;
-                        activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.red;
-                        EventPanelHandler();
-                        turnStarted = false;
-                    }
-                    else if (!player1Alive && turnStarted)
-                    {
+                        player1.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player1.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
 
@@ -166,19 +160,33 @@ public class GameManager : MonoBehaviour {
                         {
                             nation.inAlliance = false;
                             player1.SetNationColor(nation, Color.white);
-                            player1.AlliedNations.Remove(nation);
-                            int nationNumber = worldMap.NationNumbers[nation.name];
-                            nation.Science = worldMap.NationSciences[nationNumber];
-                            nation.Military = worldMap.NationMilitaries[nationNumber];
-                            nation.Economy = worldMap.NationEconomies[nationNumber];
-                            nation.Population = worldMap.NationPopulations[nationNumber];
-                            nation.Religion = worldMap.NationReligions[nationNumber];
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player1.AlliedNations.Clear();
                         playerLoseText.text = "Player 1 You Lose!";
                         OpenLosePanel();
                         player1Alive = false;
                         player1.shownDead = true;
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player1.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player1.currentEventType = EventPanel.EventTypes.None;
 
                     }
 
@@ -188,36 +196,58 @@ public class GameManager : MonoBehaviour {
                         playerWinText.text = "Player 1 You Win!";
                         OpenWinPanel();
                     }
-                    break;
-			case GameplayStates.SecondPlayerTurn:
-                    if (player2Alive && turnStarted)
+                    if (player1Alive && turnStarted)
                     {
-                        activeAlliance = player2;
+                        activeAlliance = player1;
                         activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.green;
+                        activeAllianceText.color = Color.red;
                         EventPanelHandler();
                         turnStarted = false;
                     }
-                    else if (!player2Alive && turnStarted)
+                    
+                    break;
+			case GameplayStates.SecondPlayerTurn:
+                    if (!player2Alive && turnStarted)
                     {
+                        player2.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player2.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
 
                     // lose condition
                     if (player2.population <= 0 && player2Alive && !player2.shownDead)
-                    {                        
+                    {
                         foreach (Nation nation in player2.AlliedNations)
                         {
                             nation.inAlliance = false;
                             player2.SetNationColor(nation, Color.white);
-                            player2.AlliedNations.Remove(nation);
-
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player2.AlliedNations.Clear();
                         playerLoseText.text = "Player 2 You Lose!";
                         OpenLosePanel();
                         player2Alive = false;
                         player2.shownDead = true;
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player2.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player2.currentEventType = EventPanel.EventTypes.None;
                     }
 
                     // win condition
@@ -227,38 +257,59 @@ public class GameManager : MonoBehaviour {
                         OpenWinPanel();
                         turnStarted = false;
                     }
-                    break;
-			case GameplayStates.ThirdPlayerTurn:
-                    if (player3Alive && turnStarted)
+                    if (player2Alive && turnStarted)
                     {
-                        activeAlliance = player3;
+                        activeAlliance = player2;
                         activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.yellow;
+                        activeAllianceText.color = Color.green;
                         EventPanelHandler();
                         turnStarted = false;
                     }
-                    else if (!player3Alive && turnStarted)
+                    
+                    break;
+			case GameplayStates.ThirdPlayerTurn:
+                    if (!player3Alive && turnStarted)
                     {
+                        player3.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player3.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
-
                     // lose condition
                     if (player3.population <= 0 && player3Alive && !player3.shownDead)
                     {
 
-                        
+
                         foreach (Nation nation in player3.AlliedNations)
                         {
                             nation.inAlliance = false;
                             player3.SetNationColor(nation, Color.white);
-                            player3.AlliedNations.Remove(nation);
-
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player3.AlliedNations.Clear();
                         playerLoseText.text = "Player 3 You Lose!";
                         OpenLosePanel();
                         player3Alive = false;
                         player3.shownDead = true;
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player3.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player3.currentEventType = EventPanel.EventTypes.None;
 
                     }
 
@@ -269,36 +320,62 @@ public class GameManager : MonoBehaviour {
                         OpenWinPanel();
                         turnStarted = false;
                     }
-                    break;
-			case GameplayStates.FourthPlayerTurn:
-                    if (player4Alive && turnStarted)
+
+                    if (player3Alive && turnStarted)
                     {
-                        activeAlliance = player4;
+                        activeAlliance = player3;
                         activeAllianceText.text = activeAlliance.name;
-                        activeAllianceText.color = Color.magenta;
+                        activeAllianceText.color = Color.yellow;
                         EventPanelHandler();
                         turnStarted = false;
                     }
-                    else if (!player4Alive && turnStarted)
+
+
+
+
+                    break;
+			case GameplayStates.FourthPlayerTurn:
+                    if (!player4Alive && turnStarted)
                     {
+                        player4.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player4.currentEventType = EventPanel.EventTypes.None;
                         PlayerEndedTurn();
                     }
-
                     // lose condition
                     if (player4.population <= 0 && player4Alive && !player4.shownDead)
                     {
-                        
+
                         foreach (Nation nation in player4.AlliedNations)
                         {
                             nation.inAlliance = false;
                             player4.SetNationColor(nation, Color.white);
-                            player4.AlliedNations.Remove(nation);
+                            nation.Population = 0;
+                            if (nation.Science < 0)
+                            {
+                                nation.Science = 0;
+                            }
+                            if (nation.Military < 0)
+                            {
+                                nation.Military = 0;
+                            }
+                            if (nation.Economy < 0)
+                            {
+                                nation.Economy = 0;
+                            }
+                            if (nation.Religion < 0)
+                            {
+                                nation.Religion = 0;
+                            }
+                            nation.updateInfoPanel();
                         }
+                        player4.AlliedNations.Clear();
                         playerLoseText.text = "Player 4 You Lose!";
                         OpenLosePanel();
                         player4Alive = false;
                         player4.shownDead = true;
-                        PlayerEndedTurn();
+                        turnStarted = false;
+                        player4.currentApoclypseType = EventPanel.ApoclypseTypes.None;
+                        player4.currentEventType = EventPanel.EventTypes.None;
 
                     }
 
@@ -309,16 +386,31 @@ public class GameManager : MonoBehaviour {
                         OpenWinPanel();
                         turnStarted = false;
                     }
+                    if (player4Alive && turnStarted)
+                    {
+                        activeAlliance = player4;
+                        activeAllianceText.text = activeAlliance.name;
+                        activeAllianceText.color = Color.magenta;
+                        EventPanelHandler();
+                        turnStarted = false;
+                    }
+
+
+
                     break;
                 case GameplayStates.Apocolypse:
+                    eventPanelScript.CheckForApocAndEvents(this);
                     // this will be used for the apocolypse turn or refresher
                     totalTurns++;
                     if (eventPanelScript.apoclypseType != EventPanel.ApoclypseTypes.None)
                     {
-                        int random = Random.Range(0, 10);
-                        if (random >= 8)
+                        if (eventPanelScript.eventType == EventPanel.EventTypes.None)
                         {
-                            eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
+                            int random = Random.Range(0, 10);
+                            if (random >= 8)
+                            {
+                                eventPanelScript.StartEvent(eventPanelScript.apoclypseType);
+                            }
                         }
                         eventPanelScript.EventEffect(eventPanelScript.eventType);
                         eventPanelScript.ApocolypseTurnEffect(eventPanelScript.apoclypseType);
@@ -384,13 +476,16 @@ public class GameManager : MonoBehaviour {
             {
                 PlayerEndedTurn();
             }
-            Debug.Log(players.Count + "players");
         }
     }
     #endregion
     #region Public Methods
     public void PlayerEndedTurn()
     {
+        if (eventPanelScript.gameObject.activeSelf == true)
+        {
+            eventPanelScript.Close();
+        }
         if (gamePlayState == GameplayStates.FirstPlayerTurn)
         {
             gamePlayState = GameplayStates.SecondPlayerTurn;
@@ -409,10 +504,8 @@ public class GameManager : MonoBehaviour {
         }
         activeAllianceText.text = activeAlliance.name;
         activeAllianceActionCount = 0;
-        if (eventPanelScript.gameObject.activeSelf == true)
-        {
-            eventPanelScript.Close();
-        }
+        Debug.Log(eventPanelScript.apoclypseType);
+        Debug.Log(eventPanelScript.eventType);
 		turnStarted = true;
     }
 
@@ -654,6 +747,24 @@ public class GameManager : MonoBehaviour {
             eventPanelScript.gameObject.SetActive (true);
 
         }
+        else if (turnStarted && activeAlliance.currentApoclypseType == EventPanel.ApoclypseTypes.None && activeAlliance.currentEventType != EventPanel.EventTypes.None)
+            {
+            if (activeAlliance.currentEventType == EventPanel.EventTypes.AdverseWeather)
+            {
+                eventPanelScript.titleText.text = ApocalypseConstants.WEATHER_EVENT_STRING;
+                eventPanelScript.bodyText.text = ApocalypseConstants.WEATHER_EVENT_TEXT;
+                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.WEATHER_SOLVE_TEXT;
+                eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
+            }
+            if (activeAlliance.currentEventType == EventPanel.EventTypes.Drought)
+            {
+                eventPanelScript.titleText.text = ApocalypseConstants.DROUGHT_EVENT_STRING;
+                eventPanelScript.bodyText.text = ApocalypseConstants.DROUGHT_EVENT_TEXT;
+                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.DROUGHT_EVENT_SOLVE;
+                eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
+            }
+            eventPanelScript.gameObject.SetActive(true);
+        }
     }
 
 	public void CloseEventPanel ()
@@ -668,6 +779,7 @@ public class GameManager : MonoBehaviour {
 
 	public void CloseLosePanel ()
 	{
+        PlayerEndedTurn();
 		losePanelScript.gameObject.SetActive (false);
 	}
 

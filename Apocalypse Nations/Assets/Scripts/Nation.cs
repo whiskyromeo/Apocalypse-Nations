@@ -134,7 +134,7 @@ public class Nation : MonoBehaviour {
         playerActionsPanel = PlayerActionsPanel.Instantiate(playerActionsPanel);
         playerActionsPanel.transform.SetParent(canvas.transform);
         playerActionsPanel.gameObject.SetActive(false);
-        Vector3 actionPanelPos = new Vector3(300, 150, 10);
+        Vector3 actionPanelPos = new Vector3(675, 100, 10);
         playerActionsPanel.GetComponent<RectTransform>().position = actionPanelPos;
 
 		LeaveOpen = false;

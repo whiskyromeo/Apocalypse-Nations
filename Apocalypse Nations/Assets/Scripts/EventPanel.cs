@@ -46,8 +46,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
                 introText = ApocalypseConstants.FAMINE_INTRO_TEXT0;
                 mainText = ApocalypseConstants.FAMINE_MAIN_TEXT0;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Famine;
@@ -59,8 +59,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
                 introText = ApocalypseConstants.FAMINE_INTRO_TEXT1;
                 mainText = ApocalypseConstants.FAMINE_MAIN_TEXT1;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Famine;
@@ -72,8 +72,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT1;
                 introText = ApocalypseConstants.ANGELS_INTRO_TEXT1;
                 mainText = ApocalypseConstants.ANGELS_MAIN_TEXT1;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Angels;
@@ -85,8 +85,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT0;
                 introText = ApocalypseConstants.ANGELS_INTRO_TEXT0;
                 mainText = ApocalypseConstants.ANGELS_MAIN_TEXT0;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Angels;
@@ -98,8 +98,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
                 introText = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
                 mainText = ApocalypseConstants.ZOMBIES_MAIN_TEXT0;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Zombies;
@@ -111,8 +111,8 @@ public class EventPanel : MonoBehaviour
                 bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT1;
                 introText = ApocalypseConstants.ZOMBIES_INTRO_TEXT1;
                 mainText = ApocalypseConstants.ZOMBIES_MAIN_TEXT1;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+				button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                 foreach (Alliance player in gameManager.players)
                 {
                     player.currentApoclypseType = ApoclypseTypes.Zombies;
@@ -545,7 +545,7 @@ public class EventPanel : MonoBehaviour
                     case 7:
                         titleText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1 + "(-15 Econ, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -555,8 +555,8 @@ public class EventPanel : MonoBehaviour
                     case 8:
                         titleText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0 + "(-40 Rel)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1 + "(-10 Econ, -10 Mil, -10 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
                             player.currentEventType = EventTypes.FaminePlague;
@@ -565,8 +565,8 @@ public class EventPanel : MonoBehaviour
                     case 9:
                         titleText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0 + "(-30 Sci)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1 + "(-30 Mil)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
                             player.currentEventType = EventTypes.FamineEvolution;
@@ -575,7 +575,7 @@ public class EventPanel : MonoBehaviour
                     case 10:
                         titleText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT + "(+30 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -591,7 +591,7 @@ public class EventPanel : MonoBehaviour
                     case 7:
                         titleText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT + "(-30 Mil)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -601,7 +601,7 @@ public class EventPanel : MonoBehaviour
                     case 8:
                         titleText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT + "(-40 Rel)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -611,7 +611,7 @@ public class EventPanel : MonoBehaviour
                     case 9:
                         titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT + "(-20 Rel, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -621,7 +621,7 @@ public class EventPanel : MonoBehaviour
                     case 10:
                         titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT + "(-20 Rel, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -637,7 +637,7 @@ public class EventPanel : MonoBehaviour
                     case 7:
                         titleText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT + "(-40 Econ)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -647,8 +647,8 @@ public class EventPanel : MonoBehaviour
                     case 8:
                         titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0 + "(-40 Mil)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1 + "(-20 Econ, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
                             player.currentEventType = EventTypes.ZombiesHord;
@@ -657,8 +657,8 @@ public class EventPanel : MonoBehaviour
                     case 9:
                         titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0 + "(-40 Mil)";
-						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1 + "(-20 Econ, -20 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0;
+						button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1;
                         foreach (Alliance player in gameManager.players)
                         {
                             player.currentEventType = EventTypes.ZombiesHord;
@@ -667,7 +667,7 @@ public class EventPanel : MonoBehaviour
                     case 10:
                         titleText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_STRING;
                         bodyText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_TEXT;
-						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT + "(-15 Econ, -15 Sci)";
+						button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT;
                         button1.GetComponentInChildren<Text>().text = "";
                         foreach (Alliance player in gameManager.players)
                         {
@@ -686,7 +686,7 @@ public class EventPanel : MonoBehaviour
 
                     titleText.text = ApocalypseConstants.WEATHER_EVENT_STRING;
                     bodyText.text = ApocalypseConstants.WEATHER_EVENT_TEXT;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.WEATHER_SOLVE_TEXT + "(-20 Econ)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.WEATHER_SOLVE_TEXT;
                     button1.GetComponentInChildren<Text>().text = "";
                     foreach (Alliance player in gameManager.players)
                     {
@@ -696,7 +696,7 @@ public class EventPanel : MonoBehaviour
                 case 1:
                     titleText.text = ApocalypseConstants.DROUGHT_EVENT_STRING;
                     bodyText.text = ApocalypseConstants.DROUGHT_EVENT_TEXT;
-				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.DROUGHT_EVENT_SOLVE + "(-15 Econ, -15 Mil)";
+				button0.GetComponentInChildren<Text>().text = ApocalypseConstants.DROUGHT_EVENT_SOLVE;
                     button1.GetComponentInChildren<Text>().text = "";
                     foreach (Alliance player in gameManager.players)
                     {
@@ -822,26 +822,30 @@ public class EventPanel : MonoBehaviour
     // A method to subtract a value from a given stat in a given alliance
     public void SubtractFromAllianceStat(Alliance alliance, AllianceStats stat, int value)
     {
-        switch (stat)
+        int splitValue = value / alliance.AlliedNations.Count;
+        foreach (Nation nation in alliance.AlliedNations)
         {
-            case AllianceStats.Economy:
-                alliance.AlliedNations[0].Economy -= value;
-                break;
-            case AllianceStats.Military:
-                alliance.AlliedNations[0].Military -= value;
-                break;
-            case AllianceStats.Population:
-                alliance.AlliedNations[0].Population -= value;
-                break;
-            case AllianceStats.Religion:
-                alliance.AlliedNations[0].Religion -= value;
-                break;
-            case AllianceStats.Science:
-                alliance.AlliedNations[0].Science -= value;
-                break;
+            switch (stat)
+            {
+                case AllianceStats.Economy:
+                    nation.Economy -= splitValue;
+                    break;
+                case AllianceStats.Military:
+                    nation.Military -= splitValue;
+                    break;
+                case AllianceStats.Population:
+                    nation.Population -= splitValue;
+                    break;
+                case AllianceStats.Religion:
+                    nation.Religion -= splitValue;
+                    break;
+                case AllianceStats.Science:
+                    nation.Science -= splitValue;
+                    break;
+            }
+            alliance.AlliedNations[0].updateInfoPanel();
+            alliance.updateAllianceStats();
         }
-        alliance.AlliedNations[0].updateInfoPanel();
-        alliance.updateAllianceStats();
     }
 
     public void Close()

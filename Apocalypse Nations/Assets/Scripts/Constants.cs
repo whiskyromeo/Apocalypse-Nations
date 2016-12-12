@@ -5,6 +5,10 @@ using System.Collections;
 /// </summary>
 public static partial class Constants {
 
+    public const int ATTACK_DAMAGE = 100;
+    public const int ATTACK_WIN_BONUS = 50;
+    public const int ATTACK_LOSS_DAMAGE = 75;
+
     #region NationNames
     public const string CHINA_NATION_STRING = "China";
     public const string INDIA_NATION_STRING = "India";

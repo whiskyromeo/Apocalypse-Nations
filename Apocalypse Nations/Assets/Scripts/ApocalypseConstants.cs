@@ -47,20 +47,21 @@ public static partial class ApocalypseConstants
 	public const string FAMINE_FAILURE_TEXT = "The famine proved to be too formidable, even for some of the strongest countries on Earth. The necrosis sapped the land " +
 		"of all its resources, stripping away what was once a thriving ecosystem. As supplies depleted, so did hope. It was not long before anarchy broke out amongst " +
 		"the rapidly declining population, and your alliance dissolved amidst blood and flames. Those few who survived must seek new homes, lest the now-ravaged land take their lives as well.";
-    public const string FAMINE_SOLVE_BUTTON_0_TEXT = "Research Cure";
-    public const string FAMINE_SOLVE_BUTTON_1_TEXT = "Martial Law";
+    public const string FAMINE_SOLVE_BUTTON_0_TEXT = "Research Cure (Sci -90, Econ: -40)";
+    public const string FAMINE_SOLVE_BUTTON_1_TEXT = "Martial Law (Mili -70)";
 	// These constants will govern how Famine affects your stats every turn.
-	public const int FAMINE_POPULATION_REDUCTION = 10;
-	public const int FAMINE_SCIENCE_REDUCTION = 5;
-	public const int FAMINE_ECONOMY_REDUCTION = 7;
+	public const int FAMINE_POPULATION_REDUCTION = 100;
+	public const int FAMINE_SCIENCE_REDUCTION = 50;
+	public const int FAMINE_ECONOMY_REDUCTION = 40;
 
 	// These constants will allow you to solve Famine
 	// This first set will allow you to cure the disease with enough investment of science and money. It is more difficult, but will lose you less people.
-	public const int FAMINE_SCIENCE_SOLVE = 30;
+	public const int FAMINE_SCIENCE_SOLVE = 90;
 	public const int FAMINE_ECONOMY_SOLVE = 40;
 
 	// This will let you set up martial safe zones. Many will die, but your people will survive.
-	public const int FAMINE_MILITARY_SOLVE = 50;
+	public const int FAMINE_MILITARY_SOLVE = 100;
+    public const int FAMINE_POPULATION_SOLVE = 30;
 	#endregion
 
 // Zombies are classic, amirite?
@@ -87,22 +88,22 @@ public static partial class ApocalypseConstants
 		"threat. The path wasn’t easy, but the road ahead will be even less so.";
 	public const string ZOMBIES_FAILURE_TEXT = "Whatever it was that possessed the shambling corpses, you were unable to overcome their sheer numbers. Luck, time, and fate were not " +
 		"on your side. As the population was consumed by the undead, order simply melted away. An alliance cannot be forged between two dead men.";
-    public const string ZOMBIES_SOLVE_BUTTON_0_TEXT = "Research Cure";
-    public const string ZOMBIES_SOLVE_BUTTON_1_TEXT = "Extinction";
+    public const string ZOMBIES_SOLVE_BUTTON_0_TEXT = "Research Cure (Sci -90 Econ -60)";
+    public const string ZOMBIES_SOLVE_BUTTON_1_TEXT = "Extinction (Mili -150)";
 
     // These constants will govern how Zombies affects your stats every turn. This is a highly detrimental apocalypse.
-    public const int ZOMBIES_POPULATION_REDUCTION = 15;
-	public const int ZOMBIES_RELIGION_REDUCTION = 3;
-	public const int ZOMBIES_ECONOMY_REDUCTION = 7;
-	public const int ZOMBIES_MILITARY_REDUCTION = 7;
+    public const int ZOMBIES_POPULATION_REDUCTION = 80;
+	public const int ZOMBIES_RELIGION_REDUCTION = 20;
+	public const int ZOMBIES_ECONOMY_REDUCTION = 50;
+	public const int ZOMBIES_MILITARY_REDUCTION = 40;
 
 	// These constants will allow you to solve Zombies
 	// This first set will allow you to solve zombies by trying to find a cure. May take longer, but your reputation will greatly improve.
-	public const int ZOMBIES_SCIENCE_SOLVE = 50;
-	public const int ZOMBIES_ECONOMY_SOLVE = 50;
+	public const int ZOMBIES_SCIENCE_SOLVE = 90;
+	public const int ZOMBIES_ECONOMY_SOLVE = 60;
 
 	// This will let you set up military encampments, and exterminate outsiders. Many will die, but it is decisive.
-	public const int ZOMBIES_MILITARY_SOLVE = 60;
+	public const int ZOMBIES_MILITARY_SOLVE = 200;
 	#endregion
 
 // Angels is the major religion-based apocalypse

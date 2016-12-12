@@ -167,14 +167,13 @@ public class Alliance : MonoBehaviour
         {
             /// attack hits
             Debug.Log("You Win the attack");
-            attackedNation.Population = (int)(attackedNation.Population - (attackedNation.Population * .2));
-            attackedNation.Military = (int)(attackedNation.Military - (attackedNation.Military * .2));
-            attackedNation.Religion = (int)(attackedNation.Religion - (attackedNation.Religion * .2));
-            attackedNation.Science = (int)(attackedNation.Science - (attackedNation.Science * .2));
-            attackedNation.Economy = (int)(attackedNation.Economy - (attackedNation.Economy * .2));
+            attackedNation.Population = (int)(attackedNation.Population - Constants.ATTACK_DAMAGE);
+            attackedNation.Military = (int)(attackedNation.Military - Constants.ATTACK_DAMAGE);
+            attackedNation.Religion = (int)(attackedNation.Religion - Constants.ATTACK_DAMAGE);
+            attackedNation.Science = (int)(attackedNation.Science - Constants.ATTACK_DAMAGE);
+            attackedNation.Economy = (int)(attackedNation.Economy - Constants.ATTACK_DAMAGE);
             attackedNation.updateInfoPanel();
             GameManager game = FindObjectOfType<GameManager>();
-            //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
             if (game.player1.AlliedNations.Contains(attackedNation))
             {
                 game.player1.updateAllianceStats();
@@ -192,13 +191,16 @@ public class Alliance : MonoBehaviour
                 game.player4.updateAllianceStats();
             }
 
-            
-            AlliedNations[0].Population = (int)(AlliedNations[0].Population + (AlliedNations[0].Population * .2));
-            AlliedNations[0].Military = (int)(AlliedNations[0].Military + (AlliedNations[0].Military * .2));
-            AlliedNations[0].Religion = (int)(AlliedNations[0].Religion + (AlliedNations[0].Religion * .2));
-            AlliedNations[0].Science = (int)(AlliedNations[0].Science + (AlliedNations[0].Science * .2));
-            AlliedNations[0].Economy = (int)(AlliedNations[0].Economy + (AlliedNations[0].Economy * .2));
-            AlliedNations[0].updateInfoPanel();
+            int splitDamage = Constants.ATTACK_WIN_BONUS / AlliedNations.Count;
+            foreach (Nation nation in AlliedNations)
+            {
+                nation.Population = (int)(AlliedNations[0].Population + (splitDamage));
+                nation.Military = (int)(AlliedNations[0].Military + (splitDamage));
+                nation.Religion = (int)(AlliedNations[0].Religion + (splitDamage));
+                nation.Science = (int)(AlliedNations[0].Science + (splitDamage));
+                nation.Economy = (int)(AlliedNations[0].Economy + (splitDamage));
+                nation.updateInfoPanel();
+            }
             updateAllianceStats();
 
 
@@ -207,11 +209,11 @@ public class Alliance : MonoBehaviour
         {
             /// failed attack
             Debug.Log("the attack has failed");
-            attackedNation.Population = (int)(attackedNation.Population + (attackedNation.Population * .2));
-            attackedNation.Military = (int)(attackedNation.Military + (attackedNation.Military * .2));
-            attackedNation.Religion = (int)(attackedNation.Religion + (attackedNation.Religion * .2));
-            attackedNation.Science = (int)(attackedNation.Science + (attackedNation.Science * .2));
-            attackedNation.Economy = (int)(attackedNation.Economy + (attackedNation.Economy * .2));
+            attackedNation.Population = (int)(attackedNation.Population + (Constants.ATTACK_WIN_BONUS));
+            attackedNation.Military = (int)(attackedNation.Military + (Constants.ATTACK_WIN_BONUS));
+            attackedNation.Religion = (int)(attackedNation.Religion + (Constants.ATTACK_WIN_BONUS));
+            attackedNation.Science = (int)(attackedNation.Science + (Constants.ATTACK_WIN_BONUS));
+            attackedNation.Economy = (int)(attackedNation.Economy + (Constants.ATTACK_WIN_BONUS));
             attackedNation.updateInfoPanel();
             GameManager game = FindObjectOfType<GameManager>();
             //GameObject.Find("GameManager").GetComponent<GameManager>().activeAllianceActionCount++; //this counts as an action
@@ -231,12 +233,18 @@ public class Alliance : MonoBehaviour
             {
                 game.player4.updateAllianceStats();
             }
-            AlliedNations[0].Population = (int)(AlliedNations[0].Population - (AlliedNations[0].Population * .2));
-            AlliedNations[0].Military = (int)(AlliedNations[0].Military - (AlliedNations[0].Military * .2));
-            AlliedNations[0].Religion = (int)(AlliedNations[0].Religion - (AlliedNations[0].Religion * .2));
-            AlliedNations[0].Science = (int)(AlliedNations[0].Science - (AlliedNations[0].Science * .2));
-            AlliedNations[0].Economy = (int)(AlliedNations[0].Economy - (AlliedNations[0].Economy * .2));
-            AlliedNations[0].updateInfoPanel();
+
+            int splitDamage = Constants.ATTACK_LOSS_DAMAGE / AlliedNations.Count;
+            foreach (Nation nation in AlliedNations)
+            {
+
+                nation.Population = (int)(AlliedNations[0].Population - (splitDamage));
+                nation.Military = (int)(AlliedNations[0].Military - (splitDamage));
+                nation.Religion = (int)(AlliedNations[0].Religion - (splitDamage));
+                nation.Science = (int)(AlliedNations[0].Science - (splitDamage));
+                nation.Economy = (int)(AlliedNations[0].Economy - (splitDamage));
+                nation.updateInfoPanel();
+            }
             updateAllianceStats();
 
         }

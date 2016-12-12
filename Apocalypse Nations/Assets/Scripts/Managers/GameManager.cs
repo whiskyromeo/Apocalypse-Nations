@@ -536,15 +536,15 @@ public class GameManager : MonoBehaviour {
                             {
                                eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_MAIN_TEXT1;
-                               eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                               eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                             else if (rand == 1)
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_MAIN_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                         }
 
@@ -555,15 +555,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                             else
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_INTRO_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Mil, - 40 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-90 Rel)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                         }
                     }
@@ -571,21 +571,21 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_HELLFIRE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT + "(-40 Rel)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_HELLFIRE_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.AngelsMinions)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_MINIONS_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT + "(-30 Mil)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_MINIONS_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.AngelsPlague)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ANGELS_PLAGUE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT + "(-20 Rel, -20 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_PLAGUE_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                         break;
@@ -599,15 +599,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_MAIN_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ANGELS_SOLVE_BUTTON_1_TEXT;
                             }
                             else if (rand == 1)
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_MAIN_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                             }
                         }
 
@@ -618,15 +618,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                             }
                             else
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_INTRO_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT + "(-40 Econ, -30 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT + "(-50 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_SOLVE_BUTTON_1_TEXT;
                             }
                         }
                     }
@@ -634,29 +634,29 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_BREAKTHROUGH_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT + "(+30 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_BREAKTHROUGH_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.FamineEvolution)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_EVOLUTION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0 + "(-30 Sci)";
-                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1 + "(-30 Mil)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT0;
+                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_EVOLUTION_SOLVE_TEXT1;
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.FamineMutation)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_MUTATION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1 + "(-15 Econ, -20 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_MUTATION_SOLVE_TEXT1;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.FaminePlague)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.FAMINE_PLAGUE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0 + "(-40 Rel)";
-                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1 + "(-10 Econ, -10 Mil, -10 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT0;
+                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.FAMINE_PLAGUE_SOLVE_TEXT1;
                     }
 
                     break;
@@ -670,15 +670,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                             else if (rand == 1)
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                         }
 
@@ -689,15 +689,15 @@ public class GameManager : MonoBehaviour {
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT0;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                             else
                             {
                                 eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_APOCALYPSE_STRING;
                                 eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_INTRO_TEXT1;
-                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT + "(-50 Econ, -50 Sci)";
-                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT + "(-60 Mil)";
+                                eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_0_TEXT;
+                                eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_SOLVE_BUTTON_1_TEXT;
                             }
                         }
                     }
@@ -705,21 +705,21 @@ public class GameManager : MonoBehaviour {
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_EVOLUTION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT + "(-40 Econ)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_EVOLUTION_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.ZombiesHord)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_HORDE_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0 + "(-40 Mil)";
-                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1 + "(-20 Econ, -20 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT0;
+                        eventPanelScript.button1.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_HORDE_SOLVE_TEXT1;
                     }
                     else if (activeAlliance.currentEventType == EventPanel.EventTypes.ZombiesMutation)
                     {
                         eventPanelScript.titleText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_STRING;
                         eventPanelScript.bodyText.text = ApocalypseConstants.ZOMBIES_MUTATION_EVENT_TEXT;
-                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT + "(-15 Econ, -15 Sci)";
+                        eventPanelScript.button0.GetComponentInChildren<Text>().text = ApocalypseConstants.ZOMBIES_MUTATION_SOLVE_TEXT;
                         eventPanelScript.button1.GetComponentInChildren<Text>().text = "";
                     }
                     break;
